@@ -1,85 +1,112 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
-import { faqCategories, faqs } from "@/lib/data";
+
+const faqs = [
+  {
+    question: "What is Triqon?",
+    answer:
+      "Triqon is a career-focused platform that helps college students gain practical experience through structured preparation, real-world projects and paid internship opportunities.",
+  },
+  {
+    question: "Who can apply?",
+    answer:
+      "College students who want to gain practical experience, develop their skills and work on real-world projects can apply.",
+  },
+  {
+    question: "What is the registration amount?",
+    answer:
+      "The Triqon program registration amount is ₹499.",
+  },
+  {
+    question: "Is the ₹499 amount refundable?",
+    answer:
+      "Yes. The ₹499 amount is 100% refundable subject to the applicable program terms, conditions and eligibility requirements.",
+  },
+  {
+    question: "Is the internship paid?",
+    answer:
+      "Yes. Candidates who successfully enter the internship program will participate in a paid internship.",
+  },
+  {
+    question: "Is there an interview?",
+    answer:
+      "Yes. After completing the required internship preparation course, candidates go through an interview round as part of the selection process.",
+  },
+  {
+    question: "Will I receive a certificate?",
+    answer:
+      "Yes. Candidates who successfully complete the internship will receive a Triqon internship certificate.",
+  },
+  {
+    question: "Can I get a PPO?",
+    answer:
+      "Exceptional performers may become eligible for a Pre-Placement Offer based on their internship performance and applicable selection criteria.",
+  },
+  {
+    question: "Do I need prior work experience?",
+    answer:
+      "No professional work experience is required. Candidates should have an interest in learning and applying their skills to real-world projects.",
+  },
+];
 
 export default function FAQ() {
-  const [activeCategory, setActiveCategory] = useState<string>("Internship");
-  const [openIndex, setOpenIndex] = useState<number>(0);
-
-  const filtered = faqs.filter((f) => f.category === activeCategory);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="border-b border-line">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-              Frequently Asked Questions
-            </h2>
-            <p className="mt-3 text-ink-soft">Got Questions? We&rsquo;ve Got Answers</p>
+    <section
+      id="faq"
+      className="bg-white px-4 py-16 sm:px-6 md:px-8 lg:px-10 lg:py-24"
+    >
+      <div className="mx-auto max-w-4xl">
 
-            <Link
-              href="tel:+916372105534"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-semibold text-paper"
-            >
-              Request Call Back
-            </Link>
+        <div className="text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6D4AFF]">
+            FAQ
+          </p>
 
-            <div className="mt-10 flex flex-wrap gap-2">
-              {faqCategories.map((category) => (
+          <h2 className="mt-3 text-3xl font-black text-gray-950 sm:text-4xl">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="mt-10 space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+              <div
+                key={faq.question}
+                className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
+              >
                 <button
-                  key={category}
                   type="button"
-                  onClick={() => {
-                    setActiveCategory(category);
-                    setOpenIndex(0);
-                  }}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                    activeCategory === category
-                      ? "border-ink bg-ink text-paper"
-                      : "border-line text-ink-soft hover:border-ink hover:text-ink"
-                  }`}
+                  onClick={() =>
+                    setOpenIndex(isOpen ? null : index)
+                  }
+                  className="flex min-h-[60px] w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  aria-expanded={isOpen}
                 >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
+                  <span className="text-sm font-bold text-gray-900 sm:text-base">
+                    {faq.question}
+                  </span>
 
-          <div className="divide-y divide-line rounded-2xl border border-line bg-paper-raised">
-            {filtered.map((item, index) => {
-              const isOpen = index === openIndex;
-              return (
-                <div key={item.question}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                    aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                  >
-                    <span className="font-display text-base font-semibold text-ink">
-                      {item.question}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className={`shrink-0 font-mono-tag text-lg text-ink-soft transition-transform ${
-                        isOpen ? "rotate-45" : ""
-                      }`}
-                    >
-                      +
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <p className="px-6 pb-5 text-sm leading-relaxed text-ink-soft">
-                      {item.answer}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 text-[#6D4AFF] transition-transform ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div className="px-5 pb-5 text-sm leading-6 text-gray-600">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

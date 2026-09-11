@@ -7,16 +7,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "3Skill | Live Training Platform",
+  title: "Triqon | Real Projects. Paid Internships. Real Careers.",
   description:
-    "Level up your skills with real projects and mentor feedback.",
+    "Triqon helps college students gain real-world experience through structured preparation, real-life projects, paid internships and career opportunities.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

@@ -23,8 +23,8 @@ const featureConfig: Record<
 > = {
   certification: {
     icon: Shield,
-    iconBg: "bg-[#DCF3E8]",
-    iconColor: "text-[#0F4C3A]",
+    iconBg: "bg-[#EDE9FE]",
+    iconColor: "text-[#6D4AFF]",
   },
   support: {
     icon: MessageCircle,

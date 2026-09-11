@@ -12,10 +12,10 @@ export default function RatingBadge({
   return (
     <div className="flex flex-wrap items-center gap-3">
       <div
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#DCF3E8]"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EDE9FE]"
         aria-hidden="true"
       >
-        <Star className="h-4 w-4 fill-[#0F4C3A] text-[#0F4C3A]" />
+        <Star className="h-4 w-4 fill-[#6D4AFF] text-[#6D4AFF]" />
       </div>
 
       <div className="flex flex-wrap items-center gap-2">

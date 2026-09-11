@@ -11,8 +11,9 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen overflow-x-hidden bg-white">
       <Navbar />
+
       <main>
         <Hero />
         <Programs />
@@ -23,7 +24,8 @@ export default function Home() {
         <Testimonials />
         <FAQ />
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 }

@@ -1,44 +1,91 @@
-import Link from "next/link";
-import { trendingCategories } from "@/lib/data";
+import {
+  Check,
+  IndianRupee,
+  ShieldCheck,
+} from "lucide-react";
+
+const inclusions = [
+  "Internship Preparation Course",
+  "Interview Opportunity",
+  "Real Project Experience",
+  "Paid Internship",
+  "Internship Certificate",
+  "PPO Opportunity for Exceptional Performers",
+];
 
 export default function Trending() {
   return (
-    <section className="border-b border-line">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
-        <span className="font-mono-tag text-xs uppercase tracking-wide text-amber-deep">
-          🔥 Trending in 3Skill
-        </span>
-        <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-          Trending in 3Skill
-        </h2>
+    <section className="bg-gray-50 px-4 py-16 sm:px-6 md:px-8 lg:px-10 lg:py-24">
+      <div className="mx-auto max-w-5xl">
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {trendingCategories.map((group) => (
-            <div key={group.category} className="rounded-2xl border border-line bg-paper-raised p-6">
-              <Link
-                href={group.href}
-                className="font-display text-lg font-bold text-ink hover:text-amber-deep"
-              >
-                {group.category}
-              </Link>
-              <ul className="mt-4 space-y-3">
-                {group.items.map((item) => (
-                  <li key={item.title}>
-                    <Link
-                      href={group.href}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-transparent px-3 py-2.5 -mx-3 transition-colors hover:border-line hover:bg-paper"
-                    >
-                      <span className="text-sm font-medium text-ink">{item.title}</span>
-                      <span className="flex shrink-0 items-center gap-2 font-mono-tag text-xs text-ink-soft">
-                        {item.meta}
-                        <span className="text-amber-deep">★ {item.rating}</span>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+        <div className="overflow-hidden rounded-[32px] bg-white shadow-xl">
+
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
+
+            {/* Price */}
+            <div className="bg-[#EDE9FE] p-8 sm:p-10 lg:p-12">
+
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6D4AFF]">
+                Start Your Journey
+              </p>
+
+              <div className="mt-6 flex items-center gap-2">
+                <IndianRupee className="h-8 w-8 text-[#6D4AFF]" />
+
+                <span className="text-6xl font-black tracking-tight text-gray-950">
+                  499
+                </span>
+              </div>
+
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#6D4AFF] px-4 py-2 text-xs font-bold text-white">
+                <ShieldCheck className="h-4 w-4" />
+                100% REFUNDABLE*
+              </div>
+
+              <p className="mt-6 text-sm leading-6 text-gray-600">
+                Begin your Triqon journey with a ₹499 registration amount.
+                The amount is 100% refundable subject to the applicable
+                program terms and eligibility conditions.
+              </p>
             </div>
-          ))}
+
+            {/* Inclusions */}
+            <div className="p-8 sm:p-10 lg:p-12">
+
+              <h2 className="text-2xl font-black text-gray-950 sm:text-3xl">
+                What&apos;s Included
+              </h2>
+
+              <div className="mt-7 space-y-4">
+                {inclusions.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EDE9FE]">
+                      <Check className="h-4 w-4 text-[#6D4AFF]" />
+                    </div>
+
+                    <span className="text-sm font-medium text-gray-700">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                className="mt-8 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#6D4AFF] px-8 py-4 text-sm font-bold text-white transition hover:bg-[#4C2FBF] sm:w-auto"
+              >
+                Start Your Application
+              </a>
+
+              <p className="mt-4 text-xs text-gray-400">
+                *Refund subject to applicable program terms and conditions.
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
