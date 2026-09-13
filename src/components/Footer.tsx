@@ -1,15 +1,94 @@
 "use client";
 
-import { Mail, MapPin, Phone } from "lucide-react";
+import { supabase } from "../lib/supabase";
+import { FormEvent, useState } from "react";
+import { Mail, MapPin, Phone, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function Footer() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsSubmitting(true);
+    setSubmitMessage("");
+    setSubmitError("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    // Get values from the form
+    const fullName = formData.get("name")?.toString().trim();
+    const email = formData.get("email")?.toString().trim();
+    const mobile = formData.get("mobile")?.toString().trim();
+    const college = formData.get("college")?.toString().trim();
+    const branch = formData.get("branch")?.toString().trim();
+    const yearOfStudy = formData.get("year")?.toString().trim();
+    const areaOfInterest = formData
+      .get("interest")
+      ?.toString()
+      .trim();
+    const remarks = formData.get("remarks")?.toString().trim();
+
+    // Basic validation
+    if (!fullName || !email || !mobile || !college || !yearOfStudy) {
+      setSubmitError("Please fill all required fields.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Save data to Supabase
+      const { error } = await supabase
+        .from("student_registrations")
+        .insert({
+          full_name: fullName,
+          email: email,
+          mobile: mobile,
+          college: college,
+          branch: branch || null,
+          year_of_study: yearOfStudy,
+          area_of_interest: areaOfInterest || null,
+          remarks: remarks || null,
+          status: "New",
+        });
+
+      if (error) {
+        console.error("Supabase error:", error);
+        setSubmitError(
+          "Unable to submit your application. Please try again."
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Success
+      setSubmitMessage(
+        "Thank you! Your application has been submitted successfully."
+      );
+
+      // Clear the form
+      form.reset();
+    } catch (error) {
+      console.error("Unexpected error:", error);
+
+      setSubmitError(
+        "Something went wrong. Please try again later."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer id="contact" className="bg-[#6D4AFF] text-white">
 
       {/* Contact Section */}
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 md:px-8 lg:grid-cols-2 lg:px-10 lg:py-24">
 
-        {/* Left */}
+        {/* LEFT SIDE */}
         <div className="max-w-xl">
 
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#C4B5FD]">
@@ -21,14 +100,16 @@ export default function Footer() {
           </h2>
 
           <p className="mt-5 text-base leading-7 text-white/70 sm:text-lg">
-            Have questions about the internship, selection process, projects,
-            refund or career opportunities? Talk to the Triqon team.
+            Have questions about the internship, selection process,
+            projects, refund or career opportunities? Talk to the
+            Triqon team.
           </p>
 
           <div className="mt-8 space-y-4">
 
             <div className="flex items-center gap-3">
               <Mail className="h-5 w-5 text-[#C4B5FD]" />
+
               <span className="text-sm text-white/80">
                 careers@your-triqon-domain.com
               </span>
@@ -36,6 +117,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-[#C4B5FD]" />
+
               <span className="text-sm text-white/80">
                 Internship Support Team
               </span>
@@ -43,6 +125,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-3">
               <MapPin className="h-5 w-5 text-[#C4B5FD]" />
+
               <span className="text-sm text-white/80">
                 Triqon Internship Program
               </span>
@@ -51,7 +134,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Form */}
+        {/* FORM */}
         <div className="rounded-3xl bg-white p-6 text-gray-950 shadow-xl sm:p-8">
 
           <h3 className="text-2xl font-black">
@@ -64,13 +147,10 @@ export default function Footer() {
 
           <form
             className="mt-6 space-y-4"
-            onSubmit={(event) => {
-              event.preventDefault();
-              alert("Thank you! Your application has been submitted.");
-            }}
+            onSubmit={handleSubmit}
           >
 
-            {/* Name */}
+            {/* Full Name */}
             <div>
               <label
                 htmlFor="name"
@@ -183,16 +263,34 @@ export default function Footer() {
                 <option value="" disabled>
                   Select your year
                 </option>
-                <option value="1">1st Year</option>
-                <option value="2">2nd Year</option>
-                <option value="3">3rd Year</option>
-                <option value="4">4th Year</option>
-                <option value="pg">Postgraduate</option>
-                <option value="other">Other</option>
+
+                <option value="1st Year">
+                  1st Year
+                </option>
+
+                <option value="2nd Year">
+                  2nd Year
+                </option>
+
+                <option value="3rd Year">
+                  3rd Year
+                </option>
+
+                <option value="4th Year">
+                  4th Year
+                </option>
+
+                <option value="Postgraduate">
+                  Postgraduate
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
               </select>
             </div>
 
-            {/* Interest */}
+            {/* Area of Interest */}
             <div>
               <label
                 htmlFor="interest"
@@ -210,11 +308,26 @@ export default function Footer() {
                 <option value="" disabled>
                   Select an area
                 </option>
-                <option>Technology & Development</option>
-                <option>Data & AI</option>
-                <option>Design & Creative</option>
-                <option>Business & Management</option>
-                <option>Other</option>
+
+                <option value="Technology & Development">
+                  Technology & Development
+                </option>
+
+                <option value="Data & AI">
+                  Data & AI
+                </option>
+
+                <option value="Design & Creative">
+                  Design & Creative
+                </option>
+
+                <option value="Business & Management">
+                  Business & Management
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
               </select>
             </div>
 
@@ -236,11 +349,36 @@ export default function Footer() {
               />
             </div>
 
+            {/* Error Message */}
+            {submitError && (
+              <div className="rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+                {submitError}
+              </div>
+            )}
+
+            {/* Success Message */}
+            {submitMessage && (
+              <div className="flex items-start gap-2 rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+
+                <span>{submitMessage}</span>
+              </div>
+            )}
+
+            {/* Submit */}
             <button
               type="submit"
-              className="min-h-[50px] w-full rounded-full bg-[#6D4AFF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#4C2FBF]"
+              disabled={isSubmitting}
+              className="flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[#6D4AFF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#4C2FBF] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Submit Application
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                "Submit Application"
+              )}
             </button>
 
           </form>
@@ -249,11 +387,13 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="border-t border-white/10">
+
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
 
           <div>
             <div className="text-2xl font-black tracking-tight">
-              TRIQON<span className="text-[#C4B5FD]">.</span>
+              TRIQON
+              <span className="text-[#C4B5FD]">.</span>
             </div>
 
             <p className="mt-1 text-xs text-white/50">
@@ -262,29 +402,49 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap gap-5 text-xs text-white/60">
-            <a href="#home" className="hover:text-white">
+
+            <a
+              href="#home"
+              className="hover:text-white"
+            >
               Home
             </a>
 
-            <a href="#how-it-works" className="hover:text-white">
+            <a
+              href="#how-it-works"
+              className="hover:text-white"
+            >
               How It Works
             </a>
 
-            <a href="#faq" className="hover:text-white">
+            <a
+              href="#faq"
+              className="hover:text-white"
+            >
               FAQ
             </a>
 
-            <a href="#" className="hover:text-white">
+            <a
+              href="#"
+              className="hover:text-white"
+            >
               Privacy Policy
             </a>
 
-            <a href="#" className="hover:text-white">
+            <a
+              href="#"
+              className="hover:text-white"
+            >
               Terms & Conditions
             </a>
 
-            <a href="#" className="hover:text-white">
+            <a
+              href="#"
+              className="hover:text-white"
+            >
               Refund Policy
             </a>
+
           </div>
 
           <p className="text-xs text-white/40">
@@ -293,6 +453,7 @@ export default function Footer() {
 
         </div>
       </div>
+
     </footer>
   );
 }

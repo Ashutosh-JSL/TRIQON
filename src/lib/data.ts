@@ -223,7 +223,7 @@ export const successStories = [
     track: "Data Science",
     headline: "Start as a free intern, grow your skills, and step into a paid internship",
     quote:
-      "I started as a free intern and ended up getting a paid internship! 3Skill guided me step-by-step into Data Science and helped me land real projects.",
+      "I started as a free intern and ended up getting a paid internship! Triqon guided me step-by-step into Data Science and helped me land real projects.",
   },
 ];
 
@@ -232,13 +232,13 @@ export const testimonials = [
     name: "Udit Rathore",
     role: "Web Development Intern",
     quote:
-      "My web development internship at 3Skill was an amazing hands-on learning experience. The mentors explained each concept clearly, from HTML and CSS to APIs and hosting. Working on real projects gave me confidence, and every live class felt like building something new.",
+      "My web development internship at Triqon was an amazing hands-on learning experience. The mentors explained each concept clearly, from HTML and CSS to APIs and hosting. Working on real projects gave me confidence, and every live class felt like building something new.",
   },
   {
     name: "Renee Chettiar",
     role: "Data Analytics Intern",
     quote:
-      "The Data Analytics internship at 3Skill helped me gain practical exposure to real-world data. I learned how to clean, analyze, and visualize data using Python and Excel. The live classes were very interactive, and mentors guided us patiently.",
+      "The Data Analytics internship at Triqon helped me gain practical exposure to real-world data. I learned how to clean, analyze, and visualize data using Python and Excel. The live classes were very interactive, and mentors guided us patiently.",
   },
   {
     name: "Garima Kaushik",
@@ -262,7 +262,7 @@ export const testimonials = [
     name: "Snigdh Kumar",
     role: "Data Analytics Intern",
     quote:
-      "Learning data analytics at 3Skill was an eye-opening experience. We worked on live datasets, learned visualization tools, and got real feedback from mentors. Collaborating with other interns helped me learn teamwork and communication.",
+      "Learning data analytics at Triqon was an eye-opening experience. We worked on live datasets, learned visualization tools, and got real feedback from mentors. Collaborating with other interns helped me learn teamwork and communication.",
   },
 ];
 
@@ -271,15 +271,15 @@ export const faqCategories = ["Internship", "Refund", "Course", "Certification"]
 export const faqs = [
   {
     category: "Internship",
-    question: "What internship programs does 3Skill offer?",
+    question: "What internship programs does Triqon offer?",
     answer:
-      "3Skill offers internship programs across multiple domains, including Web Development, Data Analytics, AI & ML, and more. You can choose a 2-Month or 3-Month Internship Program depending on how deep you want to go. We also offer a flexible Project-Based Internship that can run anywhere from 1 to 6 months, where you work on a single real project in your chosen domain, start to finish.",
+      "Triqon offers internship programs across multiple domains, including Web Development, Data Analytics, AI & ML, and more. You can choose a 2-Month or 3-Month Internship Program depending on how deep you want to go. We also offer a flexible Project-Based Internship that can run anywhere from 1 to 6 months, where you work on a single real project in your chosen domain, start to finish.",
   },
   {
     category: "Internship",
-    question: "How many students have completed an internship with 3Skill?",
+    question: "How many students have completed an internship with Triqon?",
     answer:
-      "Over 50,000 students have already learned with 3Skill and completed internships across our different programs.",
+      "Over 50,000 students have already learned with Triqon and completed internships across our different programs.",
   },
   {
     category: "Internship",
@@ -289,7 +289,7 @@ export const faqs = [
   },
   {
     category: "Refund",
-    question: "What is 3Skill's refund policy?",
+    question: "What is Triqon's refund policy?",
     answer:
       "As per our terms and conditions, you're eligible for a 100% money refund. To be eligible, you're required to complete the course or internship you enrolled in, as outlined in our terms and conditions.",
   },
@@ -303,13 +303,13 @@ export const faqs = [
     category: "Course",
     question: "Are the classes live or pre-recorded?",
     answer:
-      "All classes at 3Skill are conducted live by real mentors. If you're ever unable to attend a live class, you'll still get access to the full recording, so you never miss out.",
+      "All classes at Triqon are conducted live by real mentors. If you're ever unable to attend a live class, you'll still get access to the full recording, so you never miss out.",
   },
   {
     category: "Course",
-    question: "How many students have taken 3Skill's courses?",
+    question: "How many students have taken Triqon's courses?",
     answer:
-      "3Skill has already trained over 50,000 students across its courses and programs.",
+      "Triqon has already trained over 50,000 students across its courses and programs.",
   },
   {
     category: "Course",
@@ -321,7 +321,7 @@ export const faqs = [
     category: "Certification",
     question: "Do I get a certificate after completing my course or internship?",
     answer:
-      "Yes. Every course and internship at 3Skill comes with a verified certificate on completion.",
+      "Yes. Every course and internship at Triqon comes with a verified certificate on completion.",
   },
   {
     category: "Certification",
@@ -371,7 +371,7 @@ export const footerColumns = [
     ],
   },
   {
-    heading: "3Skill",
+    heading: "Triqon",
     links: [
       { label: "About Us", href: "/about" },
       { label: "Our Team", href: "/about" },
@@ -384,8 +384,8 @@ export const footerColumns = [
 ];
 
 export const socials = [
-  { label: "Instagram", href: "https://instagram.com/3skillofficial" },
+  { label: "Instagram", href: "https://instagram.com/Triqonofficial" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/3-skill/" },
   { label: "YouTube", href: "https://www.youtube.com/@threeskill" },
-  { label: "X", href: "https://twitter.com/3skillindia" },
+  { label: "X", href: "https://twitter.com/Triqonindia" },
 ];

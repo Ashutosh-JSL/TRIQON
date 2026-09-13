@@ -6,7 +6,7 @@ export default function Difference() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="max-w-2xl">
           <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            See The 3Skill Difference
+            See The Triqon Difference
           </h2>
           <p className="mt-3 text-ink-soft">
             Most students learn alone from recorded videos. Our students learn live — with
@@ -20,11 +20,11 @@ export default function Difference() {
               What Matters
             </div>
             <div className="border-l border-paper/10 px-4 py-4 sm:px-6">
-              <p className="text-sm font-semibold">Without 3Skill</p>
+              <p className="text-sm font-semibold">Without Triqon</p>
               <p className="font-display text-lg font-bold text-paper/70">&lt;1% success</p>
             </div>
             <div className="border-l border-paper/10 bg-amber/15 px-4 py-4 sm:px-6">
-              <p className="text-sm font-semibold text-amber-deep">With 3Skill</p>
+              <p className="text-sm font-semibold text-amber-deep">With Triqon</p>
               <p className="font-display text-lg font-bold text-ink">5x Better Chances</p>
             </div>
           </div>
