@@ -424,18 +424,15 @@ export default function Footer() {
               FAQ
             </a>
 
-            <a
-              href="#"
-              className="hover:text-white"
-            >
-              Privacy Policy
-            </a>
+            <a href="/terms-and-conditions">
+  Terms &amp; Conditions
+</a>
 
             <a
               href="#"
               className="hover:text-white"
             >
-              Terms & Conditions
+              
             </a>
 
             <a

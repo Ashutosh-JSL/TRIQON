@@ -33,21 +33,7 @@ export default function Programs() {
     >
       <div className="mx-auto max-w-7xl">
 
-        <div className="max-w-2xl">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#6D4AFF]">
-            Internship Opportunities
-          </p>
-
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-gray-950 sm:text-4xl lg:text-5xl">
-            Find Your Place to{" "}
-            <span className="text-[#6D4AFF]">Build & Grow.</span>
-          </h2>
-
-          <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg">
-            Explore internship opportunities designed to help you apply your
-            skills to practical projects and gain professional experience.
-          </p>
-        </div>
+        
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {programs.map((program) => (

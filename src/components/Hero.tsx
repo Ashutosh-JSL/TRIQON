@@ -1,223 +1,521 @@
+"use client";
+
+import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
   CheckCircle2,
+  Code2,
+  Database,
   GraduationCap,
-  IndianRupee,
-  Play,
-  Rocket,
+  Lightbulb,
+  Megaphone,
+  Palette,
+  ShieldCheck,
   Sparkles,
+  Target,
+  Users,
+  Wallet,
+  Zap,
 } from "lucide-react";
-import HeroImageCluster from "./HeroImageCluster";
 
-const highlights = [
-  "Real-world projects",
-  "Paid internships",
-  "Industry experience",
-  "Certificate",
+const tracks = [
+  {
+    title: "Web Development",
+    description: "Build modern websites and practical web applications.",
+    icon: Code2,
+    tag: "Development",
+    color: "bg-violet-100 text-violet-700",
+  },
+  {
+    title: "Data Analytics",
+    description: "Turn real-world data into meaningful insights.",
+    icon: Database,
+    tag: "Data & Insights",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    title: "UI/UX Design",
+    description: "Create intuitive, user-friendly digital experiences.",
+    icon: Palette,
+    tag: "Creative",
+    color: "bg-pink-100 text-pink-700",
+  },
+  {
+    title: "Digital Marketing",
+    description: "Explore content, campaigns, and digital growth.",
+    icon: Megaphone,
+    tag: "Marketing",
+    color: "bg-orange-100 text-orange-700",
+  },
+  {
+    title: "Business & Strategy",
+    description: "Develop problem-solving and business thinking skills.",
+    icon: BriefcaseBusiness,
+    tag: "Business",
+    color: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    title: "Explore Your Potential",
+    description: "Discover new skills through guided practical learning.",
+    icon: Lightbulb,
+    tag: "Skill Building",
+    color: "bg-amber-100 text-amber-700",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Register",
+    description: "Share your details and tell us about your interests.",
+    icon: Users,
+  },
+  {
+    number: "02",
+    title: "Get Guidance",
+    description: "Understand the program, expectations, and learning path.",
+    icon: GraduationCap,
+  },
+  {
+    number: "03",
+    title: "Interview Round",
+    description: "Participate in the applicable selection process.",
+    icon: Target,
+  },
+  {
+    number: "04",
+    title: "Work on Projects",
+    description: "Build practical skills through guided project work.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    number: "05",
+    title: "Complete & Grow",
+    description:
+      "Meet program requirements and receive applicable completion benefits.",
+    icon: Sparkles,
+  },
 ];
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden bg-[#F8F6FF]"
-    >
-      {/* Background decoration */}
-      <div
-        className="pointer-events-none absolute -left-40 top-20 h-[420px] w-[420px] rounded-full bg-[#EDE9FE] blur-3xl"
-        aria-hidden="true"
-      />
+    <main className="overflow-hidden bg-white text-[#17132D]">
+      {/* HERO SECTION */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#F4F0FF] via-[#FBFAFF] to-[#EDE7FF]">
+        <div className="pointer-events-none absolute -right-24 -top-28 -z-10 h-[420px] w-[420px] rounded-full bg-violet-300/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 left-0 -z-10 h-[400px] w-[400px] rounded-full bg-fuchsia-200/30 blur-3xl" />
 
-      <div
-        className="pointer-events-none absolute right-[-180px] top-[-100px] h-[520px] w-[520px] rounded-full bg-[#DDD6FE] opacity-60 blur-3xl"
-        aria-hidden="true"
-      />
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-10 lg:px-10 lg:py-24">
+          {/* LEFT CONTENT */}
+          <div className="max-w-2xl">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white/80 px-4 py-2 text-sm font-semibold text-[#6544D6] shadow-sm">
+              <Sparkles size={16} />
+              Learn. Build. Grow.
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Practical learning opportunities
+            </div>
 
-      <div
-        className="pointer-events-none absolute bottom-0 left-[40%] h-[300px] w-[300px] rounded-full bg-[#F3E8FF] blur-3xl"
-        aria-hidden="true"
-      />
+            <h1 className="text-4xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-[4.25rem]">
+              Turn Your
+              <span className="block">Potential Into</span>
+              <span className="mt-1 block bg-gradient-to-r from-[#6138D9] via-[#8255F6] to-[#B04BEA] bg-clip-text pb-2 text-transparent">
+                Real Experience.
+              </span>
+            </h1>
 
-      {/* Main Hero */}
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-72px)] w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-10 lg:px-10 lg:py-20">
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#625B78] sm:text-lg">
+              Go beyond classroom learning. Explore practical projects,
+              develop industry-relevant skills, and take the next step
+              toward your professional journey with TRIQUON INDIA.
+            </p>
 
-        {/* LEFT CONTENT */}
-        <div className="max-w-2xl">
+            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3">
+              {[
+                "Practical projects",
+                "Skill development",
+                "Mentor guidance",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-2 text-sm font-semibold text-[#393052]"
+                >
+                  <CheckCircle2
+                    size={17}
+                    className="shrink-0 text-[#7048E8]"
+                  />
+                  {item}
+                </div>
+              ))}
+            </div>
 
-          {/* Badge */}
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#6D4AFF]/10 bg-[#EDE9FE] px-4 py-2 text-xs font-bold text-[#5B3FD1] sm:text-sm">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#6D4AFF] text-white">
-              <GraduationCap className="h-3.5 w-3.5" />
-            </span>
-
-            From Campus to Career
-          </div>
-
-          {/* Heading */}
-          <h1 className="max-w-3xl text-[2.8rem] font-black leading-[0.98] tracking-[-0.045em] text-[#15112B] sm:text-5xl md:text-6xl lg:text-[4.5rem]">
-
-            Don't Just Learn.
-
-            <br />
-
-            <span className="bg-gradient-to-r from-[#6D4AFF] via-[#8B5CF6] to-[#C026D3] bg-clip-text text-transparent">
-              Build. Experience.
-            </span>
-
-            <ArrowUpRight
-              className="ml-1 inline-block h-9 w-9 text-[#6D4AFF] sm:h-11 sm:w-11 lg:h-12 lg:w-12"
-              strokeWidth={2.5}
-              aria-hidden="true"
-            />
-          </h1>
-
-          {/* Sub heading */}
-          <div className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-2">
-            <span className="text-xl font-black text-[#17132D] sm:text-2xl lg:text-3xl">
-              Get Trained.
-            </span>
-
-            <span className="text-xl font-black text-[#6D4AFF] sm:text-2xl lg:text-3xl">
-              Get Selected.
-            </span>
-
-            <span className="rounded-lg bg-[#6D4AFF] px-2.5 py-1 text-xl font-black text-white shadow-lg shadow-purple-200 sm:text-2xl lg:text-3xl">
-              Get Paid.
-            </span>
-          </div>
-
-          {/* Description */}
-          <p className="mt-6 max-w-xl text-base leading-7 text-[#625D73] sm:text-lg sm:leading-8">
-            TRIQON connects college students with real projects, paid
-            internships and career opportunities — helping you move from
-            classroom learning to professional experience.
-          </p>
-
-          {/* Highlights */}
-          <div className="mt-7 grid grid-cols-1 gap-3 min-[450px]:grid-cols-2">
-            {highlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex items-center gap-2 text-sm font-semibold text-[#403B52]"
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="#contact"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#6D4AFF] px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_-10px_rgba(109,74,255,0.65)] transition hover:-translate-y-1 hover:bg-[#5935E5] hover:shadow-[0_16px_35px_-10px_rgba(109,74,255,0.7)]"
               >
-                <CheckCircle2
-                  className="h-4 w-4 shrink-0 text-[#6D4AFF]"
-                  aria-hidden="true"
+                Explore Opportunities
+                <ArrowRight
+                  size={19}
+                  className="transition-transform group-hover:translate-x-1"
                 />
+              </Link>
 
-                <span>{highlight}</span>
-              </div>
-            ))}
+              <Link
+                href="#how-it-works"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-violet-200 bg-white/80 px-7 py-4 text-base font-bold text-[#5136B9] shadow-sm transition hover:-translate-y-1 hover:border-violet-400 hover:bg-white"
+              >
+                How It Works
+                <ArrowUpRight size={18} />
+              </Link>
+            </div>
+
+            <p className="mt-5 text-xs leading-6 text-[#77708D]">
+              Program availability, eligibility, selection, and benefits
+              are subject to the applicable program terms.
+            </p>
           </div>
 
-          {/* Buttons */}
-          <div className="mt-9 flex flex-col gap-3 min-[430px]:flex-row">
+          {/* RIGHT VISUAL */}
+          <div className="relative mx-auto w-full max-w-[540px] lg:ml-auto">
+            <div className="absolute -inset-5 rounded-[3rem] bg-gradient-to-br from-violet-300/50 via-fuchsia-200/40 to-indigo-200/50 blur-2xl" />
 
-            <a
+            <div className="relative rounded-[2rem] border border-white/80 bg-white/75 p-4 shadow-[0_25px_80px_-25px_rgba(73,48,145,0.30)] backdrop-blur-xl sm:p-6">
+              <div className="flex items-center justify-between gap-3 border-b border-violet-100 pb-5">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#8877BD]">
+                    Your next chapter
+                  </p>
+                  <h2 className="mt-2 text-xl font-extrabold sm:text-2xl">
+                    Build your future.
+                  </h2>
+                </div>
+
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#6D4AFF] text-white shadow-lg shadow-violet-200">
+                  <Zap size={23} fill="currentColor" />
+                </div>
+              </div>
+
+              <div className="relative mt-5 overflow-hidden rounded-3xl bg-gradient-to-br from-[#6D4AFF] via-[#7851EE] to-[#9C5BEA] p-6 text-white sm:p-7">
+                <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full border-[24px] border-white/10" />
+                <div className="absolute -bottom-14 right-20 h-32 w-32 rounded-full bg-fuchsia-300/20 blur-xl" />
+
+                <div className="relative">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-semibold">
+                    <Sparkles size={14} />
+                    Learn by doing
+                  </span>
+
+                  <h3 className="mt-6 max-w-sm text-2xl font-extrabold leading-snug sm:text-3xl">
+                    Your ideas deserve to become real projects.
+                  </h3>
+
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/80">
+                    Put your skills into practice, solve problems, and
+                    build work you can learn from.
+                  </p>
+
+                  <div className="mt-7 flex items-center gap-3">
+                    <div className="flex -space-x-2">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#7650EC] bg-amber-200 text-sm font-black text-amber-900">
+                        S
+                      </div>
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#7650EC] bg-sky-200 text-sm font-black text-sky-900">
+                        D
+                      </div>
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#7650EC] bg-pink-200 text-sm font-black text-pink-900">
+                        C
+                      </div>
+                    </div>
+
+                    <p className="text-xs font-medium text-white/90">
+                      Students. Skills. Possibilities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-violet-100 bg-[#F8F5FF] p-4 transition hover:border-violet-300 hover:bg-violet-50">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-200 text-violet-800">
+                    <BriefcaseBusiness size={20} />
+                  </div>
+                  <h3 className="mt-3 text-sm font-bold">
+                    Project Experience
+                  </h3>
+                  <p className="mt-1 text-xs leading-5 text-[#746B8D]">
+                    Apply what you learn.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-fuchsia-100 bg-[#FFF5FC] p-4 transition hover:border-fuchsia-300 hover:bg-fuchsia-50">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-fuchsia-200 text-fuchsia-800">
+                    <GraduationCap size={21} />
+                  </div>
+                  <h3 className="mt-3 text-sm font-bold">
+                    Guided Learning
+                  </h3>
+                  <p className="mt-1 text-xs leading-5 text-[#746B8D]">
+                    Grow with direction.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-5 -left-2 hidden items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3 shadow-xl sm:flex md:-left-8">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                <ShieldCheck size={22} />
+              </div>
+              <div>
+                <p className="text-sm font-extrabold">A clear journey</p>
+                <p className="text-xs text-[#817991]">
+                  Understand each step
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="h-2 bg-gradient-to-r from-violet-400 via-fuchsia-300 to-indigo-400" />
+      </section>
+
+      {/* BENEFITS STRIP */}
+      <section className="border-b border-violet-100 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-5 px-5 py-8 sm:px-8 md:grid-cols-4 lg:px-10">
+          {[
+            {
+              icon: BriefcaseBusiness,
+              title: "Practical Projects",
+              subtitle: "Learn through application",
+            },
+            {
+              icon: GraduationCap,
+              title: "Skill Development",
+              subtitle: "Strengthen your abilities",
+            },
+            {
+              icon: Users,
+              title: "Mentor Guidance",
+              subtitle: "Get learning support",
+            },
+            {
+              icon: Wallet,
+              title: "Program Benefits",
+              subtitle: "See applicable terms",
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="group flex items-center gap-3 rounded-2xl p-3 transition hover:bg-[#F8F5FF]"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#F0EAFF] text-[#6D4AFF] transition group-hover:bg-[#6D4AFF] group-hover:text-white">
+                  <Icon size={22} />
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-extrabold text-[#29213E]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-xs leading-5 text-[#817991]">
+                    {item.subtitle}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section
+        id="how-it-works"
+        className="relative overflow-hidden bg-[#FAF9FF] py-20 sm:py-24"
+      >
+        <div className="pointer-events-none absolute -right-28 top-20 h-72 w-72 rounded-full bg-violet-200/40 blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full bg-violet-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-[#6845D8]">
+              <Target size={15} />
+              The process
+            </span>
+
+            <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+              From application
+              <span className="block text-[#7048E8]">
+                to practical experience.
+              </span>
+            </h2>
+
+            <p className="mt-5 text-base leading-7 text-[#6D6680]">
+              A simple overview of the journey, from registration to
+              project participation and program completion.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+
+              return (
+                <div
+                  key={step.number}
+                  className="group relative rounded-3xl border border-violet-100 bg-white p-6 shadow-[0_8px_30px_-20px_rgba(72,45,145,0.30)] transition duration-300 hover:-translate-y-2 hover:border-violet-300 hover:shadow-[0_20px_40px_-20px_rgba(109,74,255,0.35)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#EDE6FF] to-[#F8E8FF] text-[#6D4AFF] transition group-hover:from-[#6D4AFF] group-hover:to-[#9456F0] group-hover:text-white">
+                      <Icon size={23} />
+                    </div>
+
+                    <span className="text-3xl font-black text-violet-100 transition group-hover:text-violet-200">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-6 text-lg font-extrabold">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-[#777087]">
+                    {step.description}
+                  </p>
+
+                  {index < steps.length - 1 && (
+                    <div className="absolute -right-3 top-11 z-10 hidden h-6 w-6 items-center justify-center rounded-full border border-violet-100 bg-white text-violet-500 lg:flex">
+                      <ArrowRight size={13} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
               href="#contact"
-              className="group inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-[#6D4AFF] px-7 py-4 text-sm font-bold text-white shadow-xl shadow-purple-200 transition-all duration-300 hover:-translate-y-1 hover:bg-[#5B3FD1] hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#6D4AFF] focus:ring-offset-2 sm:px-8 sm:text-base"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#6D4AFF] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-violet-200 transition hover:-translate-y-0.5 hover:bg-[#5935E5]"
             >
-              Explore Internships
+              Take the Next Step
+              <ArrowRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
-
-            <a
-              href="#how-it-works"
-              className="inline-flex min-h-[54px] items-center justify-center gap-3 rounded-2xl border border-[#E4DFFF] bg-white px-5 py-3 text-sm font-bold text-[#29233F] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#C4B5FD] hover:bg-[#FAF9FF] sm:text-base"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EDE9FE] text-[#6D4AFF]">
-                <Play
-                  className="ml-0.5 h-4 w-4 fill-[#6D4AFF]"
-                  aria-hidden="true"
-                />
+      {/* PROGRAM TRACKS */}
+      <section id="programs" className="bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full bg-fuchsia-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-fuchsia-700">
+                <Sparkles size={15} />
+                Areas to explore
               </span>
 
-              How It Works
-            </a>
+              <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+                Find a skill worth
+                <span className="block text-[#7048E8]">
+                  building.
+                </span>
+              </h2>
 
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#6D6680]">
+                Explore learning areas that match your interests and
+                help you develop practical, career-relevant capabilities.
+              </p>
+            </div>
+
+            <Link
+              href="#contact"
+              className="inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-violet-200 bg-[#F8F5FF] px-5 py-3 text-sm font-bold text-[#6040CD] transition hover:border-violet-400 hover:bg-violet-100 md:self-auto"
+            >
+              Ask About Programs
+              <ArrowUpRight size={17} />
+            </Link>
           </div>
 
-          {/* Trust information */}
-          <div className="mt-9 flex flex-wrap gap-x-7 gap-y-5 border-t border-[#E5E0F5] pt-6">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {tracks.map((track) => {
+              const Icon = track.icon;
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDE9FE]">
-                <IndianRupee className="h-5 w-5 text-[#6D4AFF]" />
-              </div>
+              return (
+                <article
+                  key={track.title}
+                  className="group relative overflow-hidden rounded-3xl border border-[#ECE7F8] bg-white p-6 transition duration-300 hover:-translate-y-1.5 hover:border-violet-300 hover:shadow-[0_20px_45px_-25px_rgba(109,74,255,0.40)] sm:p-7"
+                >
+                  <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-violet-50 transition group-hover:scale-150 group-hover:bg-violet-100" />
 
-              <div>
-                <p className="text-sm font-black text-[#17132D]">
-                  ₹499
-                </p>
+                  <div className="relative">
+                    <div className="flex items-start justify-between gap-3">
+                      <div
+                        className={`flex h-14 w-14 items-center justify-center rounded-2xl ${track.color}`}
+                      >
+                        <Icon size={26} />
+                      </div>
 
-                <p className="text-[11px] text-[#777187]">
-                  100% refundable*
-                </p>
-              </div>
-            </div>
+                      <span className="rounded-full bg-[#F6F3FF] px-3 py-1.5 text-[11px] font-bold text-[#7556D7]">
+                        {track.tag}
+                      </span>
+                    </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F3E8FF]">
-                <BriefcaseBusiness className="h-5 w-5 text-[#8B5CF6]" />
-              </div>
+                    <h3 className="mt-6 text-xl font-extrabold tracking-tight">
+                      {track.title}
+                    </h3>
 
-              <div>
-                <p className="text-sm font-black text-[#17132D]">
-                  Paid Internship
-                </p>
+                    <p className="mt-3 min-h-[48px] text-sm leading-6 text-[#777087]">
+                      {track.description}
+                    </p>
 
-                <p className="text-[11px] text-[#777187]">
-                  Real project experience
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FCE7F3]">
-                <Rocket className="h-5 w-5 text-[#C026D3]" />
-              </div>
-
-              <div>
-                <p className="text-sm font-black text-[#17132D]">
-                  PPO Opportunity
-                </p>
-
-                <p className="text-[11px] text-[#777187]">
-                  For top performers
-                </p>
-              </div>
-            </div>
-
+                    <Link
+                      href="#contact"
+                      aria-label={`Enquire about ${track.title}`}
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#6D4AFF] transition group-hover:gap-3"
+                    >
+                      Explore this track
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-
         </div>
+      </section>
 
-        {/* RIGHT VISUAL */}
-        <div className="relative flex w-full items-center justify-center lg:justify-end">
-          <HeroImageCluster />
+      {/* FINAL CTA */}
+      <section className="px-5 pb-20 sm:px-8 sm:pb-24 lg:px-10">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#4F2DBD] via-[#6D4AFF] to-[#9554E9] px-6 py-12 text-center text-white shadow-[0_25px_70px_-25px_rgba(90,53,210,0.55)] sm:px-12 sm:py-16">
+          <div className="pointer-events-none absolute -left-12 -top-24 h-60 w-60 rounded-full border-[35px] border-white/10" />
+          <div className="pointer-events-none absolute -bottom-28 -right-12 h-72 w-72 rounded-full bg-fuchsia-300/20 blur-2xl" />
+
+          <div className="relative mx-auto max-w-3xl">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/15">
+              <Sparkles size={27} />
+            </div>
+
+            <h2 className="mt-6 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
+              Your next step starts here.
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
+              Explore the available programs, understand the requirements,
+              and choose a learning path that fits your goals.
+            </p>
+
+            <Link
+              href="#contact"
+              className="mt-8 inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-white px-7 py-4 text-sm font-extrabold text-[#5935D5] shadow-xl transition hover:-translate-y-1 hover:bg-[#F5F0FF]"
+            >
+              Get Started
+              <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
-
-      </div>
-
-      {/* Bottom scroll */}
-      <div className="relative z-10 hidden pb-7 text-center sm:block">
-        <a
-          href="#how-it-works"
-          className="inline-flex flex-col items-center gap-2 text-[10px] font-black tracking-[0.3em] text-[#9A94AA] transition hover:text-[#6D4AFF]"
-        >
-          <span>EXPLORE</span>
-
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#DDD7EE] bg-white">
-            ↓
-          </span>
-        </a>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }
