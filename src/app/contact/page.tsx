@@ -24,48 +24,59 @@ export default function ContactPage() {
   const [submitMessage, setSubmitMessage] = useState("");
   const [submitError, setSubmitError] = useState("");
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+ 
+async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
 
-    setIsSubmitting(true);
-    setSubmitMessage("");
-    setSubmitError("");
+  setIsSubmitting(true);
+  setSubmitMessage("");
+  setSubmitError("");
 
-    const form = event.currentTarget;
-    const data = new FormData(form);
+  const form = event.currentTarget;
+  const data = new FormData(form);
 
-    const registration = {
-      full_name: String(data.get("name") || "").trim(),
-      email: String(data.get("email") || "").trim(),
-      mobile: String(data.get("mobile") || "").trim(),
-      college: String(data.get("college") || "").trim(),
-      branch: String(data.get("branch") || "").trim(),
-      year_of_study: String(data.get("year") || ""),
-      area_of_interest: String(data.get("interest") || ""),
-      remarks: String(data.get("remarks") || "").trim(),
-      status: "New",
-    };
+  const registration = {
+    full_name: String(data.get("name") || "").trim(),
+    email: String(data.get("email") || "").trim(),
+    mobile: String(data.get("mobile") || "").trim(),
+    college: String(data.get("college") || "").trim(),
+    branch: String(data.get("branch") || "").trim(),
+    year_of_study: String(data.get("year") || ""),
+    area_of_interest: String(data.get("interest") || ""),
+    remarks: String(data.get("remarks") || "").trim(),
+    status: "New",
+  };
 
-    try {
-      const { error } = await supabase
-        .from("student_registrations")
-        .insert([registration]);
+  try {
+    const supabase = createClient();
 
-      if (error) throw error;
+    const { error } = await supabase
+      .from("student_registrations")
+      .insert([registration]);
 
-      setSubmitMessage(
-        "Thank you for contacting TRIQUON! Your details have been submitted successfully."
-      );
-      form.reset();
-    } catch (error) {
-      console.error("Contact form error:", error);
-      setSubmitError(
-        "We could not submit your details. Please try again later."
-      );
-    } finally {
-      setIsSubmitting(false);
+    if (error) {
+      console.error("Supabase insert error:", error);
+      throw error;
     }
+
+    setSubmitMessage(
+      "Thank you for contacting TRIQUON! Your details have been submitted successfully."
+    );
+
+    form.reset();
+  } catch (error) {
+    console.error("Contact form error:", error);
+
+    setSubmitError(
+      error instanceof Error
+        ? `Submission failed: ${error.message}`
+        : "We could not submit your details. Please try again later."
+    );
+  } finally {
+    setIsSubmitting(false);
   }
+}
+
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#07111F] text-white">
