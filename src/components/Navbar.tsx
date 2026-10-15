@@ -3,18 +3,22 @@
 
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Internships", href: "#internships" },
-  { label: "Why Triqon", href: "#why-triqon" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Internships", href: "/#internships" },
+  { label: "Why Triqon", href: "/#why-triqon" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#243548] bg-[#07111F]/95 text-white shadow-lg shadow-black/10 backdrop-blur-xl">
@@ -24,29 +28,38 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#home"
+          href="/#home"
           className="text-[20px] font-black tracking-[-0.04em] text-white min-[375px]:text-2xl"
-          aria-label="Triqon home"
+          aria-label="TRIQON home"
         >
           TRIQON<span className="text-[#14B8A6]">.</span>
         </a>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-5 md:flex lg:gap-7">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="inline-flex min-h-[44px] items-center text-sm font-medium text-[#94A3B8] transition-colors hover:text-[#14B8A6] lg:text-[15px]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isContact = link.href === "/contact";
+            const isActive = isContact && pathname === "/contact";
+
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`inline-flex min-h-[44px] items-center text-sm font-medium transition-colors lg:text-[15px] ${
+                  isActive
+                    ? "text-[#14B8A6]"
+                    : "text-[#94A3B8] hover:text-[#14B8A6]"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Desktop CTA */}
         <a
-          href="#contact"
+          href="/contact"
           className="hidden min-h-[44px] items-center justify-center rounded-full bg-[#14B8A6] px-6 py-2.5 text-sm font-bold text-[#07111F] transition hover:bg-[#0D9488] md:inline-flex"
         >
           Apply Now
@@ -79,19 +92,29 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="flex min-h-[50px] items-center border-b border-[#243548] text-base font-medium text-[#CBD5E1] transition-colors hover:text-[#14B8A6]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isContact = link.href === "/contact";
+            const isActive = isContact && pathname === "/contact";
 
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`flex min-h-[50px] items-center border-b border-[#243548] text-base font-medium transition-colors ${
+                  isActive
+                    ? "text-[#14B8A6]"
+                    : "text-[#CBD5E1] hover:text-[#14B8A6]"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+
+          {/* Mobile CTA */}
           <a
-            href="#contact"
+            href="/contact"
             onClick={() => setIsOpen(false)}
             className="mt-4 flex min-h-[50px] items-center justify-center rounded-full bg-[#14B8A6] px-6 py-3 font-bold text-[#07111F] transition hover:bg-[#0D9488]"
           >

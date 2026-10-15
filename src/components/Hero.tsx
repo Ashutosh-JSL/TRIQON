@@ -49,7 +49,7 @@ const comparisons = [
   { title: "Certification", icon: Award, free: "Varies", triqon: "Verified Internship Certificate" },
   { title: "Project Certificate", icon: BadgeCheck, free: "Usually unavailable", triqon: "Project Completion Certificate" },
   // { title: "LinkedIn Optimization", icon: Globe, free: "Not included", triqon: "LinkedIn profile guidance" },
-  { title: "Career Guidance", icon: Compass, free: "Minimal", triqon: "Structured career roadmap" },
+  // { title: "Career Guidance", icon: Compass, free: "Minimal", triqon: "Structured career roadmap" },
   { title: "Community Access", icon: Network, free: "Not always available", triqon: "Mentor and learner community" },
   // { title: "Placement Preparation", icon: TrendingUp, free: "Limited", triqon: "Interview, aptitude and communication guidance" },
 ];
@@ -481,57 +481,7 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* UNIQUE VALUE */}
-      <section className="relative bg-gradient-to-b from-[#03223C] to-[#02152B] px-5 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.55 }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <SectionLabel>Built around your growth</SectionLabel>
-            <h2 className="mt-6 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
-              Everything You Need To
-              <span className="block bg-gradient-to-r from-[#22E3D6] to-[#72F7FF] bg-clip-text text-transparent">
-                Become Job Ready
-              </span>
-            </h2>
-            <p className="mt-5 text-base leading-7 text-[#A1B5D8]">
-              A practical collection of learning, project, and career-development
-              resources to support your professional journey.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {uniqueFeatures.map((item) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={item.title}
-                  variants={fadeUp}
-                  transition={{ duration: 0.4 }}
-                  className="group rounded-2xl border border-[#22E3D6]/10 bg-[rgba(9,24,55,0.75)] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#22E3D6]/40 hover:shadow-[0_15px_45px_-25px_rgba(34,227,214,0.35)] sm:p-6"
-                >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#22E3D6]/15 bg-[#22E3D6]/[0.08] text-[#22E3D6] transition group-hover:bg-[#22E3D6] group-hover:text-[#02152B]">
-                    <Icon size={21} />
-                  </div>
-                  <h3 className="mt-5 font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#A1B5D8]">{item.text}</p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* WHY TRIQUON */}
       <section className="px-5 py-20 sm:px-8 sm:py-24">
@@ -587,74 +537,138 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* STUDENT OUTCOMES */}
-      <section className="bg-[#031C35] px-5 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.55 }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <SectionLabel>Learning outcomes</SectionLabel>
-            <h2 className="mt-6 text-3xl font-black tracking-tight sm:text-4xl">
-              What You Can Work Toward
-              <span className="block text-[#22E3D6]">with TRIQON</span>
-            </h2>
-            <p className="mt-5 leading-7 text-[#A1B5D8]">
-              Build confidence through practical work and preparation. These
-              are learning goals, not claims or testimonials from specific students.
-            </p>
-          </motion.div>
+      
+{/* YOUR JOURNEY SECTION */}
+<section
+  id="how-it-works"
+  className="relative overflow-hidden bg-[#07111F] px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-10"
+>
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#14B8A6]/10 blur-3xl"
+  />
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-[#0D9488]/10 blur-3xl"
+  />
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                icon: BriefcaseBusiness,
-                title: "Project Confidence",
-                text: "Practice turning requirements into tangible project work you can explain and showcase.",
-                number: "01",
-              },
-              {
-                icon: Mic,
-                title: "Interview Readiness",
-                text: "Prepare to communicate your skills, learning process, and project decisions more clearly.",
-                number: "02",
-              },
-              {
-                icon: TrendingUp,
-                title: "Career Growth",
-                text: "Build a stronger foundation for future opportunities with skills and work you can demonstrate.",
-                number: "03",
-              },
-            ].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.article
-                  key={item.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.1 }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="rounded-3xl border border-[#22E3D6]/15 bg-gradient-to-br from-[#0A2745] to-[#071B34] p-7 transition hover:-translate-y-1 hover:border-[#22E3D6]/35"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#22E3D6]/10 text-[#22E3D6]">
-                      <Icon size={23} />
-                    </div>
-                    <span className="text-3xl font-black text-white/10">{item.number}</span>
-                  </div>
-                  <h3 className="mt-7 text-xl font-extrabold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[#A1B5D8]">{item.text}</p>
-                </motion.article>
-              );
-            })}
-          </div>
+  <div className="relative mx-auto max-w-7xl">
+    {/* Heading */}
+    <div className="mx-auto mb-14 max-w-3xl text-center sm:mb-16">
+      <span className="inline-flex items-center rounded-full border border-[#14B8A6]/25 bg-[#14B8A6]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#5EEAD4]">
+        Your Journey
+      </span>
+
+      <h2 className="mt-6 text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl md:text-5xl">
+        Five steps from registration to{" "}
+        <span className="bg-gradient-to-r from-[#14B8A6] to-[#5EEAD4] bg-clip-text text-transparent">
+          real-world practice.
+        </span>
+      </h2>
+
+      <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#94A3B8] sm:text-base sm:leading-8">
+        A clear, project-focused process so you know what happens next.
+      </p>
+    </div>
+
+    {/* Steps */}
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+      {[
+        {
+          number: "01",
+          title: "Register",
+          description:
+            "Submit your details and choose the area you want to explore.",
+          icon: "01",
+        },
+        {
+          number: "02",
+          title: "Join Your Batch",
+          description:
+            "Get ready to learn, collaborate, and begin your practical project journey. Batch allocation is subject to availability and the Terms & Conditions.",
+          icon: "02",
+        },
+        {
+          number: "03",
+          title: "Build Real Projects",
+          description:
+            "Work through practical tasks and project milestones with guidance.",
+          icon: "03",
+        },
+        {
+          number: "04",
+          title: "Certification",
+          description:
+            "Every participant receives an internship completion certificate. Project completion certificates are subject to the applicable completion criteria in the Terms & Conditions.",
+          icon: "04",
+        },
+        {
+          number: "05",
+          title: "Career Opportunities",
+          description:
+            "Build practical experience and explore career opportunities, including potential PPO opportunities, subject to the Terms & Conditions.",
+          icon: "05",
+        },
+      ].map((step, index) => (
+        <div key={step.number} className="relative flex">
+          <article className="group relative flex w-full flex-col overflow-hidden rounded-[20px] border border-[#243548] bg-[#0D1B2A] p-6 shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#14B8A6]/60 hover:bg-[#102638] hover:shadow-xl hover:shadow-[#14B8A6]/5 sm:p-7">
+            <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-[#14B8A6] to-[#5EEAD4] transition-transform duration-300 group-hover:scale-x-100" />
+
+            <div className="flex items-center justify-between">
+              <span className="inline-flex h-11 min-w-11 items-center justify-center rounded-xl border border-[#14B8A6]/30 bg-[#14B8A6]/10 px-2 text-sm font-extrabold tracking-wide text-[#5EEAD4]">
+                {step.number}
+              </span>
+
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#102638] text-[#14B8A6] transition-colors duration-300 group-hover:bg-[#14B8A6] group-hover:text-[#07111F]">
+                <span className="text-sm font-bold">{step.icon}</span>
+              </span>
+            </div>
+
+            <h3 className="mt-7 text-xl font-bold leading-snug text-white">
+              {step.title}
+            </h3>
+
+            <p className="mt-3 flex-1 text-sm leading-7 text-[#94A3B8]">
+              {step.description}
+            </p>
+
+            <div className="mt-7 flex items-center gap-2">
+              <span className="h-1.5 w-8 rounded-full bg-[#14B8A6] transition-all duration-300 group-hover:w-12" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#243548]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#243548]" />
+            </div>
+          </article>
+
+          {index < 4 && (
+            <>
+              <div
+                aria-hidden="true"
+                className="absolute -right-[17px] top-12 z-10 hidden h-8 w-8 items-center justify-center rounded-full border border-[#243548] bg-[#07111F] text-[#14B8A6] lg:flex"
+              >
+                <span className="text-lg">→</span>
+              </div>
+
+              <div
+                aria-hidden="true"
+                className="absolute -bottom-[18px] left-1/2 z-10 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border border-[#243548] bg-[#07111F] text-[#14B8A6] sm:hidden"
+              >
+                <span className="text-lg">↓</span>
+              </div>
+            </>
+          )}
         </div>
-      </section>
+      ))}
+    </div>
+
+    <div className="mt-10 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
+      <span className="h-2 w-2 rounded-full bg-[#14B8A6] shadow-[0_0_12px_rgba(20,184,166,0.6)]" />
+      <p className="text-sm leading-6 text-[#94A3B8]">
+        Every step is designed to move you closer to practical experience.
+      </p>
+    </div>
+  </div>
+</section>
+
 
       {/* EXPLORE PROJECT TRACKS */}
       <section
