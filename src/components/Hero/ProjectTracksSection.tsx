@@ -88,7 +88,7 @@ export default function ProjectTracksSection() {
           through structured project-based learning.
         </p>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <PrimaryButton href="/contact">Explore Programs</PrimaryButton>
+          <PrimaryButton href="#internships">Explore Programs</PrimaryButton>
           <Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#22E3D6]/25 bg-white/[0.03] px-6 py-3.5 text-sm font-bold text-[#D4E3FF] transition hover:border-[#22E3D6]/50 hover:bg-white/[0.06]">
             Talk To A Mentor <MessageCircle size={17} />
           </Link>
