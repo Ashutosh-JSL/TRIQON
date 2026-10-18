@@ -23,16 +23,72 @@ import {
 } from "lucide-react";
 
 export const comparisons = [
-  { title: "Learning Schedule", icon: Clock, free: "May vary by provider", triqon: "32+ Hours Structured Training" },
-  { title: "Training Resources", icon: BookOpen, free: "Limited or self-paced", triqon: "Guided learning resources" },
-  { title: "Mentorship", icon: Users, free: "Not always available", triqon: "Weekly mentor sessions" },
-  { title: "Projects", icon: BriefcaseBusiness, free: "May be observational", triqon: "Industry-inspired real projects" },
-  { title: "Assignments", icon: ClipboardCheck, free: "Basic tasks", triqon: "Practical assignments with deliverables" },
-  { title: "Doubt Support", icon: MessageCircle, free: "Depends on availability", triqon: "Dedicated doubt-solving support" },
-  { title: "Portfolio Building", icon: FolderKanban, free: "Usually not included", triqon: "Portfolio-ready project showcase" },
-  { title: "Certification", icon: Award, free: "Varies", triqon: "Verified Internship Certificate" },
-  { title: "Project Certificate", icon: BadgeCheck, free: "Usually unavailable", triqon: "Project Completion Certificate" },
-  { title: "Community Access", icon: Network, free: "Not always available", triqon: "Mentor and learner community" },
+  {
+    title: "Industry-Based Projects",
+    description:
+      "Contribute to practical projects based on real-world industry requirements.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Mentor-Guided Execution",
+    description:
+      "Receive mentor guidance while working on assigned project tasks.",
+    icon: Users,
+  },
+  {
+    title: "Structured Learning",
+    description:
+      "Follow a structured learning path aligned with your project requirements.",
+    icon: Clock,
+  },
+  {
+    title: "Guided Learning Resources",
+    description:
+      "Access relevant resources to understand project concepts and technologies.",
+    icon: BookOpen,
+  },
+  {
+    title: "Collaborative Work",
+    description:
+      "Work with mentors and fellow interns to contribute to project deliverables.",
+    icon: Network,
+  },
+  {
+    title: "Practical Assignments",
+    description:
+      "Apply your knowledge through assigned tasks and practical deliverables.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Doubt-Solving Support",
+    description:
+      "Get guidance to resolve doubts encountered during project work.",
+    icon: MessageCircle,
+  },
+  {
+    title: "Project Experience",
+    description:
+      "Develop practical experience through your contributions to project work.",
+    icon: FolderKanban,
+  },
+  {
+    title: "Internship Certificate",
+    description:
+      "Certificate eligibility is subject to program completion criteria.",
+    icon: Award,
+  },
+  {
+    title: "Project Completion Recognition",
+    description:
+      "Project completion recognition may be provided subject to applicable criteria.",
+    icon: BadgeCheck,
+  },
+  {
+    title: "Learning Community",
+    description:
+      "Engage with fellow learners and mentors through available program channels.",
+    icon: Users,
+  },
 ];
 
 export const uniqueFeatures = [
@@ -51,15 +107,14 @@ export const uniqueFeatures = [
 ];
 
 export const benefits = [
-  "Real Project Experience",
-  "Industry Mentorship",
+  "Industry-Based Project Experience",
+  "Mentor-Guided Learning",
+  "Collaborative Project Work",
   "Practical Skill Development",
-  "Portfolio Building",
-  "Interview Readiness",
-  "Resume Enhancement",
-  "Professional Networking",
-  "Career Guidance",
-  "Verified Certification",
+  "Hands-On Assignments",
+  "Real-World Problem Solving",
+  "Project Deliverables",
+  "Internship Certificate*",
 ];
 
 export const tracks = [
@@ -82,28 +137,12 @@ export const tracks = [
     glow: "from-teal-400/20 to-emerald-500/5",
     iconColor: "text-emerald-300 bg-emerald-300/10",
   },
-  {
-    icon: Rocket,
-    emoji: "🗄️",
-    title: "Database & SQL",
-    description: "Learn how to store, organize, query, and manage structured data efficiently.",
-    skills: ["SQL", "Database Design", "Queries", "Data Management"],
-    glow: "from-violet-400/20 to-teal-500/5",
-    iconColor: "text-violet-300 bg-violet-300/10",
-  },
+  
   
   
 ];
 
-export const trackBenefits = [
-  "Industry Projects",
-  "Weekly Mentorship",
-  "Portfolio Building",
-  "LinkedIn Optimization",
-  "Interview Preparation",
-  "Verified Certificates",
-  "Career Guidance",
-];
+
 
 export const fadeUp = {
   hidden: { opacity: 0, y: 24 },

@@ -184,8 +184,8 @@ export default function JourneySection() {
                 </span>
 
                 <h3 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
-                  Registration for{" "}
-                  <span className="text-[#5EEAD4]">₹499</span>
+                  Get Started Today
+                  <span className="text-[#5EEAD4]"></span>
                 </h3>
 
                 <p className="mt-2 max-w-xl text-sm leading-6 text-[#94A3B8]">

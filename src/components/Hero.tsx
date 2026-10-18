@@ -13,9 +13,9 @@ export default function Hero() {
 
       <ProjectTracksSection />
        <JourneySection />
-      <ComparisonSection />
+     
       <WhyTriqonSection />
-      
+      <ComparisonSection />
       
       <FinalCTASection />
     </>

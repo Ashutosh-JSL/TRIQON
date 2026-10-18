@@ -13,9 +13,9 @@ export default function WhyTriqonSection() {
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ duration: 0.55 }}>
           <SectionLabel>Value beyond the price</SectionLabel>
           <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            ₹499 Is Not Just
-            <span className="block bg-gradient-to-r from-[#22E3D6] to-[#72F7FF] bg-clip-text text-transparent">About a Program.</span>
-            <span className="block">It’s About Your Growth.</span>
+            More Than a Program. 
+            <span className="block bg-gradient-to-r from-[#22E3D6] to-[#72F7FF] bg-clip-text text-transparent">An Investment in Your Growth.</span>
+            <span className="block"></span>
           </h2>
           <p className="mt-5 max-w-xl text-base leading-7 text-[#A1B5D8]">
             Invest your time in structured learning, practical work, and

@@ -41,7 +41,7 @@ export default function FinalCTASection() {
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <PrimaryButton href="/contact">Apply Now</PrimaryButton>
+            <PrimaryButton href="#internships">Explore Programs</PrimaryButton>
             <Link
               href="#comparison"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#22E3D6]/25 bg-white/[0.03] px-6 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:border-[#22E3D6]/50"
