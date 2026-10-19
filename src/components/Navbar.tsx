@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Home", href: "/#home" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Internships", href: "/#internships" },
-  { label: "Why Triqon", href: "/#why-triqon" },
+  { label: "Why TriQolo", href: "/#why-Triqon" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -48,9 +48,9 @@ export default function Navbar() {
             href="/#home"
             onClick={closeMenu}
             className="group relative text-2xl font-black tracking-[-0.05em] text-white transition-transform duration-200 active:scale-95"
-            aria-label="TRIQON home"
+            aria-label="Triqon home"
           >
-            TRIQON
+            TriQolo
             <span className="text-[#14B8A6]">.</span>
             <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#14B8A6] transition-all duration-300 group-hover:w-full" />
           </a>
@@ -129,7 +129,7 @@ export default function Navbar() {
           <div className="min-h-0 overflow-hidden">
             <div className="border-t border-[#243548] bg-gradient-to-b from-[#0A1928] to-[#07111F] px-4 pb-5 pt-4 sm:px-6">
               <p className="mb-3 px-3 text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#64748B]">
-                Explore Triqon
+                Explore TriQolo
               </p>
 
               <div className="space-y-1.5">

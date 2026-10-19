@@ -111,7 +111,7 @@ export default function HeroImageCluster() {
 
               <div className="mb-4 flex items-center justify-center">
                 <span className="text-xs font-black text-[#6D4AFF]">
-                  TRIQON.
+                  TriQolo
                 </span>
               </div>
 

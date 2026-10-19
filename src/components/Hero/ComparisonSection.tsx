@@ -33,7 +33,7 @@ export default function ComparisonSection() {
           </div>
           <div className="rounded-2xl border border-[#22E3D6]/50 bg-gradient-to-br from-[#0B4050] to-[#09233F] p-4">
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#22E3D6]">Most Popular</span>
-            <p className="mt-1 text-sm font-bold">TRIQON INDIA</p>
+            <p className="mt-1 text-sm font-bold">TriQolo INDIA</p>
             <p className="mt-1 text-2xl font-black text-[#22E3D6]">₹499</p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function ComparisonSection() {
                     <p className="text-sm leading-6 text-[#A1B5D8]">{item.description}</p>
                   </div>
                   <div className="border-l border-[#22E3D6]/15 bg-[#22E3D6]/[0.06] p-4">
-                    <p className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#22E3D6]"><Check size={13} /> TRIQON</p>
+                    <p className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#22E3D6]"><Check size={13} /> TriQolo</p>
                     <p className="text-sm font-semibold leading-6 text-[#D4E3FF]">{item.description}</p>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ export default function ComparisonSection() {
             </div>
             <div className="relative border-x border-[#22E3D6]/20 bg-gradient-to-br from-[#0B4050] to-[#09233F] p-6">
               <span className="absolute right-4 top-4 rounded-full bg-[#22E3D6] px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#02152B]">Most Popular</span>
-              <h3 className="mt-4 text-lg font-extrabold">TRIQON INDIA</h3>
+              <h3 className="mt-4 text-lg font-extrabold">TriQolo INDIA</h3>
               <p className="mt-2 text-3xl font-black text-[#22E3D6]">₹499</p>
               <p className="mt-1 text-xs text-[#D4E3FF]">Structured learning program</p>
             </div>

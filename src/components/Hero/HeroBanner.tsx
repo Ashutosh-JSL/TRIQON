@@ -88,7 +88,7 @@ export default function HeroBanner() {
             variants={fadeUp}
             className="mt-7 text-xs font-bold tracking-[0.25em] text-cyan-300 sm:text-sm"
           >
-            TRIQON INDIA
+            TriQolo INDIA
           </motion.p>
 
           <motion.h1

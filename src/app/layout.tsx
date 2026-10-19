@@ -7,9 +7,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Triqon | Real Projects. Paid Internships. Real Careers.",
+  title: "TriQolo | Real Projects. Paid Internships. Real Careers.",
   description:
-    "Triqon helps college students gain real-world experience through structured preparation, real-life projects, paid internships and career opportunities.",
+    "TriQolo helps college students gain real-world experience through structured preparation, real-life projects, paid internships and career opportunities.",
 };
 
 export default function RootLayout({

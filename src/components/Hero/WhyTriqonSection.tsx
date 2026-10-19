@@ -8,7 +8,7 @@ import { SectionLabel, PrimaryButton } from "./HeroUI";
 
 export default function WhyTriqonSection() {
   return (
-    <section id="why-triqon" className="bg-[#02152B] px-5 py-20 sm:px-8 sm:py-24">
+    <section id="why-Triqon" className="bg-[#02152B] px-5 py-20 sm:px-8 sm:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ duration: 0.55 }}>
           <SectionLabel>Value beyond the price</SectionLabel>

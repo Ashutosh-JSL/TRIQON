@@ -93,7 +93,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
       <header className="relative z-10 border-b border-[#243548] bg-[#07111F]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
           <Link href="/" className="text-2xl font-black tracking-tight">
-            TRIQON<span className="text-[#14B8A6]">.</span>
+            TriQolo<span className="text-[#14B8A6]">.</span>
           </Link>
 
           <Link
@@ -133,7 +133,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
                 <div>
                   <p className="font-bold">Email Support</p>
                   <p className="mt-1 break-all text-sm text-[#94A3B8]">
-                    careers@your-triqon-domain.com
+                    careers@your-TriQolo-domain.com
                   </p>
                 </div>
               </div>

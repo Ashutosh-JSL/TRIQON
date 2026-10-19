@@ -16,7 +16,7 @@ export default function Footer() {
             className="inline-block"
           >
             <div className="text-2xl font-black tracking-tight">
-              TRIQON<span className="text-[#14B8A6]">.</span>
+              TriQolo<span className="text-[#14B8A6]">.</span>
             </div>
 
             <p className="mt-1 text-xs text-[#94A3B8]">
