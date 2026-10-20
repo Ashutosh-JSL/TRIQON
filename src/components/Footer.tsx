@@ -44,7 +44,7 @@ export default function Footer() {
             </Link>
 
             <Link
-              href="/#internships"
+              href="#internships"
               className="transition-colors hover:text-[#14B8A6]"
             >
               Internships
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs leading-5 text-[#64748B]">
-            © {new Date().getFullYear()} TRIQUON INDIA. All rights reserved.
+            © {new Date().getFullYear()} TriQolo INDIA. All rights reserved.
           </p>
         </div>
       </div>

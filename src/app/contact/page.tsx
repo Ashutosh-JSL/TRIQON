@@ -60,7 +60,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     }
 
     setSubmitMessage(
-      "Thank you for contacting TRIQUON! Your details have been submitted successfully."
+      "Thank you for contacting TriQolo! Your details have been submitted successfully."
     );
 
     form.reset();
@@ -112,7 +112,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
           {/* Introduction */}
           <div className="flex flex-col justify-center">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#14B8A6]">
-              Contact TRIQUON
+              Contact TriQolo
             </p>
 
             <h1 className="mt-5 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
@@ -121,7 +121,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
 
             <p className="mt-6 max-w-xl text-base leading-8 text-[#94A3B8] sm:text-lg">
               Have questions about internships, projects, refunds, or career
-              opportunities? Share your details and connect with the TRIQUON
+              opportunities? Share your details and connect with the TriQolo
               team.
             </p>
 
@@ -145,7 +145,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
                 <div>
                   <p className="font-bold">Internship Assistance</p>
                   <p className="mt-1 text-sm text-[#94A3B8]">
-                    TRIQUON Internship Support Team
+                    TriQolo Internship Support Team
                   </p>
                 </div>
               </div>
@@ -157,7 +157,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
                 <div>
                   <p className="font-bold">Our Program</p>
                   <p className="mt-1 text-sm text-[#94A3B8]">
-                    TRIQUON Internship Program
+                    TriQolo Internship Program
                   </p>
                 </div>
               </div>
@@ -375,10 +375,10 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
       <footer className="relative z-10 border-t border-[#243548] bg-[#07111F]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 text-center sm:flex-row sm:px-8 sm:text-left lg:px-10">
           <Link href="/" className="text-sm font-black">
-            TRIQUON<span className="text-[#14B8A6]">.</span>
+            TriQolo<span className="text-[#14B8A6]">.</span>
           </Link>
           <p className="text-xs text-[#64748B]">
-            © {new Date().getFullYear()} TRIQUON INDIA. All rights reserved.
+            © {new Date().getFullYear()} TriQolo INDIA. All rights reserved.
           </p>
           <Link
             href="/terms-and-conditions"

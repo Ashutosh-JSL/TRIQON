@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { label: "Home", href: "/#home" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Internships", href: "/#internships" },
+  { label: "Internships", href: "#internships" },
   { label: "Why TriQolo", href: "/#why-Triqon" },
   { label: "Contact", href: "/contact" },
 ];

@@ -106,7 +106,7 @@ export default function AIEmergingTechnologyPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-violet-200">
               <Sparkles size={14} />
-              TRIQUON INDIA · AI Project Internship
+              TriQolo INDIA · AI Project Internship
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
@@ -402,7 +402,7 @@ export default function AIEmergingTechnologyPage() {
 
               <p className="mt-2 text-sm leading-6 text-slate-400">
                 Take the next step toward practical AI project experience with
-                TRIQUON INDIA.
+                TriQolo INDIA.
               </p>
             </div>
 
