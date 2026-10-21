@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs leading-5 text-[#64748B]">
-            © {new Date().getFullYear()} TriQolo INDIA. All rights reserved.
+            © {new Date().getFullYear()} TriQolo . All rights reserved.
           </p>
         </div>
       </div>

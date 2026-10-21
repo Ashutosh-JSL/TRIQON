@@ -321,7 +321,7 @@ export default function WebDevelopmentPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan-200">
               <Sparkles size={14} />
-              TriQolo INDIA · Web Development
+              TriQolo  · Web Development
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
@@ -359,10 +359,10 @@ export default function WebDevelopmentPage() {
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href={REGISTER_URL}
+                href="#interships"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-sm font-bold shadow-lg shadow-blue-900/30 transition hover:-translate-y-0.5"
               >
-                Apply Now
+                Explore Programs
                 <ArrowRight size={17} />
               </Link>
 
@@ -602,7 +602,7 @@ export default function WebDevelopmentPage() {
               <p className="mt-2 text-sm leading-6 text-slate-400">
                 Gain practical project experience
                 and explore the complete development workflow
-                with TriQolo INDIA.
+                with TriQolo .
               </p>
             </div>
 
@@ -610,7 +610,7 @@ export default function WebDevelopmentPage() {
               href={REGISTER_URL}
               className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5"
             >
-              Apply Now
+              Explore Programs
               <ArrowRight size={17} />
             </Link>
           </div>

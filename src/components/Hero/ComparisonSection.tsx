@@ -70,7 +70,7 @@ export default function ComparisonSection() {
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#22E3D6]">
               Structured Program
             </span>
-            <p className="mt-1 text-sm font-bold">TriQolo INDIA</p>
+            <p className="mt-1 text-sm font-bold">TriQolo </p>
             <p className="mt-1 text-2xl font-black text-[#22E3D6]">
               ₹499
             </p>
@@ -154,7 +154,7 @@ export default function ComparisonSection() {
                     </p>
                   </div>
 
-                  {/* TriQolo INDIA */}
+                  {/* TriQolo  */}
                   <div
                     className={`border-l p-4 ${
                       isPPO
@@ -205,7 +205,7 @@ export default function ComparisonSection() {
             </div>
 
             <div className="border-x border-[#22E3D6]/20 bg-gradient-to-br from-[#0B4050] to-[#09233F] p-6">
-              <h3 className="text-lg font-extrabold">TriQolo INDIA</h3>
+              <h3 className="text-lg font-extrabold">TriQolo </h3>
               <p className="mt-2 text-3xl font-black text-[#22E3D6]">
                 ₹499
               </p>
@@ -290,7 +290,7 @@ export default function ComparisonSection() {
                   </div>
                 </div>
 
-                {/* TriQolo INDIA */}
+                {/* TriQolo  */}
                 <div
                   className={`flex items-center border-x border-[#22E3D6]/10 p-5 ${
                     isPPO
@@ -325,7 +325,7 @@ export default function ComparisonSection() {
         {/* Disclaimer */}
         <p className="mt-5 text-xs leading-5 text-[#8198BD]">
           Free internship offerings vary by provider, and some may provide
-          similar benefits. TriQolo INDIA program features are subject to actual
+          similar benefits. TriQolo  program features are subject to actual
           availability, published program details, and applicable terms. PPO
           consideration is not guaranteed and depends on eligibility,
           performance, and selection.

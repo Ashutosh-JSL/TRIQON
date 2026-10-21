@@ -327,7 +327,7 @@ export const faqs = [
     category: "Certification",
     question: "Is the certificate recognized?",
     answer:
-      "Our certificates are recognized by 99% of colleges across India, as well as by companies hiring across India.",
+      "Our certificates are recognized by 99% of colleges across , as well as by companies hiring across .",
   },
   {
     category: "Certification",
@@ -387,5 +387,5 @@ export const socials = [
   { label: "Instagram", href: "https://instagram.com/Triqonofficial" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/3-skill/" },
   { label: "YouTube", href: "https://www.youtube.com/@threeskill" },
-  { label: "X", href: "https://twitter.com/Triqonindia" },
+  { label: "X", href: "https://twitter.com/Triqon" },
 ];

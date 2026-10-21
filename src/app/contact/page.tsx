@@ -378,7 +378,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
             TriQolo<span className="text-[#14B8A6]">.</span>
           </Link>
           <p className="text-xs text-[#64748B]">
-            © {new Date().getFullYear()} TriQolo INDIA. All rights reserved.
+            © {new Date().getFullYear()} TriQolo . All rights reserved.
           </p>
           <Link
             href="/terms-and-conditions"

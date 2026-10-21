@@ -82,10 +82,10 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <a
-            href="/contact"
+            href="#internships"
             className="hidden min-h-11 items-center justify-center gap-2 rounded-full bg-[#14B8A6] px-5 py-2.5 text-sm font-extrabold text-[#07111F] shadow-[0_0_20px_rgba(20,184,166,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#2DD4BF] hover:shadow-[0_0_26px_rgba(20,184,166,0.25)] active:translate-y-0 active:scale-95 md:inline-flex"
           >
-            Apply Now
+            Explore Programs
             <ArrowUpRight size={16} />
           </a>
 
@@ -183,11 +183,11 @@ export default function Navbar() {
 
               {/* Mobile CTA */}
               <a
-                href="/contact"
+                href="#internships"
                 onClick={closeMenu}
                 className="mt-4 flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#14B8A6] to-[#2DD4BF] px-5 py-3 font-extrabold text-[#07111F] shadow-[0_6px_22px_rgba(20,184,166,0.15)] transition-all duration-200 hover:shadow-[0_8px_28px_rgba(20,184,166,0.25)] active:scale-[0.98]"
               >
-                Apply Now
+                Explore Programs
                 <ArrowUpRight size={17} />
               </a>
 
