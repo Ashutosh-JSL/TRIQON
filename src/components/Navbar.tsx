@@ -1,122 +1,220 @@
+
 "use client";
 
-import { Menu, X, ArrowUpRight, Check } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  Check,
+  Sparkles,
+} from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/#home" },
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "Internships", href: "#internships" },
-  { label: "Why TriQolo", href: "/#why-Triqon" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/#home", section: "home" },
+  {
+    label: "How It Works",
+    href: "/#how-it-works",
+    section: "how-it-works",
+  },
+  {
+    label: "Internships",
+    href: "/#internships",
+    section: "internships",
+  },
+  {
+    label: "Why TriQolo",
+    href: "/#why-Triqon",
+    section: "why-Triqon",
+  },
+  { label: "Contact", href: "/contact", section: "" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [pressedLink, setPressedLink] = useState("");
+  const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
 
-  const isActive = (href: string) => {
-    if (href === "/contact") return pathname === "/contact";
-    if (pathname !== "/") return false;
+  useEffect(() => {
+    const updateActiveSection = () => {
+      if (pathname !== "/") {
+        setActiveSection("");
+        return;
+      }
 
-    const section = href.split("#")[1];
-    if (!section) return false;
+      setActiveSection(window.location.hash.replace("#", ""));
+    };
 
-    return (
-      typeof window !== "undefined" &&
-      window.location.hash === `#${section}`
-    );
+    updateActiveSection();
+
+    window.addEventListener("hashchange", updateActiveSection);
+    window.addEventListener("popstate", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("hashchange", updateActiveSection);
+      window.removeEventListener("popstate", updateActiveSection);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
+
+  const isActive = (link: (typeof navLinks)[number]) => {
+    if (link.href === "/contact") {
+      return pathname === "/contact";
+    }
+
+    return pathname === "/" && activeSection === link.section;
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    setPressedLink("");
   };
+
+  const internshipsHref =
+    pathname === "/" ? "#internships" : "/#internships";
 
   return (
     <>
-      {/* Fixed Navbar */}
-      <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-[#243548] bg-[#07111F]/95 text-white shadow-lg shadow-black/10 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50 text-white">
+        {/* NAVBAR BACKGROUND */}
+
+        <div className="absolute inset-0 border-b border-white/[0.08] bg-[#050B18]/90 shadow-lg shadow-black/10 backdrop-blur-2xl" />
+
+        {/* TOP ACCENT LINE */}
+
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent" />
+
         <nav
-          className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8 lg:px-10"
+          className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8 lg:px-10"
           aria-label="Main navigation"
         >
-          {/* Logo */}
+          {/* BRAND */}
+
           <a
             href="/#home"
             onClick={closeMenu}
-            className="group relative text-2xl font-black tracking-[-0.05em] text-white transition-transform duration-200 active:scale-95"
-            aria-label="Triqon home"
+            className="group relative flex shrink-0 items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            aria-label="TriQolo home"
           >
-            TriQolo
-            <span className="text-[#14B8A6]">.</span>
-            <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#14B8A6] transition-all duration-300 group-hover:w-full" />
+            {/* TQ MARK */}
+
+            <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[0.13] to-violet-400/[0.13] shadow-[0_0_22px_rgba(34,227,214,0.04)] transition duration-300 group-hover:border-cyan-300/40 group-hover:shadow-[0_0_24px_rgba(34,227,214,0.12)]">
+              <span className="absolute inset-0 bg-gradient-to-br from-cyan-300/[0.08] to-transparent" />
+
+              <span className="relative text-[15px] font-black tracking-[-0.12em] text-white">
+                T<span className="text-cyan-300">Q</span>
+              </span>
+
+              <span className="absolute bottom-1 right-1 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(34,227,214,0.7)]" />
+            </span>
+
+            {/* BRAND NAME */}
+
+            <span className="flex flex-col">
+              <span className="text-[21px] font-black leading-none tracking-[-0.055em] text-white sm:text-2xl">
+                Tri<span className="text-cyan-300">Q</span>olo
+                
+              </span>
+
+              <span className="mt-1.5 text-[8px] font-bold uppercase tracking-[0.23em] text-slate-500 sm:text-[9px]">
+                Learn · Build · Grow
+              </span>
+            </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden items-center gap-2 md:flex lg:gap-3">
+          {/* DESKTOP NAVIGATION */}
+
+          <div className="hidden items-center gap-1 md:flex lg:gap-2">
             {navLinks.map((link) => {
-              const active = isActive(link.href);
+              const active = isActive(link);
 
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`relative inline-flex min-h-11 items-center rounded-full px-3.5 text-sm font-semibold transition-all duration-200 lg:px-4 lg:text-[15px] ${
+                  aria-current={active ? "page" : undefined}
+                  className={`group relative inline-flex min-h-11 items-center rounded-xl px-3 text-[13px] font-semibold transition-all duration-200 lg:px-4 lg:text-sm ${
                     active
-                      ? "bg-[#14B8A6]/10 text-[#14B8A6]"
-                      : "text-[#94A3B8] hover:bg-[#102638] hover:text-white"
+                      ? "bg-cyan-300/[0.08] text-cyan-200"
+                      : "text-slate-400 hover:bg-white/[0.04] hover:text-white"
                   }`}
                 >
                   {link.label}
 
-                  {active && (
-                    <span className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#14B8A6]" />
-                  )}
+                  <span
+                    className={`absolute bottom-1.5 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300 transition-all duration-300 ${
+                      active
+                        ? "w-5"
+                        : "w-0 group-hover:w-4"
+                    }`}
+                  />
                 </a>
               );
             })}
           </div>
 
-          {/* Desktop CTA */}
+          {/* DESKTOP CTA */}
+
           <a
             href="#internships"
-            className="hidden min-h-11 items-center justify-center gap-2 rounded-full bg-[#14B8A6] px-5 py-2.5 text-sm font-extrabold text-[#07111F] shadow-[0_0_20px_rgba(20,184,166,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#2DD4BF] hover:shadow-[0_0_26px_rgba(20,184,166,0.25)] active:translate-y-0 active:scale-95 md:inline-flex"
+            className="group hidden min-h-11 items-center justify-center gap-2 rounded-xl border border-cyan-200/20 bg-gradient-to-r from-cyan-300 to-[#91A7FF] px-4 py-2.5 text-sm font-extrabold text-[#050B18] shadow-[0_0_20px_rgba(34,227,214,0.07)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(34,227,214,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 active:translate-y-0 md:inline-flex lg:px-5"
           >
+            <Sparkles
+              size={15}
+              className="transition-transform duration-300 group-hover:rotate-12"
+            />
+
             Explore Programs
-            <ArrowUpRight size={16} />
+
+            <ArrowUpRight
+              size={16}
+              className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
           </a>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE MENU BUTTON */}
+
           <button
             type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
-            className={`relative flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-200 active:scale-90 md:hidden ${
+            onClick={() => setIsOpen((previous) => !previous)}
+            className={`relative flex h-11 w-11 items-center justify-center rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 active:scale-95 md:hidden ${
               isOpen
-                ? "border-[#14B8A6]/50 bg-[#14B8A6]/15 text-[#14B8A6] shadow-[0_0_18px_rgba(20,184,166,0.12)]"
-                : "border-[#243548] bg-[#0D1B2A] text-white hover:border-[#14B8A6]/50 hover:bg-[#102638]"
+                ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-200"
+                : "border-white/10 bg-white/[0.035] text-slate-200 hover:border-cyan-300/30 hover:bg-cyan-300/[0.06]"
             }`}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            <span
-              className={`absolute inset-0 rounded-xl ring-2 ring-[#14B8A6]/0 transition-all duration-200 ${
-                isOpen ? "ring-[#14B8A6]/20" : ""
-              }`}
-            />
-
             {isOpen ? (
-              <X className="h-5 w-5 transition-transform duration-200" />
+              <X size={21} />
             ) : (
-              <Menu className="h-5 w-5 transition-transform duration-200" />
+              <Menu size={21} />
             )}
           </button>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
+
         <div
           id="mobile-menu"
           aria-hidden={!isOpen}
@@ -127,40 +225,54 @@ export default function Navbar() {
           }`}
         >
           <div className="min-h-0 overflow-hidden">
-            <div className="border-t border-[#243548] bg-gradient-to-b from-[#0A1928] to-[#07111F] px-4 pb-5 pt-4 sm:px-6">
-              <p className="mb-3 px-3 text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#64748B]">
-                Explore TriQolo
-              </p>
+            <div className="border-t border-white/[0.07] bg-[#050B18]/[0.98] px-4 pb-5 pt-4 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:px-6">
+              {/* MENU LABEL */}
+
+              <div className="mb-4 flex items-center justify-between px-1">
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-cyan-300">
+                    Navigation
+                  </p>
+
+                  <p className="mt-1 text-xs text-slate-500">
+                    Explore your next step
+                  </p>
+                </div>
+
+                <span className="rounded-full border border-violet-300/15 bg-violet-300/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-violet-200">
+                  TriQolo
+                </span>
+              </div>
+
+              {/* NAV LINKS */}
 
               <div className="space-y-1.5">
                 {navLinks.map((link) => {
-                  const active =
-                    isActive(link.href) || pressedLink === link.href;
+                  const active = isActive(link);
 
                   return (
                     <a
                       key={link.href}
                       href={link.href}
-                      onClick={() => {
-                        setPressedLink(link.href);
-                        setIsOpen(false);
-                      }}
-                      className={`group relative flex min-h-[52px] items-center justify-between overflow-hidden rounded-xl border px-4 py-3 transition-all duration-200 active:scale-[0.98] ${
+                      onClick={closeMenu}
+                      aria-current={active ? "page" : undefined}
+                      tabIndex={isOpen ? 0 : -1}
+                      className={`group relative flex min-h-[50px] items-center justify-between overflow-hidden rounded-xl border px-4 py-3 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 active:scale-[0.99] ${
                         active
-                          ? "border-[#14B8A6]/30 bg-[#14B8A6]/10 text-[#5EEAD4] shadow-[inset_0_0_18px_rgba(20,184,166,0.04)]"
-                          : "border-transparent text-[#CBD5E1] hover:border-[#243548] hover:bg-[#102638] hover:text-white"
+                          ? "border-cyan-300/20 bg-gradient-to-r from-cyan-300/[0.09] to-violet-300/[0.04] text-cyan-200"
+                          : "border-transparent text-slate-300 hover:border-white/[0.08] hover:bg-white/[0.035] hover:text-white"
                       }`}
                     >
                       <span className="flex items-center gap-3">
                         <span
-                          className={`h-5 w-1 rounded-full transition-all duration-200 ${
+                          className={`h-5 w-1 rounded-full transition-colors ${
                             active
-                              ? "bg-[#14B8A6] shadow-[0_0_10px_rgba(20,184,166,0.65)]"
-                              : "bg-transparent group-hover:bg-[#14B8A6]/40"
+                              ? "bg-cyan-300 shadow-[0_0_10px_rgba(34,227,214,0.6)]"
+                              : "bg-transparent group-hover:bg-violet-300/50"
                           }`}
                         />
 
-                        <span className="text-[15px] font-semibold">
+                        <span className="text-sm font-semibold">
                           {link.label}
                         </span>
                       </span>
@@ -168,12 +280,12 @@ export default function Navbar() {
                       {active ? (
                         <Check
                           size={17}
-                          className="text-[#14B8A6]"
+                          className="text-cyan-300"
                         />
                       ) : (
                         <ArrowUpRight
                           size={16}
-                          className="text-[#64748B] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#14B8A6]"
+                          className="text-slate-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-300"
                         />
                       )}
                     </a>
@@ -181,26 +293,46 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Mobile CTA */}
+              {/* MOBILE CTA */}
+
               <a
                 href="#internships"
                 onClick={closeMenu}
-                className="mt-4 flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#14B8A6] to-[#2DD4BF] px-5 py-3 font-extrabold text-[#07111F] shadow-[0_6px_22px_rgba(20,184,166,0.15)] transition-all duration-200 hover:shadow-[0_8px_28px_rgba(20,184,166,0.25)] active:scale-[0.98]"
+                tabIndex={isOpen ? 0 : -1}
+                className="group mt-4 flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 to-[#91A7FF] px-5 py-3 text-sm font-extrabold text-[#050B18] shadow-[0_5px_24px_rgba(34,227,214,0.08)] transition duration-300 hover:shadow-[0_5px_28px_rgba(34,227,214,0.17)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 active:scale-[0.99]"
               >
+                <Sparkles size={16} />
+
                 Explore Programs
-                <ArrowUpRight size={17} />
+
+                <ArrowUpRight
+                  size={17}
+                  className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
               </a>
 
-              <p className="mt-4 text-center text-[10px] font-medium tracking-wide text-[#64748B]">
-                BUILD SKILLS. CREATE OPPORTUNITIES.
-              </p>
+              {/* FOOTER SIGNATURE */}
+
+              <div className="mt-5 flex items-center justify-center gap-2 border-t border-white/[0.06] pt-4">
+                <span className="h-px w-6 bg-gradient-to-r from-transparent to-cyan-300/50" />
+
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-slate-500">
+                  Build Skills. Create Opportunities.
+                </p>
+
+                <span className="h-px w-6 bg-gradient-to-l from-transparent to-violet-300/50" />
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Navbar spacer: 64px mobile, 80px desktop */}
-      <div aria-hidden="true" className="h-16 md:h-20" />
+      {/* NAVBAR SPACER */}
+
+      <div
+        aria-hidden="true"
+        className="h-16 md:h-20"
+      />
     </>
   );
 }

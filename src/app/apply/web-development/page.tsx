@@ -359,7 +359,7 @@ export default function WebDevelopmentPage() {
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="#interships"
+                href="#internships"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-sm font-bold shadow-lg shadow-blue-900/30 transition hover:-translate-y-0.5"
               >
                 Explore Programs
@@ -607,7 +607,7 @@ export default function WebDevelopmentPage() {
             </div>
 
             <Link
-              href={REGISTER_URL}
+              href="#internships"
               className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-sm font-bold transition hover:-translate-y-0.5"
             >
               Explore Programs

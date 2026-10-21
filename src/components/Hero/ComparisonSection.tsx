@@ -1,14 +1,52 @@
+
 "use client";
 
-import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
-import { comparisons, fadeUp } from "./hero-data";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  Check,
+  X,
+  Sparkles,
+  GraduationCap,
+  BriefcaseBusiness,
+  ArrowRight,
+  ShieldCheck,
+} from "lucide-react";
+
+import { comparisons } from "./hero-data";
 import { SectionLabel } from "./HeroUI";
 
+const freeFeatureIndexes = [0, 2, 5, 7, 9];
+
+const reveal = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export default function ComparisonSection() {
-  // Five scattered rows where free internships may offer the benefit.
-  // PPO is handled separately below.
-  const freeFeatureIndexes = [0, 2, 5, 7, 9];
+  const reduceMotion = useReducedMotion();
+
+  const sectionReveal = {
+    ...reveal,
+    hidden: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduceMotion ? 0 : 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
 
   const allComparisons = comparisons.some(
     (item) => item.title === "PPO Opportunity"
@@ -20,70 +58,163 @@ export default function ComparisonSection() {
           title: "PPO Opportunity",
           description:
             "Eligible participants may be considered for a Pre-Placement Offer based on performance, eligibility, and selection criteria.",
-          icon: Check,
+          icon: BriefcaseBusiness,
         },
       ];
+
+  const getFreeDescription = (title: string, index: number) => {
+    if (title === "PPO Opportunity") {
+      return "Depends on the provider and its selection process.";
+    }
+
+    if (freeFeatureIndexes.includes(index)) {
+      return "May be available, depending on the provider.";
+    }
+
+    return "Varies by program and provider.";
+  };
 
   return (
     <section
       id="comparison"
-      className="relative bg-[#02152B] px-4 py-20 sm:px-6 sm:py-24"
+      className="relative isolate overflow-hidden bg-[#050B18] px-4 py-20 text-white sm:px-6 sm:py-24 lg:py-28"
     >
-      <div className="pointer-events-none absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-[#22E3D6]/5 blur-[100px]" />
+      {/* SHARED TRIQOLO BACKGROUND */}
 
-      {/* Section heading */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-        transition={{ duration: 0.6 }}
-        className="relative mx-auto max-w-3xl text-center"
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
       >
-        <SectionLabel>Compare your options</SectionLabel>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(109,74,255,0.15),transparent_40%),radial-gradient(ellipse_at_85%_55%,rgba(34,211,238,0.11),transparent_42%)]" />
 
-        <h2 className="mt-6 text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
-          Beyond Free Internships
-          <span className="mt-2 block bg-gradient-to-r from-[#22E3D6] to-[#72F7FF] bg-clip-text text-transparent">
-            More Structure. More Support.
-          </span>
-        </h2>
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(148,163,184,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.16) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage:
+              "linear-gradient(to bottom, black, transparent 95%)",
+          }}
+        />
 
-        <p className="mt-5 text-base leading-7 text-[#A1B5D8] sm:text-lg">
-          Compare learning structure, project experience, mentor support, and
-          career opportunities before choosing the program that suits your goals.
-        </p>
-      </motion.div>
+        <motion.div
+          className="absolute -left-32 top-32 h-80 w-80 rounded-full bg-violet-600/15 blur-[110px]"
+          animate={
+            reduceMotion
+              ? {}
+              : { x: [0, 30, 0], y: [0, 20, 0] }
+          }
+          transition={{ duration: 14, repeat: Infinity }}
+        />
 
-      <div className="mx-auto mt-12 max-w-6xl">
-        {/* Mobile and tablet pricing header */}
-        <div className="sticky top-0 z-30 grid grid-cols-2 gap-3 border-b border-white/10 bg-[#02152B]/95 py-3 backdrop-blur-xl lg:hidden">
-          <div className="rounded-2xl border border-white/10 bg-slate-100 p-4 text-[#10233D]">
-            <p className="text-sm font-bold">Free Internships</p>
-            <p className="mt-1 text-2xl font-black">₹0</p>
-            <p className="mt-1 text-xs text-slate-500">
+        <motion.div
+          className="absolute -right-32 bottom-10 h-96 w-96 rounded-full bg-cyan-400/10 blur-[110px]"
+          animate={
+            reduceMotion
+              ? {}
+              : { x: [0, -25, 0], y: [0, -25, 0] }
+          }
+          transition={{ duration: 16, repeat: Infinity }}
+        />
+
+        {[
+          "left-[10%] top-[15%]",
+          "left-[35%] top-[8%]",
+          "right-[12%] top-[20%]",
+          "left-[18%] bottom-[12%]",
+          "right-[30%] bottom-[15%]",
+        ].map((position, index) => (
+          <motion.span
+            key={position}
+            className={`absolute ${position} h-1 w-1 rounded-full bg-cyan-200/70`}
+            animate={
+              reduceMotion
+                ? {}
+                : {
+                    opacity: [0.2, 0.9, 0.2],
+                    scale: [1, 1.7, 1],
+                  }
+            }
+            transition={{
+              duration: 3 + index,
+              repeat: Infinity,
+              delay: index * 0.3,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="mx-auto max-w-6xl">
+        {/* SECTION INTRO */}
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={sectionReveal}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <SectionLabel>Compare Your Options</SectionLabel>
+
+          <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            Not Just an Internship.
+            <span className="mt-2 block bg-gradient-to-r from-cyan-300 via-[#22E3D6] to-violet-400 bg-clip-text text-transparent">
+              A Structured Learning Journey.
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+            Compare the structure, support, and opportunities before
+            choosing your path.
+          </p>
+        </motion.div>
+
+        {/* MOBILE COMPARISON HEADER */}
+
+        <div className="sticky top-0 z-30 mt-10 grid grid-cols-2 gap-3 border-b border-white/[0.08] bg-[#050B18]/95 py-3 backdrop-blur-xl lg:hidden">
+          <div className="rounded-2xl border border-white/10 bg-[#0A1425]/90 p-4">
+            <p className="text-xs font-bold text-slate-200">
+              Free Internships
+            </p>
+
+            <p className="mt-2 text-lg font-black text-white">
+              No Program Fee
+            </p>
+
+            <p className="mt-1 text-[10px] leading-4 text-slate-400">
               Benefits vary by provider
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#22E3D6]/50 bg-gradient-to-br from-[#0B4050] to-[#09233F] p-4">
-            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#22E3D6]">
+          <div className="relative overflow-hidden rounded-2xl border border-cyan-300/30 bg-gradient-to-br from-[#0C2942] to-[#171532] p-4">
+            <div className="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-cyan-300/10 blur-2xl" />
+
+            <div className="relative flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-cyan-300">
+              <Sparkles size={12} />
               Structured Program
-            </span>
-            <p className="mt-1 text-sm font-bold">TriQolo </p>
-            <p className="mt-1 text-2xl font-black text-[#22E3D6]">
-              ₹499
+            </div>
+
+            <p className="relative mt-2 text-sm font-bold text-white">
+              TriQolo
+            </p>
+
+            <p className="relative mt-1 text-lg font-black text-cyan-300">
+              Program Fee Applies
+            </p>
+
+            <p className="relative mt-1 text-[10px] leading-4 text-slate-300">
+              See current program details
             </p>
           </div>
         </div>
 
-        {/* Mobile comparison cards */}
-        <div className="mt-5 space-y-4 lg:hidden">
+        {/* MOBILE COMPARISON CARDS */}
+
+        <div className="mt-5 space-y-3 lg:hidden">
           {allComparisons.map((item, index) => {
             const Icon = item.icon;
             const isPPO = item.title === "PPO Opportunity";
-            const freeHasFeature =
-              !isPPO && freeFeatureIndexes.includes(index);
 
             return (
               <motion.article
@@ -91,27 +222,31 @@ export default function ComparisonSection() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.08 }}
-                variants={fadeUp}
+                variants={sectionReveal}
                 transition={{
-                  duration: 0.35,
-                  delay: (index % 3) * 0.04,
+                  duration: reduceMotion ? 0 : 0.4,
+                  delay: reduceMotion ? 0 : (index % 3) * 0.04,
                 }}
-                className={`overflow-hidden rounded-2xl border bg-[rgba(9,24,55,0.75)] transition-colors duration-300 ${
+                className={`relative overflow-hidden rounded-2xl border bg-[#09182D]/85 backdrop-blur-xl ${
                   isPPO
-                    ? "border-[#22E3D6]/50 shadow-lg shadow-[#22E3D6]/10"
-                    : "border-[#22E3D6]/10"
+                    ? "border-cyan-300/30 shadow-lg shadow-cyan-400/[0.05]"
+                    : "border-white/[0.08]"
                 }`}
               >
-                <div className="flex items-center gap-3 border-b border-white/10 px-4 py-4">
-                  <span
-                    className={`flex h-9 w-9 items-center justify-center rounded-xl ${
+                {isPPO && (
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
+                )}
+
+                <div className="flex items-center gap-3 border-b border-white/[0.07] p-4">
+                  <div
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
                       isPPO
-                        ? "bg-[#22E3D6]/20 text-[#22E3D6]"
-                        : "bg-[#22E3D6]/10 text-[#22E3D6]"
+                        ? "bg-violet-300/10 text-violet-300"
+                        : "bg-cyan-300/[0.08] text-cyan-300"
                     }`}
                   >
-                    <Icon size={18} />
-                  </span>
+                    <Icon size={19} />
+                  </div>
 
                   <div>
                     <h3 className="text-sm font-bold text-white">
@@ -119,61 +254,42 @@ export default function ComparisonSection() {
                     </h3>
 
                     {isPPO && (
-                      <span className="mt-1 inline-block text-[10px] font-extrabold uppercase tracking-wider text-[#22E3D6]">
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-cyan-300">
                         Career Opportunity
-                      </span>
+                      </p>
                     )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2">
-                  {/* Free internships */}
+                  {/* FREE INTERNSHIPS */}
+
                   <div className="p-4">
-                    <p
-                      className={`mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                        freeHasFeature
-                          ? "text-emerald-400"
-                          : "text-slate-400"
-                      }`}
-                    >
-                      {freeHasFeature ? (
-                        <Check size={13} />
-                      ) : (
-                        <X size={13} />
-                      )}
+                    <div className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      <Check size={13} className="text-emerald-300" />
+                      Free Programs
+                    </div>
 
-                      {freeHasFeature ? "Available" : "Not included"}
-                    </p>
-
-                    <p className="text-sm leading-6 text-[#A1B5D8]">
-                      {isPPO
-                        ? "A PPO may be available with some providers, depending on their selection process."
-                        : freeHasFeature
-                          ? "This benefit may be offered by free internship providers."
-                          : "This benefit is not included in this comparison."}
+                    <p className="text-xs leading-5 text-slate-400">
+                      {getFreeDescription(item.title, index)}
                     </p>
                   </div>
 
-                  {/* TriQolo  */}
-                  <div
-                    className={`border-l p-4 ${
-                      isPPO
-                        ? "border-[#22E3D6]/30 bg-gradient-to-b from-[#22E3D6]/15 to-[#22E3D6]/[0.04]"
-                        : "border-[#22E3D6]/15 bg-[#22E3D6]/[0.06]"
-                    }`}
-                  >
-                    <p className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#22E3D6]">
+                  {/* TRIQOLO */}
+
+                  <div className="border-l border-cyan-300/15 bg-cyan-300/[0.04] p-4">
+                    <div className="mb-2 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan-300">
                       <Check size={13} />
                       TriQolo
-                    </p>
+                    </div>
 
-                    <p className="text-sm font-semibold leading-6 text-[#D4E3FF]">
+                    <p className="text-xs font-medium leading-5 text-slate-200">
                       {item.description}
                     </p>
 
                     {isPPO && (
-                      <p className="mt-3 rounded-lg border border-[#22E3D6]/20 bg-[#02152B]/60 px-3 py-2 text-xs font-bold leading-5 text-[#22E3D6]">
-                        Subject to eligibility & selection
+                      <p className="mt-3 rounded-lg border border-violet-300/15 bg-violet-300/[0.05] px-2.5 py-2 text-[10px] leading-4 text-violet-200">
+                        Subject to eligibility and selection
                       </p>
                     )}
                   </div>
@@ -183,136 +299,139 @@ export default function ComparisonSection() {
           })}
         </div>
 
-        {/* Desktop comparison table */}
-        <div className="hidden overflow-hidden rounded-3xl border border-[#22E3D6]/15 bg-[rgba(9,24,55,0.75)] shadow-2xl shadow-black/20 lg:block">
-          {/* Table header */}
-          <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-white/10 bg-[#071C36]/95">
+        {/* DESKTOP COMPARISON TABLE */}
+
+        <div className="mt-10 hidden overflow-hidden rounded-3xl border border-white/10 bg-[#09182D]/85 shadow-2xl shadow-black/20 backdrop-blur-xl lg:block">
+          {/* TABLE HEADER */}
+
+          <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-white/10 bg-[#081426]/90">
             <div className="p-6">
-              <p className="text-sm font-bold text-[#D4E3FF]">
-                Compare features
-              </p>
-              <p className="mt-1 text-xs text-[#A1B5D8]">
-                Choose what suits your goals
+              <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
+                <ShieldCheck size={17} className="text-cyan-300" />
+                Compare Features
+              </div>
+
+              <p className="mt-2 text-xs text-slate-400">
+                Find the right learning experience
               </p>
             </div>
 
-            <div className="border-l border-white/10 p-6">
-              <h3 className="text-lg font-extrabold">Free Internships</h3>
-              <p className="mt-2 text-3xl font-black">₹0</p>
-              <p className="mt-1 text-xs text-[#A1B5D8]">
+            <div className="border-l border-white/[0.07] p-6">
+              <h3 className="text-lg font-extrabold text-white">
+                Free Internships
+              </h3>
+
+              <p className="mt-2 text-lg font-black text-white">
+                No Program Fee
+              </p>
+
+              <p className="mt-1 text-xs text-slate-400">
                 Benefits vary by provider
               </p>
             </div>
 
-            <div className="border-x border-[#22E3D6]/20 bg-gradient-to-br from-[#0B4050] to-[#09233F] p-6">
-              <h3 className="text-lg font-extrabold">TriQolo </h3>
-              <p className="mt-2 text-3xl font-black text-[#22E3D6]">
-                ₹499
+            <div className="relative overflow-hidden border-x border-cyan-300/20 bg-gradient-to-br from-[#0C2942] to-[#171532] p-6">
+              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl" />
+
+              <div className="relative flex items-center gap-2">
+                <Sparkles size={17} className="text-cyan-300" />
+
+                <h3 className="text-lg font-extrabold text-white">
+                  TriQolo
+                </h3>
+              </div>
+
+              <p className="relative mt-2 text-lg font-black text-cyan-300">
+                Structured Program
               </p>
-              <p className="mt-1 text-xs text-[#D4E3FF]">
-                Structured learning program
+
+              <p className="relative mt-1 text-xs text-slate-300">
+                Program fee applies
               </p>
             </div>
           </div>
 
-          {/* Comparison rows */}
+          {/* COMPARISON ROWS */}
+
           {allComparisons.map((item, index) => {
             const Icon = item.icon;
             const isPPO = item.title === "PPO Opportunity";
-            const freeHasFeature =
-              !isPPO && freeFeatureIndexes.includes(index);
 
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.08 }}
-                transition={{
-                  duration: 0.3,
-                  delay: (index % 4) * 0.035,
-                }}
-                className={`grid grid-cols-[1.1fr_1fr_1fr] ${
+                variants={sectionReveal}
+                className={`grid grid-cols-[1.1fr_1fr_1fr] transition-colors duration-200 hover:bg-white/[0.015] ${
                   isPPO
-                    ? "border-y border-[#22E3D6]/25 bg-[#22E3D6]/[0.035]"
+                    ? "border-y border-cyan-300/20 bg-cyan-300/[0.025]"
                     : index !== allComparisons.length - 1
-                      ? "border-b border-white/[0.07]"
+                      ? "border-b border-white/[0.06]"
                       : ""
                 }`}
               >
-                {/* Feature name */}
+                {/* FEATURE */}
+
                 <div className="flex items-center gap-3 p-5">
-                  <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
+                  <div
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
                       isPPO
-                        ? "bg-[#22E3D6]/15 text-[#22E3D6]"
-                        : "bg-white/[0.05] text-[#22E3D6]"
+                        ? "bg-violet-300/10 text-violet-300"
+                        : "bg-cyan-300/[0.06] text-cyan-300"
                     }`}
                   >
-                    <Icon size={18} />
-                  </span>
+                    <Icon size={19} />
+                  </div>
 
                   <div>
-                    <span className="text-sm font-bold text-[#D4E3FF]">
+                    <p className="text-sm font-bold text-slate-200">
                       {item.title}
-                    </span>
+                    </p>
 
                     {isPPO && (
-                      <p className="mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#22E3D6]">
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-cyan-300">
                         Career Opportunity
                       </p>
                     )}
                   </div>
                 </div>
 
-                {/* Free internships */}
-                <div className="flex items-center border-l border-white/[0.07] p-5">
-                  <div className="flex items-start gap-2.5">
-                    {freeHasFeature ? (
-                      <Check
-                        size={16}
-                        className="mt-1 shrink-0 text-emerald-400"
-                      />
-                    ) : (
-                      <X
-                        size={16}
-                        className="mt-1 shrink-0 text-slate-500"
-                      />
-                    )}
+                {/* FREE INTERNSHIPS */}
 
-                    <p className="text-sm leading-6 text-[#A1B5D8]">
-                      {isPPO
-                        ? "May be available with some providers, depending on selection."
-                        : freeHasFeature
-                          ? "May be offered by free internship providers."
-                          : "Depends on the program structure and provider."}
+                <div className="flex items-center border-l border-white/[0.06] p-5">
+                  <div className="flex items-start gap-2.5">
+                    <Check
+                      size={16}
+                      className="mt-1 shrink-0 text-emerald-300"
+                    />
+
+                    <p className="text-sm leading-6 text-slate-400">
+                      {getFreeDescription(item.title, index)}
                     </p>
                   </div>
                 </div>
 
-                {/* TriQolo  */}
-                <div
-                  className={`flex items-center border-x border-[#22E3D6]/10 p-5 ${
-                    isPPO
-                      ? "bg-gradient-to-r from-[#22E3D6]/10 to-[#22E3D6]/[0.04]"
-                      : "bg-[#22E3D6]/[0.045]"
-                  }`}
-                >
+                {/* TRIQOLO */}
+
+                <div className="flex items-center border-x border-cyan-300/10 bg-cyan-300/[0.025] p-5">
                   <div className="flex items-start gap-2.5">
                     <Check
                       size={16}
-                      className="mt-1 shrink-0 text-[#22E3D6]"
+                      className="mt-1 shrink-0 text-cyan-300"
                     />
 
                     <div>
-                      <p className="text-sm font-semibold leading-6 text-[#D4E3FF]">
+                      <p className="text-sm font-medium leading-6 text-slate-200">
                         {item.description}
                       </p>
 
                       {isPPO && (
-                        <p className="mt-3 inline-flex rounded-lg border border-[#22E3D6]/25 bg-[#22E3D6]/10 px-3 py-2 text-xs font-bold text-[#22E3D6]">
-                          Subject to eligibility & selection
-                        </p>
+                        <div className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-violet-300/15 bg-violet-300/[0.05] px-3 py-2 text-[10px] font-semibold text-violet-200">
+                          <BriefcaseBusiness size={13} />
+                          Subject to eligibility and selection
+                        </div>
                       )}
                     </div>
                   </div>
@@ -322,13 +441,57 @@ export default function ComparisonSection() {
           })}
         </div>
 
-        {/* Disclaimer */}
-        <p className="mt-5 text-xs leading-5 text-[#8198BD]">
-          Free internship offerings vary by provider, and some may provide
-          similar benefits. TriQolo  program features are subject to actual
-          availability, published program details, and applicable terms. PPO
-          consideration is not guaranteed and depends on eligibility,
-          performance, and selection.
+        {/* CAREER CTA */}
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={sectionReveal}
+          className="relative mt-8 overflow-hidden rounded-2xl border border-cyan-300/15 bg-gradient-to-r from-[#0B2039]/90 via-[#0B2039]/70 to-[#171532]/80 p-5 sm:p-6"
+        >
+          <div className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-violet-400/[0.08] blur-3xl" />
+
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-300/[0.07] text-cyan-300">
+                <GraduationCap size={21} />
+              </div>
+
+              <div>
+                <h3 className="text-sm font-extrabold text-white sm:text-base">
+                  Choose With Clarity.
+                  <span className="text-cyan-300">
+                    {" "}Build With Purpose.
+                  </span>
+                </h3>
+
+                <p className="mt-1.5 max-w-xl text-xs leading-5 text-slate-400 sm:text-sm">
+                  Review the program details and requirements before
+                  making your decision.
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="#internships"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 to-violet-300 px-5 py-3 text-xs font-extrabold text-[#050B18] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:text-sm"
+            >
+              Explore Programs
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* DISCLAIMER */}
+
+        <p className="mx-auto mt-5 max-w-5xl text-[10px] leading-5 text-slate-500 sm:text-xs">
+          Free internship offerings vary by provider, and free programs
+          may offer similar features. Program fees, benefits, and eligibility
+          are subject to the current published program details and applicable
+          terms. Certification depends on completion requirements. PPO
+          consideration, where applicable, depends on eligibility and
+          selection and is not guaranteed.
         </p>
       </div>
     </section>

@@ -1,127 +1,254 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
-  Check,
-  BriefcaseBusiness,
-  GraduationCap,
-  Users,
-  Code2,
-  ClipboardCheck,
-  Lightbulb,
-  FolderCheck,
+  ArrowRight,
   Award,
+  BadgeCheck,
+  BriefcaseBusiness,
+  Check,
+  Code2,
+  FolderCheck,
+  GraduationCap,
+  Lightbulb,
+  Rocket,
   Sparkles,
+  Users,
+  Workflow,
 } from "lucide-react";
 
-import { fadeUp } from "./hero-data";
 import { SectionLabel, PrimaryButton } from "./HeroUI";
 
-const floatingBenefits = [
+const benefits = [
   {
-    title: "Industry-Based Project Experience",
+    title: "Industry Projects",
+    description: "Build practical solutions.",
     icon: BriefcaseBusiness,
-    position: "sm:translate-y-3",
+    color: "text-cyan-300",
+    glow: "bg-cyan-300/10",
   },
   {
-    title: "Mentor-Guided Learning",
+    title: "Mentor Guidance",
+    description: "Learn with expert support.",
     icon: GraduationCap,
-    position: "sm:-translate-y-2",
+    color: "text-violet-300",
+    glow: "bg-violet-300/10",
   },
   {
-    title: "Collaborative Project Work",
+    title: "Collaborative Learning",
+    description: "Create and solve together.",
     icon: Users,
-    position: "sm:translate-y-2",
+    color: "text-emerald-300",
+    glow: "bg-emerald-300/10",
   },
   {
-    title: "Practical Skill Development",
+    title: "Practical Skills",
+    description: "Apply what you learn.",
     icon: Code2,
-    position: "sm:-translate-y-3",
+    color: "text-sky-300",
+    glow: "bg-sky-300/10",
   },
   {
     title: "Hands-On Assignments",
-    icon: ClipboardCheck,
-    position: "sm:translate-y-1",
-  },
-  {
-    title: "Real-World Problem Solving",
-    icon: Lightbulb,
-    position: "sm:-translate-y-2",
+    description: "Turn concepts into practice.",
+    icon: Workflow,
+    color: "text-cyan-300",
+    glow: "bg-cyan-300/10",
   },
   {
     title: "Project Deliverables",
+    description: "Build work you can showcase.",
     icon: FolderCheck,
-    position: "sm:translate-y-3",
-  },
-  {
-    title: "Internship Certificate*",
-    icon: Award,
-    position: "sm:-translate-y-1",
-  },
-  {
-    title: "PPO Opportunity*",
-    icon: BriefcaseBusiness,
-    position: "sm:-translate-y-3",
-    featured: true,
+    color: "text-violet-300",
+    glow: "bg-violet-300/10",
   },
 ];
 
+const reveal = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 export default function WhyTriqonSection() {
+  const reduceMotion = useReducedMotion();
+
+  const sectionReveal = {
+    ...reveal,
+    hidden: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 22,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduceMotion ? 0 : 0.55,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <section
       id="why-Triqon"
-      className="relative isolate overflow-hidden bg-[#02152B] px-5 py-20 sm:px-8 sm:py-24"
+      className="relative isolate overflow-hidden bg-[#050B18] px-5 py-20 text-white sm:px-8 sm:py-24 lg:py-28"
     >
-      {/* Ambient background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-[#22E3D6]/10 blur-[110px]"
-      />
+      {/* SHARED TRI QOLO BACKGROUND */}
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-[#72F7FF]/[0.07] blur-[120px]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_20%,rgba(109,74,255,0.15),transparent_40%),radial-gradient(ellipse_at_85%_55%,rgba(34,211,238,0.11),transparent_42%)]" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-        {/* Left content */}
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(148,163,184,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.16) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage:
+              "linear-gradient(to bottom, black, transparent 95%)",
+          }}
+        />
+
+        <motion.div
+          className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-violet-600/15 blur-[110px]"
+          animate={
+            reduceMotion
+              ? {}
+              : { x: [0, 30, 0], y: [0, 20, 0] }
+          }
+          transition={{ duration: 14, repeat: Infinity }}
+        />
+
+        <motion.div
+          className="absolute -right-32 bottom-10 h-96 w-96 rounded-full bg-cyan-400/10 blur-[110px]"
+          animate={
+            reduceMotion
+              ? {}
+              : { x: [0, -25, 0], y: [0, -25, 0] }
+          }
+          transition={{ duration: 16, repeat: Infinity }}
+        />
+
+        {[
+          "left-[10%] top-[18%]",
+          "left-[38%] top-[10%]",
+          "right-[12%] top-[25%]",
+          "left-[20%] bottom-[14%]",
+          "right-[30%] bottom-[12%]",
+        ].map((position, index) => (
+          <motion.span
+            key={position}
+            className={`absolute ${position} h-1 w-1 rounded-full bg-cyan-200/70`}
+            animate={
+              reduceMotion
+                ? {}
+                : {
+                    opacity: [0.2, 0.9, 0.2],
+                    scale: [1, 1.7, 1],
+                  }
+            }
+            transition={{
+              duration: 3 + index,
+              repeat: Infinity,
+              delay: index * 0.3,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        {/* LEFT: INTRODUCTION */}
+
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUp}
-          transition={{ duration: 0.55 }}
+          variants={sectionReveal}
         >
-          <SectionLabel>Value Beyond the Price</SectionLabel>
+          <SectionLabel>Why TriQolo</SectionLabel>
 
-          <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-            More Than a Program.
-            <span className="mt-2 block bg-gradient-to-r from-[#22E3D6] via-[#72F7FF] to-[#22E3D6] bg-clip-text text-transparent">
-              An Investment in Your Growth.
+          <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            Learn.
+            <span className="text-cyan-300"> Build.</span>
+            <br />
+            <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-violet-400 bg-clip-text text-transparent">
+              Move Forward.
             </span>
           </h2>
 
-          <p className="mt-5 max-w-xl text-base leading-7 text-[#A1B5D8]">
-            Build practical skills, work on industry-based projects, learn
-            collaboratively, and prepare for your next career opportunity
-            through a structured learning experience.
+          <p className="mt-5 max-w-md text-sm leading-7 text-slate-300 sm:text-base">
+            Practical learning, real projects, and guidance designed
+            to help you take your next career step.
           </p>
 
-          {/* Quick highlights */}
-          <div className="mt-7 flex flex-wrap gap-2">
-            {["Learn", "Build", "Demonstrate", "Grow"].map((item, index) => (
-              <motion.span
-                key={item}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.35 }}
-                className="rounded-full border border-[#22E3D6]/20 bg-[#22E3D6]/[0.06] px-3 py-1.5 text-xs font-semibold text-[#BDEFF2]"
-              >
-                {item}
-              </motion.span>
+          {/* LEARNING JOURNEY */}
+
+          <div className="mt-7 flex flex-wrap items-center gap-2">
+            {[
+              { label: "Learn", color: "text-cyan-300" },
+              { label: "Build", color: "text-violet-300" },
+              { label: "Showcase", color: "text-emerald-300" },
+            ].map((item, index) => (
+              <div key={item.label} className="flex items-center gap-2">
+                <span
+                  className={`rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-bold ${item.color}`}
+                >
+                  {item.label}
+                </span>
+
+                {index < 2 && (
+                  <ArrowRight
+                    size={13}
+                    className="text-slate-600"
+                  />
+                )}
+              </div>
             ))}
+          </div>
+
+          {/* CERTIFICATE AND PPO */}
+
+          <div className="mt-8 space-y-3">
+            <div className="flex items-center gap-3 rounded-2xl border border-violet-300/15 bg-violet-300/[0.04] p-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-300/10 text-violet-300">
+                <Award size={21} />
+              </div>
+
+              <div>
+                <p className="text-sm font-bold text-white">
+                  Internship Certificate
+                </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Subject to completion requirements
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.04] p-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-300/10 text-cyan-300">
+                <Rocket size={21} />
+              </div>
+
+              <div>
+                <p className="text-sm font-bold text-white">
+                  PPO Opportunity
+                </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Based on eligibility and selection
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8">
@@ -129,133 +256,186 @@ export default function WhyTriqonSection() {
               Explore Project Tracks
             </PrimaryButton>
           </div>
-
-          <p className="mt-5 text-xs leading-5 text-[#8198BD]">
-            *Certificate is subject to successful completion requirements.
-            PPO consideration, where available, is subject to eligibility
-            and selection and is not guaranteed.
-          </p>
         </motion.div>
 
-        {/* Right side: floating benefit cards */}
+        {/* RIGHT: BENEFIT ECOSYSTEM */}
+
         <div className="relative">
-          {/* Decorative orbit rings */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[115%] w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-[40%] border border-[#22E3D6]/[0.08] rotate-12"
-          />
+          {/* ORBIT DECORATION */}
 
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[95%] w-[95%] -translate-x-1/2 -translate-y-1/2 rounded-[35%] border border-dashed border-[#22E3D6]/10 -rotate-12"
-          />
-
-          {/* Floating center decoration */}
           <motion.div
             aria-hidden="true"
-            animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[110%] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-[38%] border border-cyan-300/[0.08]"
+            animate={
+              reduceMotion ? {} : { rotate: [0, 4, 0] }
+            }
             transition={{
-              duration: 6,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#22E3D6]/[0.05] blur-2xl sm:h-56 sm:w-56"
           />
 
-          <div className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-5">
-            {floatingBenefits.map((benefit, index) => {
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[95%] w-[95%] -translate-x-1/2 -translate-y-1/2 rotate-6 rounded-[35%] border border-dashed border-violet-300/10"
+          />
+
+          {/* AMBIENT CORE */}
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.07] blur-[70px] sm:h-80 sm:w-80"
+          />
+
+          {/* BENEFIT CARDS */}
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: reduceMotion ? 0 : 0.09,
+                },
+              },
+            }}
+            className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4"
+          >
+            {benefits.map((benefit) => {
               const Icon = benefit.icon;
-              const isFeatured = Boolean(benefit.featured);
 
               return (
                 <motion.div
                   key={benefit.title}
-                  initial={{ opacity: 0, y: 25, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.07,
-                    ease: "easeOut",
-                  }}
-                  animate={{
-                    y: [0, index % 2 === 0 ? -5 : 5, 0],
-                  }}
-                  whileHover={{
-                    y: -7,
-                    scale: 1.025,
-                    transition: { duration: 0.2 },
-                  }}
-                  className={`group relative flex min-h-[82px] items-center gap-3 overflow-hidden rounded-2xl border p-4 shadow-lg backdrop-blur-xl transition-colors duration-300 ${
-                    isFeatured
-                      ? "border-[#22E3D6]/50 bg-gradient-to-br from-[#0B4050] to-[#09233F] shadow-[#22E3D6]/10 sm:col-span-2 sm:mx-8"
-                      : `border-[#22E3D6]/15 bg-[rgba(9,24,55,0.78)] hover:border-[#22E3D6]/40 hover:bg-[#0A2844] ${benefit.position}`
-                  }`}
-                  style={{
-                    animationDelay: `${index * 150}ms`,
-                  }}
+                  variants={sectionReveal}
+                  whileHover={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          y: -5,
+                          transition: { duration: 0.2 },
+                        }
+                  }
+                  className="group relative isolate flex min-h-[112px] items-center gap-3 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#09182D]/85 p-4 shadow-lg shadow-black/10 backdrop-blur-xl transition-colors duration-300 hover:border-cyan-300/30 hover:bg-[#0B1E35]/95 sm:p-5"
                 >
-                  {/* Hover glow */}
+                  {/* CARD GLOW */}
+
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#22E3D6]/[0.07] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    className={`pointer-events-none absolute -right-8 -top-8 -z-10 h-24 w-24 rounded-full ${benefit.glow} blur-2xl opacity-50 transition-opacity group-hover:opacity-100`}
                   />
 
-                  <span
-                    className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border ${
-                      isFeatured
-                        ? "border-[#22E3D6]/30 bg-[#22E3D6]/15 text-[#72F7FF]"
-                        : "border-[#22E3D6]/15 bg-[#22E3D6]/[0.08] text-[#22E3D6]"
-                    }`}
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] ${benefit.glow} ${benefit.color}`}
                   >
-                    <Icon size={20} strokeWidth={1.8} />
-                  </span>
-
-                  <div className="relative min-w-0 flex-1">
-                    {isFeatured && (
-                      <span className="mb-1 inline-flex items-center gap-1 text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#72F7FF]">
-                        <Sparkles size={11} />
-                        Career Opportunity
-                      </span>
-                    )}
-
-                    <p className="text-sm font-bold leading-5 text-[#D4E3FF]">
-                      {benefit.title}
-                    </p>
-
-                    {isFeatured && (
-                      <p className="mt-1 text-xs leading-5 text-[#A1D9E1]">
-                        Potential consideration based on eligibility,
-                        performance, and selection.
-                      </p>
-                    )}
+                    <Icon size={21} strokeWidth={1.8} />
                   </div>
 
-                  <span
-                    className={`relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${
-                      isFeatured
-                        ? "bg-[#22E3D6] text-[#02152B]"
-                        : "bg-[#22E3D6]/10 text-[#22E3D6]"
-                    }`}
-                  >
-                    <Check size={14} strokeWidth={2.5} />
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-bold leading-5 text-slate-100">
+                      {benefit.title}
+                    </h3>
+
+                    <p className="mt-1.5 text-xs leading-5 text-slate-400">
+                      {benefit.description}
+                    </p>
+                  </div>
+
+                  <Check
+                    size={15}
+                    className="shrink-0 text-cyan-300/70 transition-transform group-hover:scale-110 group-hover:text-cyan-200"
+                  />
+
+                  {/* BOTTOM ACCENT */}
+
+                  <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
 
-          {/* Bottom decorative label */}
+          {/* FEATURED CAREER OPPORTUNITY */}
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={sectionReveal}
+            whileHover={reduceMotion ? undefined : { y: -4 }}
+            className="group relative mt-4 overflow-hidden rounded-2xl border border-cyan-300/25 bg-gradient-to-br from-[#0C2942]/95 via-[#0B2039]/95 to-[#171532]/95 p-5 shadow-[0_15px_50px_-30px_rgba(34,211,238,0.25)] sm:p-6"
+          >
+            <div className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full bg-violet-400/10 blur-3xl transition-colors group-hover:bg-violet-400/20" />
+
+            <div className="relative flex items-start gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-300">
+                <BriefcaseBusiness size={23} />
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-base font-extrabold text-white sm:text-lg">
+                    Build Your Career Advantage
+                  </h3>
+
+                  <span className="rounded-full border border-violet-300/20 bg-violet-300/[0.08] px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-violet-200">
+                    Grow
+                  </span>
+                </div>
+
+                <p className="mt-2 text-xs leading-6 text-slate-400 sm:text-sm">
+                  Develop practical skills and create work you can
+                  showcase to future employers.
+                </p>
+              </div>
+
+              <Sparkles
+                size={18}
+                className="hidden shrink-0 text-violet-300 sm:block"
+              />
+            </div>
+
+            <div className="relative mt-5 flex flex-wrap gap-2">
+              {[
+                "Project Experience",
+                "Skill Development",
+                "Career Growth",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-lg border border-white/[0.08] bg-white/[0.035] px-2.5 py-1.5 text-[10px] font-semibold text-slate-300"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <p className="relative mt-4 text-[10px] leading-5 text-slate-500">
+              Certificate eligibility and PPO consideration depend on
+              applicable requirements and selection. Neither outcome is
+              guaranteed.
+            </p>
+          </motion.div>
+
+          {/* BOTTOM BRAND SIGNATURE */}
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="relative z-10 mt-6 flex items-center justify-center gap-2 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#8198BD]"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative z-10 mt-6 flex items-center justify-center gap-3 text-center"
           >
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#22E3D6]/40" />
-            Learn With Purpose · Build With Confidence
-            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#22E3D6]/40" />
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-cyan-300/20" />
+
+            <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-[10px]">
+              <Lightbulb size={13} className="text-cyan-300" />
+              Learn With Purpose · Build With Confidence
+            </div>
+
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-cyan-300/20" />
           </motion.div>
         </div>
       </div>
