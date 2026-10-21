@@ -1,6 +1,7 @@
+
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Wallet,
   GraduationCap,
@@ -14,186 +15,194 @@ import {
   FolderGit2,
   Award,
   TrendingUp,
+  Sparkles,
+  Rocket,
+  Target,
 } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Register & Begin",
-    description:
-      "Complete your registration and take the first step toward your industrial project internship.",
+    title: "Register",
+    description: "Register and begin your journey.",
     detail: "Registration & onboarding",
     icon: Wallet,
+    color: "from-cyan-400 to-teal-400",
   },
   {
     number: "02",
     title: "Get Started",
-    description:
-      "Understand the program structure, project expectations, and the skills you will develop.",
+    description: "Understand your program and goals.",
     detail: "Program orientation",
     icon: GraduationCap,
+    color: "from-blue-400 to-cyan-400",
   },
   {
     number: "03",
-    title: "Learn & Collaborate",
-    description:
-      "Learn with guidance, strengthen your technical foundation, and collaborate with your peers.",
-    detail: "Guided learning experience",
+    title: "Learn Together",
+    description: "Strengthen skills and collaborate.",
+    detail: "Guided learning",
     icon: Users,
+    color: "from-teal-300 to-emerald-400",
   },
   {
     number: "04",
-    title: "Build & Demonstrate",
-    description:
-      "Apply your learning to practical project work and demonstrate your understanding through deliverables.",
-    detail: "Hands-on project work",
+    title: "Build Projects",
+    description: "Apply your skills to practical work.",
+    detail: "Hands-on deliverables",
     icon: Code2,
+    color: "from-sky-400 to-blue-500",
   },
   {
     number: "05",
-    title: "Earn Your Internship Certificate",
-    description:
-      "Complete the program requirements and receive recognition for your internship journey.",
-    detail: "2-Month Industrial Project Internship Certificate",
+    title: "Get Certified",
+    description: "Complete the program requirements.",
+    detail: "Internship certificate*",
     icon: BadgeCheck,
+    color: "from-emerald-300 to-teal-400",
   },
   {
     number: "06",
-    title: "PPO Opportunity",
-    description:
-      "Eligible participants may be considered for a Pre-Placement Offer based on performance and selection criteria.",
+    title: "Explore PPO",
+    description: "Potential consideration based on performance.",
     detail: "Subject to eligibility & selection",
     icon: BriefcaseBusiness,
+    color: "from-cyan-300 to-blue-400",
   },
 ];
 
-const opportunities = [
+const outcomes = [
   {
     icon: Lightbulb,
     title: "Practical Skills",
-    description:
-      "Develop relevant skills through structured learning and practical project activities.",
+    subtitle: "Learn by doing",
   },
   {
     icon: FolderGit2,
     title: "Project Portfolio",
-    description:
-      "Build project experience that you can discuss and demonstrate in future interviews.",
+    subtitle: "Show what you build",
   },
   {
     icon: Award,
-    title: "Certificates",
-    description:
-      "Receive an internship certificate upon successful completion of the applicable program requirements.",
+    title: "Certificate",
+    subtitle: "Upon completion requirements",
   },
   {
     icon: TrendingUp,
     title: "Career Readiness",
-    description:
-      "Improve your confidence, problem-solving approach, and readiness for professional opportunities.",
+    subtitle: "Prepare for opportunities",
   },
 ];
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 22 },
   visible: { opacity: 1, y: 0 },
 };
 
 export default function JourneySection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       id="journey"
-      className="relative overflow-hidden bg-[#07111F] px-4 py-20 text-white sm:px-6 sm:py-24 lg:px-8"
+      className="relative isolate overflow-hidden bg-[#07111F] px-4 py-20 text-white sm:px-6 sm:py-24 lg:px-8"
     >
-      {/* Background decoration */}
+      {/* Background atmosphere */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#14B8A6]/10 blur-[100px]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-teal-400/10 blur-[110px]" />
+        <div className="absolute -right-40 top-[30%] h-96 w-96 rounded-full bg-cyan-400/10 blur-[130px]" />
+        <div className="absolute bottom-[-12rem] left-[35%] h-96 w-96 rounded-full bg-blue-500/[0.08] blur-[130px]" />
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-[35%] h-96 w-96 rounded-full bg-[#14B8A6]/10 blur-[120px]"
-      />
+        <div
+          className="absolute inset-0 opacity-[0.055]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(94,234,212,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(94,234,212,0.3) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Section heading */}
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-14 max-w-3xl text-center sm:mb-16"
+          className="mx-auto mb-12 max-w-3xl text-center sm:mb-16"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#14B8A6]/30 bg-[#14B8A6]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-[#5EEAD4] sm:text-sm">
-            <span className="h-2 w-2 rounded-full bg-[#14B8A6]" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-300/[0.08] px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-teal-200 sm:text-sm">
+            <Sparkles size={15} />
             Your Journey
           </span>
 
           <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-            From Learning to{" "}
-            <span className="text-[#5EEAD4]">
-              Career Opportunities
+            Learn.{" "}
+            <span className="text-teal-300">Build.</span>{" "}
+            <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+              Grow.
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
-            Follow a structured journey designed to help you learn, work on
-            practical projects, demonstrate your skills, and prepare for
-            professional opportunities.
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
+            Six steps from registration to practical experience and career
+            opportunities.
           </p>
         </motion.div>
 
-        {/* Registration information */}
+        {/* Registration strip */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 flex flex-col gap-5 rounded-2xl border border-[#14B8A6]/25 bg-[#0D1B2A]/90 p-5 sm:mb-14 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+          className="mb-14 flex flex-col gap-4 rounded-2xl border border-teal-300/20 bg-gradient-to-r from-[#0D2332] via-[#0D1B2A] to-[#0C2033] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6"
         >
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#14B8A6]/30 bg-[#14B8A6]/10">
-              <Wallet className="h-6 w-6 text-[#5EEAD4]" />
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-teal-300/25 bg-teal-300/10 text-teal-200">
+              <Rocket size={23} />
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-white sm:text-xl">
-                Start Your Journey
+              <h3 className="font-bold text-white sm:text-lg">
+                Ready to get started?
               </h3>
-
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-                Complete registration and follow the program instructions to
-                begin your two-month industrial project internship journey.
-                Please review the program terms and conditions before
-                registering.
+              <p className="mt-1 text-sm text-slate-400">
+                Register, explore your program, and start building.
               </p>
             </div>
           </div>
 
-          <ArrowRight className="hidden h-6 w-6 shrink-0 text-[#5EEAD4] sm:block" />
+          <a
+            href="/programs"
+            className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-teal-300 px-5 py-3 text-sm font-bold text-[#07111F] transition hover:bg-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-200"
+          >
+            Explore Programs
+            <ArrowRight
+              size={17}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </a>
         </motion.div>
 
         {/* Journey timeline */}
         <div className="relative">
-          {/* Desktop timeline */}
+          {/* Connecting line for desktop */}
           <div
             aria-hidden="true"
-            className="absolute left-0 right-0 top-[25px] hidden h-px bg-gradient-to-r from-transparent via-[#14B8A6]/50 to-transparent xl:block"
+            className="absolute left-[16.66%] right-[16.66%] top-[47px] hidden h-px bg-gradient-to-r from-transparent via-teal-300/50 to-cyan-300/50 lg:block"
           />
 
-          {/* Mobile and tablet timeline */}
-          <div
-            aria-hidden="true"
-            className="absolute bottom-8 left-[21px] top-8 w-px bg-gradient-to-b from-[#14B8A6]/50 via-[#14B8A6]/20 to-transparent xl:hidden"
-          />
-
-          <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-6 xl:gap-4">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-9">
             {steps.map((step, index) => {
               const Icon = step.icon;
 
               return (
-                <motion.div
+                <motion.article
                   key={step.number}
                   variants={cardVariants}
                   initial="hidden"
@@ -203,72 +212,85 @@ export default function JourneySection() {
                     duration: 0.45,
                     delay: index * 0.07,
                   }}
-                  className="relative flex min-w-0 flex-col"
+                  className="group relative min-w-0"
                 >
-                  {/* Step number: consistent styling for all six steps */}
-                  <div className="relative z-10 mb-4 flex h-[50px] w-[50px] items-center justify-center rounded-xl border border-[#14B8A6]/40 bg-[#0D1B2A] text-sm font-black text-[#5EEAD4] shadow-[0_0_18px_rgba(20,184,166,0.08)] transition-all duration-300 hover:border-[#5EEAD4] hover:bg-[#14B8A6] hover:text-[#07111F]">
-                    {step.number}
-                  </div>
-
-                  {/* Step card: consistent styling for all six steps */}
-                  <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-2xl border border-[#14B8A6]/20 bg-[#0D1B2A] p-5 transition-all duration-300 hover:border-[#14B8A6]/50 hover:bg-[#102638] sm:p-6 xl:min-h-[330px] xl:p-4 2xl:p-5">
-                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[#14B8A6]/25 bg-[#14B8A6]/10">
-                      <Icon className="h-5 w-5 text-[#5EEAD4]" />
-                    </div>
-
-                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#5EEAD4]">
-                      STEP {step.number}
-                    </p>
-
-                    <h3 className="text-base font-extrabold leading-snug text-white sm:text-lg xl:text-base 2xl:text-lg">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-slate-400">
-                      {step.description}
-                    </p>
-
-                    <div className="mt-auto pt-5">
-                      <div className="flex items-start gap-2 rounded-xl border border-[#14B8A6]/15 bg-[#07111F]/70 p-3">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#5EEAD4]" />
-
-                        <p className="text-xs font-semibold leading-5 text-slate-300">
-                          {step.detail}
-                        </p>
+                  {/* Number and icon */}
+                  <div className="relative z-10 mb-4 flex items-center justify-between">
+                    <div className="flex h-[58px] w-[58px] items-center justify-center rounded-2xl border border-teal-300/25 bg-[#0D1B2A] shadow-[0_0_25px_rgba(20,184,166,0.08)] transition duration-300 group-hover:border-teal-200/60 group-hover:shadow-[0_0_30px_rgba(20,184,166,0.15)]">
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${step.color} text-[#06131F] transition-transform duration-300 group-hover:scale-110`}
+                      >
+                        <Icon size={21} strokeWidth={2.2} />
                       </div>
                     </div>
+
+                    <span className="text-4xl font-black tracking-tight text-white/[0.08] transition-colors duration-300 group-hover:text-teal-200/25">
+                      {step.number}
+                    </span>
                   </div>
-                </motion.div>
+
+                  {/* Step card */}
+                  <div className="relative flex h-full min-h-[190px] flex-col overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0D1B2A]/90 p-5 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-teal-300/35 group-hover:bg-[#102638] sm:p-6">
+                    <div
+                      aria-hidden="true"
+                      className={`absolute right-0 top-0 h-24 w-24 rounded-full bg-gradient-to-br ${step.color} opacity-[0.06] blur-2xl transition-opacity group-hover:opacity-20`}
+                    />
+
+                    <div className="relative">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-teal-200">
+                        STEP {step.number}
+                      </p>
+
+                      <h3 className="mt-2 text-xl font-extrabold text-white">
+                        {step.title}
+                      </h3>
+
+                      <p className="mt-2 text-sm leading-6 text-slate-400">
+                        {step.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-auto flex items-center gap-2 border-t border-white/[0.07] pt-4 mt-5">
+                      <CheckCircle2
+                        size={16}
+                        className="shrink-0 text-teal-300"
+                      />
+                      <span className="text-xs font-medium leading-5 text-slate-300">
+                        {step.detail}
+                      </span>
+                    </div>
+                  </div>
+                </motion.article>
               );
             })}
           </div>
         </div>
 
-        {/* Opportunities section */}
+        {/* Outcome section */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="mt-20 sm:mt-24"
         >
-          <div className="mx-auto mb-10 max-w-2xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#5EEAD4]">
-              What You Can Gain
-            </p>
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-200">
+                The Outcomes
+              </p>
+              <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+                Make Your Learning Count.
+              </h3>
+            </div>
 
-            <h3 className="mt-4 text-2xl font-black tracking-tight text-white sm:text-3xl">
-              More Than Just an Internship
-            </h3>
-
-            <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
-              Focus on building practical knowledge, project experience, and
-              skills that can support your professional growth.
+            <p className="max-w-md text-sm leading-6 text-slate-400">
+              Focus on skills, practical work, and evidence of what you can do.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {opportunities.map((item, index) => {
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {outcomes.map((item, index) => {
               const Icon = item.icon;
 
               return (
@@ -282,18 +304,18 @@ export default function JourneySection() {
                     duration: 0.45,
                     delay: index * 0.08,
                   }}
-                  className="rounded-2xl border border-white/10 bg-[#0D1B2A]/80 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:bg-[#102638] sm:p-6"
+                  className="group relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0D1B2A]/80 p-4 transition duration-300 hover:-translate-y-1 hover:border-teal-300/30 hover:bg-[#102638] sm:p-5"
                 >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[#14B8A6]/25 bg-[#14B8A6]/10">
-                    <Icon className="h-5 w-5 text-[#5EEAD4]" />
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-teal-300/20 bg-teal-300/[0.08] text-teal-200 transition duration-300 group-hover:bg-teal-300 group-hover:text-[#07111F]">
+                    <Icon size={21} />
                   </div>
 
-                  <h4 className="text-base font-bold text-white">
+                  <h4 className="text-sm font-bold text-white sm:text-base">
                     {item.title}
                   </h4>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-400">
-                    {item.description}
+                  <p className="mt-1.5 text-xs leading-5 text-slate-400 sm:text-sm">
+                    {item.subtitle}
                   </p>
                 </motion.div>
               );
@@ -301,20 +323,27 @@ export default function JourneySection() {
           </div>
         </motion.div>
 
-        {/* Closing message */}
+        {/* PPO note */}
+        <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-6 text-slate-500">
+          * Internship certificate is subject to successful completion of
+          applicable program requirements. PPO consideration, where offered,
+          is subject to eligibility, performance, and selection; it is not
+          guaranteed.
+        </p>
+
+        {/* Closing statement */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
           className="mt-12 text-center sm:mt-16"
         >
-          <p className="text-sm leading-7 text-slate-400 sm:text-base">
-            Your journey starts with learning.{" "}
-            <span className="font-semibold text-[#5EEAD4]">
-              Your growth comes from what you build.
-            </span>
-          </p>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-sm font-semibold sm:text-base">
+            <span className="text-slate-400">Your next step starts here.</span>
+            <span className="text-teal-200">Build something meaningful.</span>
+            <Target size={17} className="text-cyan-300" />
+          </div>
         </motion.div>
       </div>
     </section>
