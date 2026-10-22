@@ -41,7 +41,8 @@ const steps = [
   {
     number: "03",
     title: "Learn Together",
-    description: "Develop skills through guided learning and collaboration.",
+    description:
+      "Develop skills through guided learning and collaboration.",
     detail: "Guided learning",
     icon: Users,
     color: "from-teal-300 to-emerald-400",
@@ -65,7 +66,8 @@ const steps = [
   {
     number: "06",
     title: "Explore PPO",
-    description: "Potential consideration based on eligibility and performance.",
+    description:
+      "Potential consideration based on eligibility and performance.",
     detail: "Subject to selection",
     icon: BriefcaseBusiness,
     color: "from-violet-300 to-cyan-300",
@@ -103,19 +105,25 @@ const outcomes = [
   },
 ];
 
+const progressItems = [
+  { number: "01–02", label: "Get Started" },
+  { number: "03–04", label: "Learn & Build" },
+  { number: "05–06", label: "Move Forward" },
+];
+
 export default function JourneySection() {
   const reduceMotion = useReducedMotion();
 
   const fadeUp = {
     hidden: {
       opacity: 0,
-      y: reduceMotion ? 0 : 22,
+      y: reduceMotion ? 0 : 18,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: reduceMotion ? 0 : 0.5,
+        duration: reduceMotion ? 0 : 0.45,
         ease: "easeOut" as const,
       },
     },
@@ -124,10 +132,9 @@ export default function JourneySection() {
   return (
     <section
       id="journey"
-      className="relative isolate overflow-hidden bg-[#050B18] px-4 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+      className="relative isolate overflow-hidden bg-[#050B18] px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8 lg:py-28"
     >
-      {/* BACKGROUND ATMOSPHERE */}
-
+      {/* Background */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
@@ -135,98 +142,96 @@ export default function JourneySection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_12%_15%,rgba(109,74,255,0.15),transparent_38%),radial-gradient(ellipse_at_88%_45%,rgba(34,227,214,0.10),transparent_40%)]" />
 
         <div
-          className="absolute inset-0 opacity-[0.10]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(148,163,184,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.15) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
-            maskImage:
-              "linear-gradient(to bottom, black, transparent 95%)",
+            maskImage: "linear-gradient(to bottom, black, transparent 95%)",
           }}
         />
 
         <motion.div
-          className="absolute -left-40 top-20 h-80 w-80 rounded-full bg-violet-600/15 blur-[120px]"
+          className="absolute -left-40 top-20 h-64 w-64 rounded-full bg-violet-600/15 blur-[100px] sm:h-80 sm:w-80"
           animate={
             reduceMotion
               ? {}
               : {
-                  x: [0, 25, 0],
-                  y: [0, 20, 0],
+                  x: [0, 20, 0],
+                  y: [0, 15, 0],
                 }
           }
           transition={{ duration: 15, repeat: Infinity }}
         />
 
         <motion.div
-          className="absolute -right-40 top-[35%] h-96 w-96 rounded-full bg-cyan-400/10 blur-[130px]"
+          className="absolute -right-32 top-[35%] h-72 w-72 rounded-full bg-cyan-400/10 blur-[110px] sm:h-96 sm:w-96"
           animate={
             reduceMotion
               ? {}
               : {
-                  x: [0, -25, 0],
-                  y: [0, 25, 0],
+                  x: [0, -20, 0],
+                  y: [0, 20, 0],
                 }
           }
           transition={{ duration: 17, repeat: Infinity }}
         />
 
-        <div className="absolute -bottom-40 left-[35%] h-96 w-96 rounded-full bg-blue-500/[0.07] blur-[130px]" />
+        <div className="absolute -bottom-40 left-[35%] h-80 w-80 rounded-full bg-blue-500/[0.07] blur-[110px]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl">
-        {/* SECTION HEADING */}
-
+      <div className="relative mx-auto w-full max-w-7xl min-w-0">
+        {/* Section heading */}
         <motion.div
+          id="JourneySection"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeUp}
-          className="mx-auto mb-12 max-w-3xl text-center sm:mb-16"
+          className="mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-16"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.06] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-200 sm:text-xs">
-            <Sparkles size={14} />
+          <div className="inline-flex max-w-full items-center justify-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.06] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-cyan-200 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
+            <Sparkles size={14} className="shrink-0" />
             Your Journey
           </div>
 
-          <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 text-3xl font-black leading-[1.15] tracking-tight sm:mt-6 sm:text-4xl lg:text-5xl">
             Learn.
             <span className="text-cyan-300"> Build.</span>
-            <span className="block bg-gradient-to-r from-cyan-300 via-[#22E3D6] to-violet-400 bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-cyan-300 via-[#22E3D6] to-violet-400 bg-clip-text text-transparent">
               Grow With Purpose.
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-400 sm:mt-5 sm:text-base sm:leading-7">
             A clear path from getting started to building practical
             experience.
           </p>
         </motion.div>
 
-        {/* JOURNEY PROGRESS STRIP */}
-
+        {/* Journey progress strip */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           variants={fadeUp}
-          className="relative mb-14 overflow-hidden rounded-3xl border border-white/[0.09] bg-[#0A1425]/80 p-5 backdrop-blur-xl sm:mb-16 sm:p-7 lg:p-8"
+          className="relative mb-12 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0A1425]/80 p-4 backdrop-blur-xl sm:mb-16 sm:rounded-3xl sm:p-6 lg:p-8"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-violet-500/[0.07] via-transparent to-cyan-400/[0.07]" />
 
-          <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-4">
-              <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.07]">
-                <Rocket size={25} className="text-cyan-300" />
+          <div className="relative flex min-w-0 flex-col gap-5 sm:gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="flex min-w-0 items-start gap-3 sm:items-center sm:gap-4">
+              <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.07] sm:h-14 sm:w-14 sm:rounded-2xl">
+                <Rocket size={23} className="text-cyan-300 sm:h-[25px] sm:w-[25px]" />
                 <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#0A1425] bg-violet-400" />
               </div>
 
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+              <div className="min-w-0 flex-1">
+                <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-cyan-300 sm:text-[10px] sm:tracking-[0.2em]">
                   Your next chapter
                 </p>
 
-                <h3 className="mt-1 text-lg font-extrabold text-white sm:text-xl">
+                <h3 className="mt-1 break-words text-base font-extrabold leading-snug text-white sm:text-xl">
                   Turn Learning Into Experience.
                 </h3>
 
@@ -238,7 +243,7 @@ export default function JourneySection() {
 
             <a
               href="#internships"
-              className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 to-[#8B9BFF] px-5 py-3 text-sm font-extrabold text-[#050B18] transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200"
+              className="group inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 to-[#8B9BFF] px-4 py-3 text-sm font-extrabold text-[#050B18] transition hover:shadow-lg hover:shadow-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:w-auto sm:px-5 md:self-center"
             >
               Explore Programs
               <ArrowRight
@@ -248,21 +253,17 @@ export default function JourneySection() {
             </a>
           </div>
 
-          {/* MINI PROGRESS INDICATOR */}
-
-          <div className="relative mt-7 grid grid-cols-3 gap-2 border-t border-white/[0.07] pt-5 sm:mt-8 sm:gap-4 sm:pt-6">
-            {[
-              { number: "01–02", label: "Get Started" },
-              { number: "03–04", label: "Learn & Build" },
-              { number: "05–06", label: "Move Forward" },
-            ].map((item, index) => (
-              <div key={item.number} className="relative">
-                <div className="mb-2 flex items-center gap-2">
+          {/* Progress indicator */}
+          <div className="relative mt-5 grid grid-cols-1 gap-3 border-t border-white/[0.07] pt-4 sm:mt-7 sm:grid-cols-3 sm:gap-4 sm:pt-6">
+            {progressItems.map((item, index) => (
+              <div
+                key={item.number}
+                className="flex min-w-0 items-center gap-3 sm:block"
+              >
+                <div className="flex shrink-0 items-center gap-2 sm:mb-2">
                   <span
                     className={`h-2 w-2 rounded-full ${
-                      index === 1
-                        ? "bg-violet-300"
-                        : "bg-cyan-300"
+                      index === 1 ? "bg-violet-300" : "bg-cyan-300"
                     }`}
                   />
                   <span className="text-[10px] font-bold tracking-wider text-slate-500 sm:text-xs">
@@ -270,7 +271,7 @@ export default function JourneySection() {
                   </span>
                 </div>
 
-                <p className="text-xs font-semibold text-slate-200 sm:text-sm">
+                <p className="min-w-0 text-xs font-semibold text-slate-200 sm:text-sm">
                   {item.label}
                 </p>
               </div>
@@ -278,11 +279,9 @@ export default function JourneySection() {
           </div>
         </motion.div>
 
-        {/* SIX-STEP JOURNEY */}
-
+        {/* Six-step journey */}
         <div className="relative">
-          {/* DESKTOP CONNECTOR */}
-
+          {/* Desktop connector */}
           <div
             aria-hidden="true"
             className="absolute left-[16.66%] right-[16.66%] top-8 hidden h-px bg-gradient-to-r from-cyan-300/5 via-cyan-300/40 to-violet-300/10 lg:block"
@@ -297,40 +296,43 @@ export default function JourneySection() {
                   key={step.number}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.12 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={fadeUp}
                   transition={{
-                    delay: reduceMotion ? 0 : (index % 3) * 0.08,
+                    delay: reduceMotion ? 0 : (index % 3) * 0.06,
                   }}
-                  className="group relative min-w-0"
+                  className="group relative flex min-w-0 flex-col"
                 >
-                  {/* ICON + STEP NUMBER */}
-
-                  <div className="relative z-10 mb-4 flex items-center justify-between px-1">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-[#0A1425] shadow-[0_0_30px_rgba(34,227,214,0.04)] transition duration-300 group-hover:border-cyan-300/30 group-hover:shadow-[0_0_32px_rgba(34,227,214,0.09)]">
+                  {/* Step icon and number */}
+                  <div className="relative z-10 mb-3 flex items-center justify-between px-1 sm:mb-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-[#0A1425] shadow-[0_0_30px_rgba(34,227,214,0.04)] transition duration-300 group-hover:border-cyan-300/30 sm:h-16 sm:w-16 sm:rounded-2xl">
                       <div
-                        className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${step.color} text-[#050B18] transition-transform duration-300 group-hover:scale-110`}
+                        className={`flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br ${step.color} text-[#050B18] transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11 sm:rounded-xl`}
                       >
-                        <Icon size={22} strokeWidth={2.2} />
+                        <Icon size={20} strokeWidth={2.2} className="sm:hidden" />
+                        <Icon
+                          size={22}
+                          strokeWidth={2.2}
+                          className="hidden sm:block"
+                        />
                       </div>
                     </div>
 
-                    <span className="text-4xl font-black tracking-tight text-white/[0.07] transition-colors duration-300 group-hover:text-cyan-200/20">
+                    <span className="select-none text-3xl font-black tracking-tight text-white/[0.09] sm:text-4xl">
                       {step.number}
                     </span>
                   </div>
 
-                  {/* STEP CARD */}
-
-                  <div className="relative flex h-full min-h-[205px] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A1425]/85 p-5 backdrop-blur-xl transition duration-300 group-hover:-translate-y-1 group-hover:border-cyan-300/25 group-hover:bg-[#0D1B2D] sm:p-6">
+                  {/* Step card */}
+                  <div className="relative flex min-w-0 flex-1 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A1425]/85 p-4 backdrop-blur-xl transition duration-300 group-hover:border-cyan-300/25 group-hover:bg-[#0D1B2D] sm:p-6 lg:min-h-[220px]">
                     <div
                       aria-hidden="true"
-                      className={`absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gradient-to-br ${step.color} opacity-[0.07] blur-2xl transition-opacity duration-300 group-hover:opacity-20`}
+                      className={`pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gradient-to-br ${step.color} opacity-[0.07] blur-2xl transition-opacity duration-300 group-hover:opacity-20`}
                     />
 
-                    <div className="relative">
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+                    <div className="relative min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-cyan-300 sm:text-[10px] sm:tracking-[0.2em]">
                           STEP {step.number}
                         </span>
 
@@ -341,29 +343,27 @@ export default function JourneySection() {
                         )}
                       </div>
 
-                      <h3 className="mt-3 text-xl font-extrabold text-white">
+                      <h3 className="mt-2 break-words text-lg font-extrabold leading-snug text-white sm:mt-3 sm:text-xl">
                         {step.title}
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-slate-400">
+                      <p className="mt-2 break-words text-sm leading-6 text-slate-400">
                         {step.description}
                       </p>
                     </div>
 
-                    <div className="relative mt-auto flex items-start gap-2.5 border-t border-white/[0.07] pt-4 mt-5">
+                    <div className="relative mt-5 flex min-w-0 items-start gap-2.5 border-t border-white/[0.07] pt-4">
                       <CheckCircle2
                         size={16}
                         className="mt-0.5 shrink-0 text-cyan-300"
                       />
 
-                      <span className="text-xs font-medium leading-5 text-slate-300">
+                      <span className="min-w-0 break-words text-xs font-medium leading-5 text-slate-300">
                         {step.detail}
                       </span>
                     </div>
 
-                    {/* BOTTOM ACCENT */}
-
-                    <div className="absolute bottom-0 left-5 right-5 h-px bg-gradient-to-r from-transparent via-cyan-300/0 to-transparent transition-all duration-300 group-hover:via-cyan-300/50" />
+                    <div className="pointer-events-none absolute bottom-0 left-5 right-5 h-px bg-gradient-to-r from-transparent via-cyan-300/0 to-transparent transition-all duration-300 group-hover:via-cyan-300/50" />
                   </div>
                 </motion.article>
               );
@@ -371,23 +371,22 @@ export default function JourneySection() {
           </div>
         </div>
 
-        {/* OUTCOMES */}
-
+        {/* Outcomes */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
-          className="mt-20 sm:mt-24"
+          className="mt-14 sm:mt-20 lg:mt-24"
         >
-          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
-                <Target size={15} />
+          <div className="mb-6 flex min-w-0 flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div className="min-w-0">
+              <div className="inline-flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-cyan-300 sm:text-xs sm:tracking-[0.2em]">
+                <Target size={15} className="shrink-0" />
                 What You Work Toward
               </div>
 
-              <h3 className="mt-3 text-2xl font-black text-white sm:text-3xl">
+              <h3 className="mt-3 break-words text-2xl font-black leading-tight text-white sm:text-3xl">
                 Make Your Learning Count.
               </h3>
             </div>
@@ -397,7 +396,7 @@ export default function JourneySection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {outcomes.map((item, index) => {
               const Icon = item.icon;
 
@@ -406,37 +405,37 @@ export default function JourneySection() {
                   key={item.title}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={fadeUp}
                   transition={{
-                    delay: reduceMotion ? 0 : index * 0.07,
+                    delay: reduceMotion ? 0 : index * 0.05,
                   }}
-                  className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-[#0D1B2D] sm:p-5"
+                  className="group relative flex min-w-0 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-white/15 hover:bg-[#0D1B2D] sm:p-5"
                 >
-                  <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-cyan-300/[0.04] blur-2xl transition-opacity group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-cyan-300/[0.04] blur-2xl" />
 
                   <div
-                    className={`relative mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] ${item.accent} transition duration-300 ${item.glow} group-hover:text-[#050B18]`}
+                    className={`relative mb-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] ${item.accent} transition duration-300 ${item.glow} group-hover:text-[#050B18] sm:mb-5 sm:h-11 sm:w-11`}
                   >
                     <Icon size={21} />
                   </div>
 
-                  <h4 className="relative text-sm font-bold text-white sm:text-base">
+                  <h4 className="relative break-words text-sm font-bold leading-snug text-white sm:text-base">
                     {item.title}
                   </h4>
 
-                  <p className="relative mt-1.5 text-xs leading-5 text-slate-400 sm:text-sm">
+                  <p className="relative mt-1.5 break-words text-xs leading-5 text-slate-400 sm:text-sm">
                     {item.subtitle}
                   </p>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-white/[0.07] pt-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                  <div className="relative mt-4 flex min-w-0 items-center justify-between gap-2 border-t border-white/[0.07] pt-3">
+                    <span className="min-w-0 break-words text-[9px] font-semibold uppercase leading-4 tracking-wider text-slate-500 sm:text-[10px]">
                       TriQolo Journey
                     </span>
 
                     <ChevronRight
                       size={15}
-                      className="text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-cyan-300"
+                      className="shrink-0 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-cyan-300"
                     />
                   </div>
                 </motion.div>
@@ -445,25 +444,23 @@ export default function JourneySection() {
           </div>
         </motion.div>
 
-        {/* CERTIFICATE & PPO DISCLAIMER */}
-
-        <p className="mx-auto mt-8 max-w-3xl text-center text-[10px] leading-5 text-slate-500 sm:text-xs">
+        {/* Certificate and PPO disclaimer */}
+        <p className="mx-auto mt-7 max-w-3xl text-center text-[10px] leading-5 text-slate-500 sm:mt-8 sm:text-xs">
           Certificate issuance is subject to successful completion of
           applicable program requirements. PPO consideration, where offered,
           depends on eligibility, performance, and selection and is not
           guaranteed.
         </p>
 
-        {/* CLOSING STATEMENT */}
-
+        {/* Closing statement */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeUp}
-          className="mt-12 text-center sm:mt-16"
+          className="mt-10 text-center sm:mt-16"
         >
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-sm font-semibold sm:text-base">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm font-semibold sm:text-base">
             <span className="text-slate-400">
               Your next step starts here.
             </span>
@@ -472,7 +469,7 @@ export default function JourneySection() {
               Build something meaningful.
             </span>
 
-            <Sparkles size={16} className="text-cyan-300" />
+            <Sparkles size={16} className="shrink-0 text-cyan-300" />
           </div>
         </motion.div>
       </div>

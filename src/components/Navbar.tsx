@@ -1,21 +1,14 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import {
-  Menu,
-  X,
-  ArrowUpRight,
-  Check,
-  Sparkles,
-} from "lucide-react";
+import { Menu, X, ArrowUpRight, Check, Sparkles } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/#home", section: "home" },
   {
     label: "How It Works",
-    href: "/#how-it-works",
+    href: "#JourneySection",
     section: "how-it-works",
   },
   {
@@ -89,8 +82,7 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
-  const internshipsHref =
-    pathname === "/" ? "#internships" : "/#internships";
+  const internshipsHref = pathname === "/" ? "#internships" : "/#internships";
 
   return (
     <>
@@ -132,7 +124,6 @@ export default function Navbar() {
             <span className="flex flex-col">
               <span className="text-[21px] font-black leading-none tracking-[-0.055em] text-white sm:text-2xl">
                 Tri<span className="text-cyan-300">Q</span>olo
-                
               </span>
 
               <span className="mt-1.5 text-[8px] font-bold uppercase tracking-[0.23em] text-slate-500 sm:text-[9px]">
@@ -162,9 +153,7 @@ export default function Navbar() {
 
                   <span
                     className={`absolute bottom-1.5 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300 transition-all duration-300 ${
-                      active
-                        ? "w-5"
-                        : "w-0 group-hover:w-4"
+                      active ? "w-5" : "w-0 group-hover:w-4"
                     }`}
                   />
                 </a>
@@ -182,9 +171,7 @@ export default function Navbar() {
               size={15}
               className="transition-transform duration-300 group-hover:rotate-12"
             />
-
             Explore Programs
-
             <ArrowUpRight
               size={16}
               className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -205,11 +192,7 @@ export default function Navbar() {
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            {isOpen ? (
-              <X size={21} />
-            ) : (
-              <Menu size={21} />
-            )}
+            {isOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
         </nav>
 
@@ -239,9 +222,11 @@ export default function Navbar() {
                   </p>
                 </div>
 
-                <span className="rounded-full border border-violet-300/15 bg-violet-300/[0.06] px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-violet-200">
-                  TriQolo
-                </span>
+                <img
+                  src="/images/Brand_Name.png"
+                  alt="TriQolo"
+                  className="h-8 w-auto object-contain"
+                />
               </div>
 
               {/* NAV LINKS */}
@@ -278,10 +263,7 @@ export default function Navbar() {
                       </span>
 
                       {active ? (
-                        <Check
-                          size={17}
-                          className="text-cyan-300"
-                        />
+                        <Check size={17} className="text-cyan-300" />
                       ) : (
                         <ArrowUpRight
                           size={16}
@@ -302,9 +284,7 @@ export default function Navbar() {
                 className="group mt-4 flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 to-[#91A7FF] px-5 py-3 text-sm font-extrabold text-[#050B18] shadow-[0_5px_24px_rgba(34,227,214,0.08)] transition duration-300 hover:shadow-[0_5px_28px_rgba(34,227,214,0.17)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 active:scale-[0.99]"
               >
                 <Sparkles size={16} />
-
                 Explore Programs
-
                 <ArrowUpRight
                   size={17}
                   className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -329,10 +309,7 @@ export default function Navbar() {
 
       {/* NAVBAR SPACER */}
 
-      <div
-        aria-hidden="true"
-        className="h-16 md:h-20"
-      />
+      <div aria-hidden="true" className="h-16 md:h-20" />
     </>
   );
 }

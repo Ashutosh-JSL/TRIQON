@@ -51,10 +51,10 @@ export default function Footer() {
             </Link>
 
             <Link
-              href="/#faq"
+              href="/about"
               className="transition-colors hover:text-[#14B8A6]"
             >
-              FAQ
+              About Us
             </Link>
 
             <Link
