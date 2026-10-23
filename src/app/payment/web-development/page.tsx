@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import {
@@ -15,6 +15,9 @@ import {
   Code2,
   Loader2,
   CheckCircle2,
+  FileCheck2,
+  ReceiptText,
+  ClipboardCheck,
 } from "lucide-react";
 
 declare global {
@@ -50,9 +53,12 @@ export default function WebDevelopmentPaymentPage() {
   const [error, setError] = useState("");
   const [paymentStarted, setPaymentStarted] = useState(false);
 
-  function handleChange(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
+  // All three confirmations are mandatory.
+  const [policiesAccepted, setPoliciesAccepted] = useState(false);
+  const [feePolicyAccepted, setFeePolicyAccepted] = useState(false);
+  const [programPolicyAccepted, setProgramPolicyAccepted] = useState(false);
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
     setDetails((previous) => ({
@@ -66,13 +72,26 @@ export default function WebDevelopmentPaymentPage() {
   async function handlePayment() {
     setError("");
 
+    // Validate policy acceptance first.
+    if (
+      !policiesAccepted ||
+      !feePolicyAccepted ||
+      !programPolicyAccepted
+    ) {
+      setError(
+        "Please accept all three program policy confirmations before proceeding to payment."
+      );
+      return;
+    }
+
+    // Validate student details.
     if (
       !details.name.trim() ||
       !details.email.trim() ||
       !details.phone.trim() ||
       !details.college.trim()
     ) {
-      setError("Please fill in all your details.");
+      setError("Please fill in all your student details.");
       return;
     }
 
@@ -86,7 +105,7 @@ export default function WebDevelopmentPaymentPage() {
       return;
     }
 
-    if (!window.Cashfree) {
+    if (!window.Cashfree || !sdkLoaded) {
       setError(
         "The payment gateway is still loading. Please wait a moment and try again."
       );
@@ -96,52 +115,40 @@ export default function WebDevelopmentPaymentPage() {
     setLoading(true);
 
     try {
-      // Create the Cashfree order on your server.
-      
-const response = await fetch("/api/cashfree/create-order", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    name: details.name.trim(),
-    email: details.email.trim(),
-    phone: details.phone.trim(),
-    college: details.college.trim(),
-  }),
-});
+      // Create the payment order securely on the server.
+      const response = await fetch("/api/cashfree/create-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: details.name.trim(),
+          email: details.email.trim(),
+          phone: details.phone.trim(),
+          college: details.college.trim(),
+        }),
+      });
 
-const responseText = await response.text();
+      const responseText = await response.text();
 
-let result: {
-  error?: string;
-  paymentSessionId?: string;
-  orderId?: string;
-};
+      let result: {
+        error?: string;
+        paymentSessionId?: string;
+        orderId?: string;
+      };
 
-try {
-  result = JSON.parse(responseText);
-} catch {
-  console.error("API returned HTML or invalid JSON:", {
-    status: response.status,
-    response: responseText.slice(0, 500),
-  });
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        console.error("Invalid payment API response:", {
+          status: response.status,
+          response: responseText.slice(0, 500),
+        });
 
-  throw new Error(
-    `Payment API returned an invalid response (HTTP ${response.status}). Check the API route and terminal logs.`
-  );
-}
-
-if (!response.ok) {
-  throw new Error(
-    result.error || `Payment request failed: ${response.status}`
-  );
-}
-
-if (!result.paymentSessionId) {
-  throw new Error("Payment session ID is missing from the response.");
-}
-
+        throw new Error(
+          `Payment API returned an invalid response (HTTP ${response.status}). Please check your API route and server logs.`
+        );
+      }
 
       if (!response.ok) {
         throw new Error(
@@ -155,28 +162,15 @@ if (!result.paymentSessionId) {
         );
       }
 
-      // Initialize Cashfree in Sandbox mode.
-     const cashfree = window.Cashfree({
-  mode: "sandbox",
-});
+      // Use sandbox during testing. Switch to production only
+      // after the production credentials and configuration are ready.
+      const cashfree = window.Cashfree({
+        mode: "sandbox",
+      });
 
-const checkoutResult = await cashfree.checkout({
-  paymentSessionId: result.paymentSessionId,
-  redirectTarget: "_self",
-});
-
-console.log("Cashfree checkout result:", checkoutResult);
-
-if (
-  checkoutResult &&
-  typeof checkoutResult === "object" &&
-  "error" in checkoutResult
-) {
-  console.error("Cashfree checkout error:", checkoutResult.error);
-}
       setPaymentStarted(true);
 
-      // Open the Cashfree hosted checkout.
+      // Open Cashfree checkout once.
       await cashfree.checkout({
         paymentSessionId: result.paymentSessionId,
         redirectTarget: "_self",
@@ -193,6 +187,11 @@ if (
       setLoading(false);
     }
   }
+
+  const allPoliciesAccepted =
+    policiesAccepted &&
+    feePolicyAccepted &&
+    programPolicyAccepted;
 
   return (
     <>
@@ -236,8 +235,8 @@ if (
             </h1>
 
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
-              Confirm your details and proceed to secure checkout for
-              the Web Development program.
+              Confirm your details, review the program policies, and
+              proceed to secure checkout for the Web Development program.
             </p>
           </div>
 
@@ -250,9 +249,7 @@ if (
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-bold">
-                    Student Details
-                  </h2>
+                  <h2 className="text-xl font-bold">Student Details</h2>
                   <p className="mt-1 text-sm text-slate-400">
                     Enter your correct information.
                   </p>
@@ -280,10 +277,11 @@ if (
                       name="name"
                       type="text"
                       autoComplete="name"
+                      required
                       value={details.name}
                       onChange={handleChange}
                       placeholder="Enter your full name"
-                      disabled={loading}
+                      disabled={loading || paymentStarted}
                       className="w-full rounded-xl border border-white/10 bg-[#0b1728] py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 disabled:opacity-60"
                     />
                   </div>
@@ -309,10 +307,11 @@ if (
                       name="email"
                       type="email"
                       autoComplete="email"
+                      required
                       value={details.email}
                       onChange={handleChange}
                       placeholder="you@example.com"
-                      disabled={loading}
+                      disabled={loading || paymentStarted}
                       className="w-full rounded-xl border border-white/10 bg-[#0b1728] py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 disabled:opacity-60"
                     />
                   </div>
@@ -340,6 +339,7 @@ if (
                       inputMode="numeric"
                       autoComplete="tel"
                       maxLength={10}
+                      required
                       value={details.phone}
                       onChange={(event) => {
                         const value = event.target.value
@@ -354,7 +354,7 @@ if (
                         setError("");
                       }}
                       placeholder="10-digit mobile number"
-                      disabled={loading}
+                      disabled={loading || paymentStarted}
                       className="w-full rounded-xl border border-white/10 bg-[#0b1728] py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 disabled:opacity-60"
                     />
                   </div>
@@ -380,10 +380,11 @@ if (
                       name="college"
                       type="text"
                       autoComplete="organization"
+                      required
                       value={details.college}
                       onChange={handleChange}
                       placeholder="Enter your college name"
-                      disabled={loading}
+                      disabled={loading || paymentStarted}
                       className="w-full rounded-xl border border-white/10 bg-[#0b1728] py-3.5 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-400 disabled:opacity-60"
                     />
                   </div>
@@ -404,9 +405,7 @@ if (
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-bold">
-                    Payment Summary
-                  </h2>
+                  <h2 className="text-xl font-bold">Payment Summary</h2>
                   <p className="mt-1 text-sm text-slate-400">
                     Review before proceeding.
                   </p>
@@ -416,9 +415,7 @@ if (
               <div className="rounded-2xl border border-white/10 bg-[#07111f]/70 p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="font-semibold">
-                      Web Development
-                    </h3>
+                    <h3 className="font-semibold">Web Development</h3>
 
                     <p className="mt-2 text-sm leading-5 text-slate-400">
                       Practical learning and project-based experience
@@ -429,10 +426,7 @@ if (
                     </span>
                   </div>
 
-                  <Code2
-                    size={26}
-                    className="shrink-0 text-cyan-300"
-                  />
+                  <Code2 size={26} className="shrink-0 text-cyan-300" />
                 </div>
 
                 <div className="my-5 border-t border-white/10" />
@@ -459,10 +453,115 @@ if (
                 </div>
               </div>
 
+              {/* Mandatory policy acceptance */}
+              <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-[#07111f]/70 p-4 sm:p-5">
+                <div className="mb-4 flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300">
+                    <ShieldCheck size={21} />
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      Review & Accept Program Policies
+                    </h3>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">
+                      Please review the following before continuing.
+                      All three confirmations are required.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Terms and conditions */}
+                  <label className="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={policiesAccepted}
+                      onChange={(event) => {
+                        setPoliciesAccepted(event.target.checked);
+                        setError("");
+                      }}
+                      disabled={loading || paymentStarted}
+                      className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-cyan-400"
+                    />
+
+                    <span className="text-sm leading-6 text-slate-300">
+                      I have read and agree to the{" "}
+                      <Link
+                        href="/terms-and-conditions"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
+                      >
+                        Terms & Conditions
+                      </Link>
+                      , including the program rules, eligibility requirements,
+                      duration, and applicable participation conditions.
+                    </span>
+                  </label>
+
+                  {/* Fee and refund policy */}
+                  <label className="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={feePolicyAccepted}
+                      onChange={(event) => {
+                        setFeePolicyAccepted(event.target.checked);
+                        setError("");
+                      }}
+                      disabled={loading || paymentStarted}
+                      className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-cyan-400"
+                    />
+
+                    <span className="text-sm leading-6 text-slate-300">
+                      I understand the program fee is{" "}
+                      <strong className="text-white">₹499</strong> and have
+                      reviewed the applicable refund and cancellation policy,
+                      including its deadline and any payment gateway charges.
+                    </span>
+                  </label>
+
+                  {/* Program expectations */}
+                  <label className="flex cursor-pointer items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={programPolicyAccepted}
+                      onChange={(event) => {
+                        setProgramPolicyAccepted(event.target.checked);
+                        setError("");
+                      }}
+                      disabled={loading || paymentStarted}
+                      className="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-cyan-400"
+                    />
+
+                    <span className="text-sm leading-6 text-slate-300">
+                      I confirm that my submitted details are accurate and
+                      understand that certificate issuance is subject to
+                      program requirements. Any PPO consideration is subject
+                      to eligibility and selection and is not guaranteed.
+                    </span>
+                  </label>
+                </div>
+
+                <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-slate-500">
+                  All three confirmations are mandatory to proceed. Please
+                  contact TriQolo if you need clarification before making
+                  payment.
+                </p>
+
+                {allPoliciesAccepted && (
+                  <div className="mt-3 flex items-center gap-2 text-xs font-medium text-emerald-300">
+                    <CheckCircle2 size={15} />
+                    All required policy confirmations completed
+                  </div>
+                )}
+              </div>
+
               {/* Error message */}
               {error && (
                 <div
                   role="alert"
+                  aria-live="polite"
                   className="mt-5 rounded-xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-5 text-red-300"
                 >
                   {error}
@@ -494,6 +593,12 @@ if (
                 )}
               </button>
 
+              {!allPoliciesAccepted && (
+                <p className="mt-3 text-center text-xs text-slate-500">
+                  Accept all three policy confirmations to continue.
+                </p>
+              )}
+
               <p className="mt-3 text-center text-xs text-slate-500">
                 {sdkLoaded
                   ? "Payment gateway ready"
@@ -508,9 +613,9 @@ if (
                 />
 
                 <p className="text-xs leading-5 text-slate-400">
-                  Payments are processed through Cashfree Checkout.
-                  Your payment status should be verified on the server
-                  before your application is marked as paid.
+                  Payments are processed through Cashfree Checkout. Your
+                  payment status should be verified on the server before
+                  your application is marked as paid.
                 </p>
               </div>
 

@@ -18,7 +18,6 @@ import {
   BarChart3,
   Bot,
   Check,
-  Lightbulb,
   Cpu,
   Database,
 } from "lucide-react";
@@ -31,26 +30,26 @@ const REGISTER_URL =
 
 const benefits = [
   { icon: Clock3, title: "32+ Hours", text: "Practical learning" },
-  { icon: Users, title: "Weekly", text: "Live sessions" },
-  { icon: Target, title: "2 Months", text: "Project internship" },
+  { icon: Users, title: "Mentor-Led", text: "Guided sessions" },
+  { icon: Target, title: "2 Months", text: "Learning journey" },
   { icon: FileCheck2, title: "Certificate", text: "Subject to criteria" },
 ];
 
 const learning = [
   {
     icon: BrainCircuit,
-    title: "AI Application Development",
-    text: "Explore how AI capabilities can be used to build practical applications.",
+    title: "Explore AI",
+    text: "Understand AI concepts, tools, and practical applications.",
   },
   {
     icon: Workflow,
-    title: "Industry-Based Projects",
-    text: "Work on industry-inspired problem statements and develop solution-oriented projects.",
+    title: "Build Solutions",
+    text: "Apply AI concepts to useful applications and workflows.",
   },
   {
     icon: Rocket,
-    title: "Implementation & Testing",
-    text: "Apply your learning, test project functionality, and improve your solutions.",
+    title: "Test & Improve",
+    text: "Test functionality, refine results, and improve your solutions.",
   },
 ];
 
@@ -58,23 +57,26 @@ const projects = [
   {
     icon: Bot,
     title: "AI-Powered Applications",
-    text: "Explore applications that use AI to support practical tasks.",
+    text: "Explore AI features that help solve practical problems.",
     color: "text-cyan-300",
     glow: "from-cyan-500/20",
+    label: "AI APPLICATIONS",
   },
   {
     icon: BarChart3,
     title: "Intelligent Data Analysis",
-    text: "Explore how AI can help interpret information and generate useful insights.",
+    text: "Explore data insights, patterns, and AI-assisted analysis.",
     color: "text-violet-300",
     glow: "from-violet-500/20",
+    label: "DATA & INSIGHTS",
   },
   {
     icon: Workflow,
     title: "AI Workflow Solutions",
-    text: "Investigate AI-driven workflows for everyday business challenges.",
+    text: "Explore ways to simplify tasks using AI-driven workflows.",
     color: "text-emerald-300",
     glow: "from-emerald-500/20",
+    label: "AUTOMATION",
   },
 ];
 
@@ -91,6 +93,7 @@ export default function AIEmergingTechnologyPage() {
         <div className="pointer-events-none absolute right-0 top-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-[110px]" />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* Hero Content */}
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,28 +109,29 @@ export default function AIEmergingTechnologyPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-violet-200">
               <Sparkles size={14} />
-              TriQolo  · AI Project Internship
+              TriQolo · AI & Emerging Technology
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-              Build AI Projects.
+              Explore AI.
               <br />
               <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 bg-clip-text text-transparent">
-                Solve Real Problems.
+                Build What Matters.
               </span>
             </h1>
 
             <p className="mt-5 max-w-lg text-sm leading-7 text-slate-300 sm:text-base">
-              Work on industry-inspired AI projects, explore practical AI
-              applications, and turn innovative ideas into working solutions
-              through guided, project-based learning.
+              Explore AI technologies, build practical skills, and
+              learn how intelligent solutions can solve real-world
+              problems through guided, hands-on learning.
             </p>
 
+            {/* Technology Tags */}
             <div className="mt-6 flex flex-wrap gap-2">
               {[
                 "AI Applications",
-                "Industry-Based Projects",
-                "Practical Implementation",
+                "Data Analysis",
+                "AI Workflows",
               ].map((tag) => (
                 <span
                   key={tag}
@@ -138,6 +142,7 @@ export default function AIEmergingTechnologyPage() {
               ))}
             </div>
 
+            {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href={REGISTER_URL}
@@ -148,16 +153,17 @@ export default function AIEmergingTechnologyPage() {
               </Link>
 
               <a
-                href="#projects"
+                href="#learning"
                 className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.05]"
               >
-                Explore Projects
+                Explore Learning
               </a>
             </div>
 
             <p className="mt-4 text-xs leading-5 text-slate-500">
-              Program fee: ₹499, inclusive of applicable taxes. Please review
-              the official Terms & Conditions before registering.
+              Program fee: ₹499, inclusive of applicable taxes.
+              Review the program details and Terms & Conditions
+              before registering.
             </p>
           </motion.div>
 
@@ -176,16 +182,20 @@ export default function AIEmergingTechnologyPage() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400">
                     <BrainCircuit size={22} />
                   </div>
+
                   <div>
-                    <p className="text-sm font-semibold">AI Project Lab</p>
+                    <p className="text-sm font-semibold">
+                      AI Innovation Lab
+                    </p>
                     <p className="text-xs text-slate-500">
                       Explore · Build · Improve
                     </p>
                   </div>
                 </div>
+
                 <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1.5 text-[10px] text-emerald-300">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  PROJECT MODE
+                  BUILD MODE
                 </span>
               </div>
 
@@ -218,20 +228,20 @@ export default function AIEmergingTechnologyPage() {
 
                 <div className="absolute bottom-5 left-4 flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-[#0B1020]/90 px-3 py-2 text-xs text-emerald-200 sm:left-8">
                   <Workflow size={14} />
-                  Solutions
+                  Workflows
                 </div>
 
                 <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-lg border border-pink-400/20 bg-[#0B1020]/90 px-3 py-2 text-xs text-pink-200 sm:right-8">
                   <Rocket size={14} />
-                  Projects
+                  Solutions
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { icon: BrainCircuit, label: "Explore AI" },
-                  { icon: Code2, label: "Build Projects" },
-                  { icon: Rocket, label: "Create Solutions" },
+                  { icon: Code2, label: "Build Solutions" },
+                  { icon: Rocket, label: "Test & Improve" },
                 ].map((item) => {
                   const Icon = item.icon;
 
@@ -241,6 +251,7 @@ export default function AIEmergingTechnologyPage() {
                       className="rounded-xl border border-white/[0.08] bg-white/[0.025] px-2 py-3 text-center"
                     >
                       <Icon size={20} className="mx-auto text-violet-300" />
+
                       <p className="mt-2 text-[10px] font-medium text-slate-300 sm:text-xs">
                         {item.label}
                       </p>
@@ -267,10 +278,14 @@ export default function AIEmergingTechnologyPage() {
                 className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4"
               >
                 <Icon size={20} className="mb-3 text-violet-300" />
+
                 <p className="text-sm font-bold sm:text-base">
                   {benefit.title}
                 </p>
-                <p className="mt-1 text-xs text-slate-400">{benefit.text}</p>
+
+                <p className="mt-1 text-xs text-slate-400">
+                  {benefit.text}
+                </p>
               </motion.div>
             );
           })}
@@ -280,19 +295,22 @@ export default function AIEmergingTechnologyPage() {
       {/* LEARNING APPROACH */}
       <section
         id="learning"
-        className="scroll-mt-20 border-y border-white/[0.06] bg-white/[0.018] px-4 py-14 sm:px-6 sm:py-18 lg:px-8"
+        className="scroll-mt-20 border-y border-white/[0.06] bg-white/[0.018] px-4 py-14 sm:px-6 sm:py-16 lg:px-8"
       >
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300">
-              Your project journey
+              Your learning journey
             </p>
+
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Learn by building AI solutions.
+              Learn by Building{" "}
+              <span className="text-violet-300">AI Solutions.</span>
             </h2>
+
             <p className="mt-3 text-sm leading-6 text-slate-400">
-              Focus on practical applications, industry-inspired challenges,
-              and implementing project ideas.
+              Explore AI concepts, apply your knowledge, and
+              develop practical problem-solving skills.
             </p>
           </div>
 
@@ -313,7 +331,9 @@ export default function AIEmergingTechnologyPage() {
                     <Icon size={22} />
                   </div>
 
-                  <h3 className="mt-5 text-lg font-bold">{item.title}</h3>
+                  <h3 className="mt-5 text-lg font-bold">
+                    {item.title}
+                  </h3>
 
                   <p className="mt-2 text-sm leading-6 text-slate-400">
                     {item.text}
@@ -325,7 +345,7 @@ export default function AIEmergingTechnologyPage() {
         </div>
       </section>
 
-      {/* PROJECT SHOWCASE */}
+      {/* PROJECT POSSIBILITIES */}
       <section
         id="projects"
         className="scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20 lg:px-8"
@@ -333,14 +353,16 @@ export default function AIEmergingTechnologyPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-              Project possibilities
+              Put AI into practice
             </p>
+
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Explore what you could build.
+              Turn Ideas Into AI Solutions
             </h2>
+
             <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-              Example project directions focused on applying AI to practical
-              problems. Final projects depend on the confirmed batch curriculum.
+              Discover how AI can power applications, reveal insights,
+              and simplify everyday workflows.
             </p>
           </div>
 
@@ -365,15 +387,21 @@ export default function AIEmergingTechnologyPage() {
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-[#0B1020]/90 transition group-hover:scale-110">
                       <Icon size={31} className={project.color} />
                     </div>
+
+                    <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/20 px-2 py-1 text-[9px] font-semibold tracking-wider text-slate-300">
+                      {project.label}
+                    </span>
                   </div>
 
                   <div className="p-5">
                     <h3 className="font-bold">{project.title}</h3>
+
                     <p className="mt-2 text-sm leading-6 text-slate-400">
                       {project.text}
                     </p>
+
                     <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-violet-300">
-                      Practical project idea
+                      Practical Application
                       <ArrowUpRight size={14} />
                     </div>
                   </div>
@@ -393,7 +421,7 @@ export default function AIEmergingTechnologyPage() {
             <div className="max-w-xl">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-violet-200">
                 <Sparkles size={15} />
-                Start your project journey
+                Start your AI journey
               </div>
 
               <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
@@ -401,8 +429,8 @@ export default function AIEmergingTechnologyPage() {
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-slate-400">
-                Take the next step toward practical AI project experience with
-                TriQolo .
+                Explore AI technologies, strengthen your practical
+                skills, and turn ideas into useful solutions with TriQolo.
               </p>
             </div>
 
@@ -416,12 +444,13 @@ export default function AIEmergingTechnologyPage() {
           </div>
         </div>
 
+        {/* Disclaimer */}
         <div className="mx-auto mt-5 flex max-w-6xl flex-col gap-3 text-xs leading-5 text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p className="flex items-start gap-2">
             <Check size={14} className="mt-0.5 shrink-0 text-emerald-300" />
-            Certification is subject to program completion criteria. PPO
-            opportunities, if available, depend on performance and selection
-            criteria and are not guaranteed.
+            Certification is subject to program completion criteria.
+            PPO opportunities, if available, depend on performance
+            and selection criteria and are not guaranteed.
           </p>
 
           <Link

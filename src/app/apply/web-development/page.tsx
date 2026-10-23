@@ -20,19 +20,13 @@ import {
   Sparkles,
   Check,
   Terminal,
-  Braces,
-  Layout,
-  Zap,
   Download,
-  Settings2,
   Bug,
   CloudUpload,
 } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const REGISTER_URL = "/contact?interest=Web%20Development";
 
 const benefits = [
   {
@@ -43,12 +37,12 @@ const benefits = [
   {
     icon: Users,
     title: "Mentor-Led",
-    text: "Sessions",
+    text: "Guided sessions",
   },
   {
     icon: Target,
     title: "2 Months",
-    text: "Project internship",
+    text: "Learning journey",
   },
   {
     icon: FileCheck2,
@@ -62,25 +56,25 @@ const journey = [
     number: "01",
     icon: Download,
     title: "Setup & Installation",
-    text: "Install development tools, configure your environment, and initialise your project.",
+    text: "Set up development tools and configure your workspace.",
   },
   {
     number: "02",
     icon: Code2,
     title: "Design & Development",
-    text: "Create responsive interfaces and implement real application features.",
+    text: "Create responsive interfaces and build application features.",
   },
   {
     number: "03",
     icon: Bug,
     title: "Testing & Refinement",
-    text: "Test functionality, resolve issues, and improve the user experience.",
+    text: "Test functionality, fix issues, and improve user experience.",
   },
   {
     number: "04",
     icon: CloudUpload,
-    title: "Project Deployment",
-    text: "Prepare and deploy your application to a suitable hosting platform.",
+    title: "Deployment",
+    text: "Learn how web applications are prepared and deployed.",
   },
 ];
 
@@ -89,7 +83,7 @@ const projects = [
     icon: Globe,
     title: "Business Website",
     description:
-      "Build a responsive website that presents a business and its services.",
+      "Explore responsive pages, business layouts, and service presentation.",
     color: "text-cyan-300",
     glow: "from-cyan-500/20",
     label: "WEB DESIGN",
@@ -98,7 +92,7 @@ const projects = [
     icon: Layers,
     title: "Interactive Web App",
     description:
-      "Develop an interactive application with practical features.",
+      "Explore forms, interactive features, and application workflows.",
     color: "text-blue-300",
     glow: "from-blue-500/20",
     label: "WEB APPLICATION",
@@ -107,7 +101,7 @@ const projects = [
     icon: Monitor,
     title: "Data Dashboard",
     description:
-      "Create an interactive dashboard to organise and present information.",
+      "Explore data presentation, dashboard layouts, and visual components.",
     color: "text-violet-300",
     glow: "from-violet-500/20",
     label: "DASHBOARD",
@@ -144,7 +138,7 @@ function CodeWindow() {
 
           <div className="flex items-center gap-1.5 text-[10px] text-cyan-300">
             <Code2 size={13} />
-            WEB PROJECT
+            WEB DEVELOPMENT
           </div>
         </div>
 
@@ -162,10 +156,10 @@ function CodeWindow() {
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold text-white">
-                  Build something real.
+                  Turn ideas into applications.
                 </p>
                 <p className="mt-1 text-xs text-slate-500">
-                  From setup to deployment
+                  Learn · Build · Improve
                 </p>
               </div>
 
@@ -183,19 +177,19 @@ function CodeWindow() {
               </p>
 
               <p className="pl-4">
-                <span className="text-sky-300">idea</span>
+                <span className="text-sky-300">technology</span>
                 <span className="text-slate-400">:</span>{" "}
                 <span className="text-emerald-300">
-                  "Industry Project"
+                  "Modern Web"
                 </span>
                 ,
               </p>
 
               <p className="pl-4">
-                <span className="text-sky-300">design</span>
+                <span className="text-sky-300">approach</span>
                 <span className="text-slate-400">:</span>{" "}
                 <span className="text-emerald-300">
-                  "Responsive UI"
+                  "Practical Learning"
                 </span>
                 ,
               </p>
@@ -206,15 +200,6 @@ function CodeWindow() {
                 <span className="text-emerald-300">
                   "Build & Test"
                 </span>
-                ,
-              </p>
-
-              <p className="pl-4">
-                <span className="text-sky-300">status</span>
-                <span className="text-slate-400">:</span>{" "}
-                <span className="text-emerald-300">
-                  "Ready to Deploy"
-                </span>
               </p>
 
               <p className="text-slate-400">{"};"}</p>
@@ -223,28 +208,16 @@ function CodeWindow() {
                 <span className="text-violet-300">
                   export default
                 </span>{" "}
-                <span className="text-cyan-200">
-                  project
-                </span>
-                ;
+                <span className="text-cyan-200">project</span>;
               </p>
             </div>
 
             {/* Mini Features */}
             <div className="mt-4 grid grid-cols-3 gap-2">
               {[
-                {
-                  icon: Smartphone,
-                  label: "Responsive",
-                },
-                {
-                  icon: Layers,
-                  label: "Interactive",
-                },
-                {
-                  icon: CloudUpload,
-                  label: "Deployment",
-                },
+                { icon: Smartphone, label: "Responsive" },
+                { icon: Layers, label: "Interactive" },
+                { icon: CloudUpload, label: "Deployment" },
               ].map((item) => {
                 const Icon = item.icon;
 
@@ -272,10 +245,10 @@ function CodeWindow() {
         <div className="flex items-center justify-between border-t border-white/[0.08] px-4 py-3 text-[10px] text-slate-500 sm:px-5">
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            Project workspace
+            Development workspace
           </span>
 
-          <span>Setup → Build → Deploy</span>
+          <span>Learn → Build → Improve</span>
         </div>
       </motion.div>
 
@@ -321,22 +294,22 @@ export default function WebDevelopmentPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan-200">
               <Sparkles size={14} />
-              TriQolo  · Web Development
+              TriQolo · Web Development
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-              Build Websites.
+              Learn Web Development.
               <br />
 
               <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">
-                Deploy Real Projects.
+                Build. Test. Deploy.
               </span>
             </h1>
 
             <p className="mt-5 max-w-lg text-sm leading-7 text-slate-300 sm:text-base">
-              Experience the complete web development journey —
-              from installing development tools and building
-              applications to testing and deploying your project.
+              Learn modern web technologies and apply your skills
+              through structured sessions, practical development,
+              and mentor-guided learning.
             </p>
 
             {/* Technology Tags */}
@@ -370,13 +343,13 @@ export default function WebDevelopmentPage() {
                 href="#journey"
                 className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.05]"
               >
-                Explore Project Journey
+                Explore Learning Journey
               </a>
             </div>
 
             <p className="mt-4 text-xs leading-5 text-slate-500">
               Program fee: ₹499, inclusive of applicable taxes.
-              Please review the official Terms & Conditions
+              Review the program details and Terms & Conditions
               before registering.
             </p>
           </motion.div>
@@ -407,10 +380,7 @@ export default function WebDevelopmentPage() {
                 }}
                 className="rounded-2xl border border-white/[0.08] bg-white/[0.025] p-4"
               >
-                <Icon
-                  size={20}
-                  className="mb-3 text-cyan-300"
-                />
+                <Icon size={20} className="mb-3 text-cyan-300" />
 
                 <p className="text-sm font-bold sm:text-base">
                   {benefit.title}
@@ -425,7 +395,7 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
 
-      {/* PROJECT JOURNEY */}
+      {/* LEARNING JOURNEY */}
       <section
         id="journey"
         className="scroll-mt-20 border-y border-white/[0.06] bg-[#090E1B] px-4 py-14 sm:px-6 sm:py-16 lg:px-8"
@@ -433,20 +403,17 @@ export default function WebDevelopmentPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-              Your end-to-end project journey
+              Your learning journey
             </p>
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              From Installation{" "}
-              <span className="text-cyan-300">
-                to Deployment.
-              </span>
+              From Setup{" "}
+              <span className="text-cyan-300">to Deployment.</span>
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-slate-400">
-              Follow a structured development workflow and
-              understand how a web project progresses from
-              initial setup to a deployed application.
+              Understand the web development workflow through
+              practical learning and application building.
             </p>
           </div>
 
@@ -457,17 +424,11 @@ export default function WebDevelopmentPage() {
               return (
                 <motion.div
                   key={step.number}
-                  initial={
-                    reduceMotion
-                      ? false
-                      : { opacity: 0, y: 16 }
-                  }
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{
-                    delay: reduceMotion
-                      ? 0
-                      : index * 0.07,
+                    delay: reduceMotion ? 0 : index * 0.07,
                   }}
                   className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5 transition hover:border-cyan-400/30"
                 >
@@ -492,7 +453,7 @@ export default function WebDevelopmentPage() {
                   {index < journey.length - 1 && (
                     <ArrowRight
                       size={15}
-                      className="absolute right-4 bottom-4 hidden text-cyan-400/40 lg:block"
+                      className="absolute bottom-4 right-4 hidden text-cyan-400/40 lg:block"
                     />
                   )}
                 </motion.div>
@@ -502,59 +463,49 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
 
-      {/* PROJECT SHOWCASE */}
+      {/* PROJECT POSSIBILITIES */}
       <section
         id="projects"
         className="scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20 lg:px-8"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8">
+          <div className="mb-8 max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">
-              Project possibilities
+              Put your skills into practice
             </p>
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              What could you build?
+              Turn Ideas Into Applications
             </h2>
 
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
-              Explore example project directions.
-              Final assignments depend on the confirmed
-              curriculum and batch.
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              Discover how web technologies can be used to create
+              websites, interactive applications, and dashboards.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3">
             {projects.map((project, index) => {
               const Icon = project.icon;
 
               return (
                 <motion.article
                   key={project.title}
-                  initial={
-                    reduceMotion
-                      ? false
-                      : { opacity: 0, y: 16 }
-                  }
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{
-                    delay: reduceMotion
-                      ? 0
-                      : index * 0.07,
+                    delay: reduceMotion ? 0 : index * 0.07,
                   }}
                   className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0B1020] transition hover:-translate-y-1 hover:border-white/20"
                 >
                   <div
-                    className={`relative flex h-32 items-center justify-center overflow-hidden bg-gradient-to-br ${project.glow} to-transparent`}
+                    className={`relative flex h-36 items-center justify-center overflow-hidden bg-gradient-to-br ${project.glow} to-transparent`}
                   >
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:24px_24px]" />
 
                     <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-[#0B1020]/90 transition group-hover:scale-110">
-                      <Icon
-                        size={31}
-                        className={project.color}
-                      />
+                      <Icon size={31} className={project.color} />
                     </div>
 
                     <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/20 px-2 py-1 text-[9px] font-semibold tracking-wider text-slate-300">
@@ -563,16 +514,14 @@ export default function WebDevelopmentPage() {
                   </div>
 
                   <div className="p-5">
-                    <h3 className="font-bold">
-                      {project.title}
-                    </h3>
+                    <h3 className="font-bold">{project.title}</h3>
 
                     <p className="mt-2 text-sm leading-6 text-slate-400">
                       {project.description}
                     </p>
 
                     <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-cyan-300">
-                      Practical project idea
+                      Practical Application
                       <ArrowUpRight size={14} />
                     </div>
                   </div>
@@ -584,7 +533,7 @@ export default function WebDevelopmentPage() {
       </section>
 
       {/* FINAL REGISTRATION CTA */}
-      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+      <section className="px-4 pb-16 pt-8 sm:px-6 sm:pb-20 lg:px-8">
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-r from-blue-950/60 via-[#10172A] to-cyan-950/40 p-6 sm:p-9">
           <div className="pointer-events-none absolute -right-10 -top-20 h-52 w-52 rounded-full bg-cyan-500/15 blur-[80px]" />
 
@@ -596,13 +545,13 @@ export default function WebDevelopmentPage() {
               </div>
 
               <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
-                Ready to build and deploy?
+                Ready to build something meaningful?
               </h2>
 
               <p className="mt-2 text-sm leading-6 text-slate-400">
-                Gain practical project experience
-                and explore the complete development workflow
-                with TriQolo .
+                Learn modern web technologies, strengthen your
+                practical skills, and take the next step in your
+                development journey with TriQolo.
               </p>
             </div>
 
@@ -617,15 +566,15 @@ export default function WebDevelopmentPage() {
         </div>
 
         {/* Disclaimer */}
-        <div className="mx-auto mt-5 flex max-w-6xl flex-col gap-3 text-xs leading-5 text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto mt-5 flex max-w-6xl flex-col gap-3 text-xs leading-5 text-slate-500 sm:flex-row sm:items-start sm:justify-between">
           <p className="flex items-start gap-2">
             <Check
               size={14}
               className="mt-0.5 shrink-0 text-emerald-300"
             />
-            Certification is subject to program completion criteria.
-            PPO opportunities, if available, depend on
-            performance and selection criteria and are not guaranteed.
+            Certificate issuance is subject to program completion
+            requirements. PPO consideration, where offered, depends
+            on eligibility and selection and is not guaranteed.
           </p>
 
           <Link
