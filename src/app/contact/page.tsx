@@ -219,7 +219,7 @@ export default function ContactPage() {
                     </p>
 
                     <p className="mt-2 break-all text-xs font-semibold text-cyan-200 sm:text-sm">
-                      careers@your-TriQolo-domain.com
+                      triqolo.our@gmail.com
                     </p>
                   </div>
 
