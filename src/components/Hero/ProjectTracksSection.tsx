@@ -196,7 +196,7 @@ export default function ProjectTracksSection() {
           <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
             Choose Your Path.
             <span className="mt-2 block bg-gradient-to-r from-cyan-300 via-[#22E3D6] to-violet-400 bg-clip-text text-transparent">
-              Start Building.
+               Start Building.
             </span>
           </h2>
 

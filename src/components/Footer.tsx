@@ -37,7 +37,7 @@ export default function Footer() {
             </Link>
 
             <Link
-              href="/#how-it-works"
+              href="#JourneySection"
               className="transition-colors hover:text-[#14B8A6]"
             >
               How It Works

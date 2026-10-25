@@ -1,21 +1,18 @@
 
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ChangeEvent } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
   Mail,
-  Phone,
   MapPin,
   Send,
   Loader2,
   CheckCircle2,
   Sparkles,
   GraduationCap,
-  Code2,
-  BriefcaseBusiness,
   ShieldCheck,
   MessageCircle,
   ArrowUpRight,
@@ -40,43 +37,254 @@ const interestOptions = [
   "Other",
 ];
 
+// Email syntax validation + common email-domain typo protection.
+// This does not prove that a mailbox exists.
+function isValidEmail(email: string): boolean {
+  const value = email.trim().toLowerCase();
+
+  if (!value || value.length > 254 || /\s/.test(value)) {
+    return false;
+  }
+
+  const parts = value.split("@");
+
+  if (parts.length !== 2) {
+    return false;
+  }
+
+  const [local, domain] = parts;
+
+  if (
+    !local ||
+    local.length > 64 ||
+    local.startsWith(".") ||
+    local.endsWith(".") ||
+    local.includes("..") ||
+    !/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local)
+  ) {
+    return false;
+  }
+
+  if (
+    !domain ||
+    domain.length > 253 ||
+    !domain.includes(".") ||
+    domain.startsWith(".") ||
+    domain.endsWith(".") ||
+    domain.includes("..")
+  ) {
+    return false;
+  }
+
+  const labels = domain.split(".");
+
+  if (
+    labels.some(
+      (label) =>
+        !label ||
+        label.length > 63 ||
+        !/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(label)
+    )
+  ) {
+    return false;
+  }
+
+  const tld = labels[labels.length - 1];
+
+  if (!/^[a-z]{2,}$/.test(tld)) {
+    return false;
+  }
+
+  // Known common misspellings of popular providers.
+  const blockedDomains = [
+    "gml.com",
+    "gmial.com",
+    "gmai.com",
+    "gamil.com",
+    "gmail.co",
+    "gmail.con",
+    "gmaill.com",
+    "g-mail.com",
+    "yaho.com",
+    "yahooo.com",
+    "yahho.com",
+    "hotnail.com",
+    "hotmai.com",
+    "outlok.com",
+    "outllok.com",
+    "icloud.con",
+    "iclould.com",
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    return false;
+  }
+
+  // Popular providers. Other syntactically valid domains,
+  // including college and company domains, remain permitted.
+  const popularDomains = [
+    "gmail.com",
+    "googlemail.com",
+    "outlook.com",
+    "hotmail.com",
+    "live.com",
+    "msn.com",
+    "yahoo.com",
+    "yahoo.co.in",
+    "icloud.com",
+    "me.com",
+    "mac.com",
+    "proton.me",
+    "protonmail.com",
+    "aol.com",
+    "zoho.com",
+    "rediffmail.com",
+    "rediff.com",
+    "fastmail.com",
+  ];
+
+  if (popularDomains.includes(domain)) {
+    return true;
+  }
+
+  return true;
+}
+
+// Accept Indian mobile numbers with or without the +91 prefix.
+function normalizeIndianMobile(value: string): string | null {
+  const cleaned = value.replace(/[\s()-]/g, "");
+  let digits: string;
+
+  if (cleaned.startsWith("+91")) {
+    digits = cleaned.slice(3);
+  } else if (/^91[6-9]\d{9}$/.test(cleaned)) {
+    digits = cleaned.slice(2);
+  } else {
+    digits = cleaned;
+  }
+
+  return /^[6-9]\d{9}$/.test(digits) ? digits : null;
+}
+
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [submitError, setSubmitError] = useState("");
+  const [mobile, setMobile] = useState("");
+
+  function handleMobileChange(event: ChangeEvent<HTMLInputElement>) {
+    const cleaned = event.target.value
+      .replace(/[^\d+]/g, "")
+      .replace(/(?!^)\+/g, "")
+      .slice(0, 13);
+
+    setMobile(cleaned);
+    setSubmitError("");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    setIsSubmitting(true);
+    if (isSubmitting) return;
+
     setSubmitMessage("");
     setSubmitError("");
 
     const form = event.currentTarget;
     const data = new FormData(form);
 
+    const fullName = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const normalizedMobile = normalizeIndianMobile(mobile);
+    const college = String(data.get("college") || "").trim();
+    const branch = String(data.get("branch") || "").trim();
+    const year = String(data.get("year") || "").trim();
+    const interest = String(data.get("interest") || "").trim();
+    const remarks = String(data.get("remarks") || "").trim();
+
+    if (!fullName) {
+      setSubmitError("Please enter your full name.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setSubmitError(
+        "Please enter a valid email address. Check the spelling of your email and domain."
+      );
+      return;
+    }
+
+    if (!normalizedMobile) {
+      setSubmitError(
+        "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9. You may also include the +91 country code."
+      );
+      return;
+    }
+
+    if (!college) {
+      setSubmitError("Please enter your college or university.");
+      return;
+    }
+
+    if (!year) {
+      setSubmitError("Please select your year of study.");
+      return;
+    }
+
     const registration = {
-      full_name: String(data.get("name") || "").trim(),
-      email: String(data.get("email") || "").trim(),
-      mobile: String(data.get("mobile") || "").trim(),
-      college: String(data.get("college") || "").trim(),
-      branch: String(data.get("branch") || "").trim(),
-      year_of_study: String(data.get("year") || ""),
-      area_of_interest: String(data.get("interest") || ""),
-      remarks: String(data.get("remarks") || "").trim(),
+      full_name: fullName,
+      email: email.toLowerCase(),
+      mobile: normalizedMobile,
+      college,
+      branch: branch || null,
+      year_of_study: year || null,
+      area_of_interest: interest || null,
+      remarks: remarks || null,
       status: "New",
     };
+
+    setIsSubmitting(true);
 
     try {
       const supabase = createClient();
 
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
+
+      const role = session ? "authenticated" : "anon";
+
+      console.info("Contact form authentication:", {
+        role,
+        hasSession: Boolean(session),
+        sessionError: sessionError?.message ?? null,
+      });
+
       const { error } = await supabase
         .from("student_registrations")
-        .insert([registration]);
+        .insert(registration);
 
       if (error) {
-        console.error("Supabase insert error:", error);
-        throw error;
+        console.error("Supabase insert failed:", {
+          code: error.code,
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          role,
+        });
+
+        if (error.code === "42501") {
+          setSubmitError(
+            "We couldn't save your details because the database rejected the submission. Please try again later or contact triqolo.our@gmail.com."
+          );
+        } else {
+          setSubmitError(
+            "We couldn't save your details right now. Please try again later or contact triqolo.our@gmail.com."
+          );
+        }
+
+        return;
       }
 
       setSubmitMessage(
@@ -84,7 +292,8 @@ export default function ContactPage() {
       );
 
       form.reset();
-    } catch (error) {
+      setMobile("");
+    } catch (error: unknown) {
       console.error("Contact form submission failed:", error);
 
       setSubmitError(
@@ -97,8 +306,7 @@ export default function ContactPage() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050B18] text-white">
-      {/* BACKGROUND ATMOSPHERE */}
-
+      {/* BACKGROUND */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -120,7 +328,6 @@ export default function ContactPage() {
       </div>
 
       {/* HEADER */}
-
       <header className="relative z-20 border-b border-white/[0.08] bg-[#050B18]/85 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
           <Link
@@ -138,7 +345,6 @@ export default function ContactPage() {
             <span>
               <span className="block text-xl font-black tracking-[-0.05em]">
                 Tri<span className="text-cyan-300">Q</span>olo
-                
               </span>
               <span className="mt-1 block text-[8px] font-bold uppercase tracking-[0.2em] text-slate-500">
                 Learn · Build · Grow
@@ -159,12 +365,10 @@ export default function ContactPage() {
       </header>
 
       {/* MAIN CONTENT */}
-
       <section className="relative z-10">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10 lg:py-20">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 xl:gap-20">
             {/* LEFT: INTRODUCTION */}
-
             <div className="lg:sticky lg:top-10">
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.06] px-3.5 py-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 sm:text-xs">
                 <Sparkles size={14} />
@@ -184,8 +388,6 @@ export default function ContactPage() {
                 looking for.
               </p>
 
-              {/* KEYWORDS */}
-
               <div className="mt-7 flex flex-wrap gap-2">
                 {[
                   "Practical Learning",
@@ -202,45 +404,37 @@ export default function ContactPage() {
               </div>
 
               {/* SUPPORT CARDS */}
-
               <div className="mt-9 space-y-3">
-                <div className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-cyan-300/20 hover:bg-[#0D192B]/90 sm:p-5">
+                <a
+                  href="mailto:triqolo.our@gmail.com"
+                  className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-cyan-300/20 hover:bg-[#0D192B]/90 sm:p-5"
+                >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-300/[0.07] text-cyan-300">
                     <Mail size={20} />
                   </span>
-
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-bold text-white">
-                      Email Support
-                    </p>
-
+                    <p className="text-sm font-bold text-white">Email Support</p>
                     <p className="mt-1 text-xs leading-5 text-slate-400 sm:text-sm">
                       Questions about registration or programs?
                     </p>
-
                     <p className="mt-2 break-all text-xs font-semibold text-cyan-200 sm:text-sm">
                       triqolo.our@gmail.com
                     </p>
                   </div>
-
                   <ArrowUpRight
                     size={16}
                     className="mt-1 shrink-0 text-slate-600 transition group-hover:text-cyan-300"
                   />
-                </div>
+                </a>
 
                 <div className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-violet-300/20 hover:bg-[#0D192B]/90 sm:p-5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet-300/15 bg-violet-300/[0.07] text-violet-300">
                     <GraduationCap size={21} />
                   </span>
-
                   <div className="flex-1">
-                    <p className="text-sm font-bold text-white">
-                      Program Guidance
-                    </p>
+                    <p className="text-sm font-bold text-white">Program Guidance</p>
                     <p className="mt-1 text-xs leading-5 text-slate-400 sm:text-sm">
-                      Explore learning paths, projects, and program
-                      requirements.
+                      Explore learning paths, projects, and program requirements.
                     </p>
                   </div>
                 </div>
@@ -249,19 +443,38 @@ export default function ContactPage() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-300/15 bg-emerald-300/[0.06] text-emerald-300">
                     <MessageCircle size={20} />
                   </span>
-
                   <div className="flex-1">
-                    <p className="text-sm font-bold text-white">
-                      Student Inquiries
-                    </p>
+                    <p className="text-sm font-bold text-white">Student Inquiries</p>
                     <p className="mt-1 text-xs leading-5 text-slate-400 sm:text-sm">
                       Share your interests and the information you need.
                     </p>
                   </div>
                 </div>
-              </div>
 
-              {/* TRUST NOTE */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Hinjewadi%2C%20Pune%2C%20Maharashtra%2C%20India"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-cyan-300/20 hover:bg-[#0D192B]/90 sm:p-5"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-300/[0.07] text-cyan-300">
+                    <MapPin size={20} />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-bold text-white">Location</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400 sm:text-sm">
+                      Hinjewadi, Pune, Maharashtra, India
+                    </p>
+                    <p className="mt-2 text-xs font-semibold text-cyan-200">
+                      View on Google Maps
+                    </p>
+                  </div>
+                  <ArrowUpRight
+                    size={16}
+                    className="mt-1 shrink-0 text-slate-600 transition group-hover:text-cyan-300"
+                  />
+                </a>
+              </div>
 
               <div className="mt-6 flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
                 <ShieldCheck
@@ -269,41 +482,34 @@ export default function ContactPage() {
                   className="mt-0.5 shrink-0 text-cyan-300"
                 />
                 <p className="text-xs leading-5 text-slate-500">
-                  Please provide accurate contact details so your inquiry
-                  can be reviewed. Your information is submitted through
-                  our registration system.
+                  Please provide accurate contact details so your inquiry can
+                  be reviewed. Your information is submitted through our
+                  registration system.
                 </p>
               </div>
             </div>
 
             {/* RIGHT: CONTACT FORM */}
-
             <div className="relative">
               <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-cyan-300/10 via-transparent to-violet-400/10 blur-xl" />
 
               <div className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.10] bg-[#091426]/95 shadow-2xl shadow-black/20 backdrop-blur-xl sm:rounded-[2rem]">
                 <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent" />
 
-                {/* FORM HEADER */}
-
                 <div className="border-b border-white/[0.07] p-5 sm:p-8">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[0.12] to-violet-300/[0.08] text-cyan-300">
                       <Send size={21} />
                     </div>
-
                     <div>
                       <div className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-cyan-300">
                         Contact Form
                       </div>
-
                       <h2 className="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl">
                         Let&apos;s Get Started.
                       </h2>
-
                       <p className="mt-2 text-xs leading-6 text-slate-400 sm:text-sm">
-                        Share a few details so we can understand your
-                        interests.
+                        Share a few details so we can understand your interests.
                       </p>
                     </div>
                   </div>
@@ -314,12 +520,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* FORM BODY */}
-
-                <form
-                  className="space-y-5 p-5 sm:p-8"
-                  onSubmit={handleSubmit}
-                >
+                <form className="space-y-5 p-5 sm:p-8" onSubmit={handleSubmit}>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className={labelClass}>
@@ -346,13 +547,23 @@ export default function ContactPage() {
                         id="mobile"
                         name="mobile"
                         type="tel"
+                        inputMode="tel"
                         autoComplete="tel"
-                        maxLength={20}
+                        value={mobile}
+                        onChange={handleMobileChange}
+                        maxLength={13}
                         required
                         disabled={isSubmitting}
-                        placeholder="Your contact number"
+                        placeholder="9876543210 or +919876543210"
+                        aria-describedby="mobile-help"
                         className={inputClass}
                       />
+                      <p
+                        id="mobile-help"
+                        className="mt-2 text-[10px] leading-4 text-slate-500 sm:text-xs"
+                      >
+                        Enter 10 digits starting with 6–9. You may include the +91 country code.
+                      </p>
                     </div>
                   </div>
 
@@ -369,8 +580,12 @@ export default function ContactPage() {
                       required
                       disabled={isSubmitting}
                       placeholder="you@example.com"
+                      title="Enter a valid email address."
                       className={inputClass}
                     />
+                    <p className="mt-2 text-[10px] leading-4 text-slate-500 sm:text-xs">
+                      Check your email spelling before submitting. College and business email domains are also accepted.
+                    </p>
                   </div>
 
                   <div>
@@ -418,16 +633,12 @@ export default function ContactPage() {
                         disabled={isSubmitting}
                         className={`${inputClass} appearance-none`}
                       >
-                        <option value="" disabled>
-                          Select your year
-                        </option>
+                        <option value="" disabled>Select your year</option>
                         <option value="1st Year">1st Year</option>
                         <option value="2nd Year">2nd Year</option>
                         <option value="3rd Year">3rd Year</option>
                         <option value="4th Year">4th Year</option>
-                        <option value="Postgraduate">
-                          Postgraduate
-                        </option>
+                        <option value="Postgraduate">Postgraduate</option>
                         <option value="Other">Other</option>
                       </select>
                     </div>
@@ -444,14 +655,9 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                       className={`${inputClass} appearance-none`}
                     >
-                      <option value="">
-                        Select your preferred area
-                      </option>
-
-                      {interestOptions.map((interest) => (
-                        <option key={interest} value={interest}>
-                          {interest}
-                        </option>
+                      <option value="">Select your preferred area</option>
+                      {interestOptions.map((item) => (
+                        <option key={item} value={item}>{item}</option>
                       ))}
                     </select>
                   </div>
@@ -469,12 +675,8 @@ export default function ContactPage() {
                       placeholder="Tell us about your interests or questions..."
                       className={`${inputClass} resize-y`}
                     />
-                    <p className="mt-2 text-right text-[10px] text-slate-600">
-                      Optional
-                    </p>
+                    <p className="mt-2 text-right text-[10px] text-slate-600">Optional</p>
                   </div>
-
-                  {/* ERROR MESSAGE */}
 
                   {submitError && (
                     <div
@@ -486,8 +688,6 @@ export default function ContactPage() {
                     </div>
                   )}
 
-                  {/* SUCCESS MESSAGE */}
-
                   {submitMessage && (
                     <div
                       role="status"
@@ -498,8 +698,6 @@ export default function ContactPage() {
                       <span>{submitMessage}</span>
                     </div>
                   )}
-
-                  {/* SUBMIT BUTTON */}
 
                   <button
                     type="submit"
@@ -514,10 +712,7 @@ export default function ContactPage() {
                     ) : (
                       <>
                         Submit Your Details
-                        <ArrowRight
-                          size={17}
-                          className="transition-transform duration-200 group-hover:translate-x-1"
-                        />
+                        <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
                       </>
                     )}
                   </button>
@@ -540,15 +735,10 @@ export default function ContactPage() {
       </section>
 
       {/* FOOTER */}
-
       <footer className="relative z-10 border-t border-white/[0.07] bg-[#050B18]/90">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-10">
-          <Link
-            href="/#home"
-            className="text-lg font-black tracking-tight"
-          >
+          <Link href="/#home" className="text-lg font-black tracking-tight">
             Tri<span className="text-cyan-300">Q</span>olo
-            
           </Link>
 
           <p className="text-center text-[10px] text-slate-500 sm:text-xs">
@@ -562,7 +752,6 @@ export default function ContactPage() {
             >
               Terms &amp; Conditions
             </Link>
-
             <Link
               href="/#home"
               aria-label="Return to home"
