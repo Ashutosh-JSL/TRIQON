@@ -168,7 +168,7 @@ export default function HeroImageCluster() {
                 />
 
                 <JourneyItem
-                  title="Paid Internship"
+                  title="Industrial Internship"
                   completed
                 />
 
