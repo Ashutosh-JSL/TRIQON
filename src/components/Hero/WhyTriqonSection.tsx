@@ -77,7 +77,7 @@ const reveal = {
   },
 };
 
-export default function WhyTriqonSection() {
+export default function WhyTriqoloSection() {
   const reduceMotion = useReducedMotion();
 
   const sectionReveal = {

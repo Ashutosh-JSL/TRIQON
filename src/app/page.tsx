@@ -8,7 +8,9 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden bg-[#02152B] text-white">
       <Navbar />
 
-      <Hero />
+      <main>
+        <Hero />
+      </main>
 
       <Footer />
     </div>

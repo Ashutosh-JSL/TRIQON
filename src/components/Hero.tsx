@@ -10,13 +10,10 @@ export default function Hero() {
   return (
     <>
       <HeroBanner />
-
       <ProjectTracksSection />
-       <JourneySection />
-     
+      <JourneySection />
       <WhyTriqonSection />
       <ComparisonSection />
-      
       <FinalCTASection />
     </>
   );
