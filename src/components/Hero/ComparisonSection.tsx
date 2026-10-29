@@ -80,7 +80,7 @@ export default function ComparisonSection() {
 
               <div className="border-l border-cyan-400/20 bg-cyan-400/[0.06] p-6 text-center">
                 <h3 className="text-lg font-bold text-cyan-300">
-                  TriQolo
+                  GrowZeal
                 </h3>
                 <p className="mt-1 text-sm text-slate-300">
                   Fee varies by program
@@ -133,7 +133,7 @@ export default function ComparisonSection() {
 
               <div className="border-l border-cyan-400/20 bg-cyan-400/[0.06] p-4">
                 <h3 className="font-bold text-cyan-300">
-                  TriQolo
+                  GrowZeal
                 </h3>
                 <p className="mt-1 text-xs text-slate-300">
                   Fee varies by program
@@ -162,7 +162,7 @@ export default function ComparisonSection() {
 
                   <div className="flex items-center gap-2 text-xs text-slate-200">
                     <Check className="h-4 w-4 shrink-0 text-cyan-300" />
-                    TriQolo
+                    GrowZeal
                   </div>
                 </div>
               </div>

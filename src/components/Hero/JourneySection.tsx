@@ -430,7 +430,7 @@ export default function JourneySection() {
 
                   <div className="relative mt-4 flex min-w-0 items-center justify-between gap-2 border-t border-white/[0.07] pt-3">
                     <span className="min-w-0 break-words text-[9px] font-semibold uppercase leading-4 tracking-wider text-slate-500 sm:text-[10px]">
-                      TriQolo Journey
+                      GrowZeal Journey
                     </span>
 
                     <ChevronRight

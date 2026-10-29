@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
-  Rocket,
   Code2,
   GraduationCap,
   BadgeCheck,
@@ -43,7 +42,6 @@ export default function FinalCTASection() {
       className="relative isolate overflow-hidden bg-[#050B18] px-4 py-20 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
     >
       {/* BACKGROUND ATMOSPHERE */}
-
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
@@ -97,9 +95,7 @@ export default function FinalCTASection() {
       </div>
 
       <motion.div
-        initial={
-          reduceMotion ? false : { opacity: 0, y: 24 }
-        }
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{
@@ -109,10 +105,8 @@ export default function FinalCTASection() {
         className="relative mx-auto max-w-6xl"
       >
         {/* MAIN CTA CARD */}
-
         <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.10] bg-[#091426]/90 shadow-2xl shadow-black/20 backdrop-blur-xl">
           {/* CARD GLOW */}
-
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-500/[0.09] via-transparent to-cyan-400/[0.09]"
@@ -129,22 +123,18 @@ export default function FinalCTASection() {
           />
 
           {/* TOP ACCENT */}
-
           <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent sm:inset-x-24" />
 
           <div className="relative grid items-center gap-10 px-5 py-10 sm:px-10 sm:py-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 lg:px-14 lg:py-16">
             {/* LEFT CONTENT */}
-
             <div>
               {/* EYEBROW */}
-
               <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.06] px-3.5 py-2 text-[10px] font-extrabold uppercase tracking-[0.2em] text-cyan-200 sm:text-xs">
                 <Sparkles size={14} />
                 Your Next Chapter Starts Here
               </div>
 
               {/* HEADLINE */}
-
               <h2 className="mt-6 text-3xl font-black leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl">
                 Don&apos;t Just Learn.
                 <span className="mt-2 block bg-gradient-to-r from-cyan-300 via-[#22E3D6] to-violet-300 bg-clip-text text-transparent">
@@ -153,7 +143,6 @@ export default function FinalCTASection() {
               </h2>
 
               {/* DESCRIPTION */}
-
               <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
                 Turn your knowledge into practical experience through
                 real-world projects, guided mentorship, and
@@ -161,7 +150,6 @@ export default function FinalCTASection() {
               </p>
 
               {/* ACTIONS */}
-
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <PrimaryButton href="#internships">
                   Explore Programs
@@ -172,7 +160,6 @@ export default function FinalCTASection() {
                   className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.035] px-5 py-3 text-sm font-bold text-slate-200 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-cyan-300/[0.05] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                 >
                   Compare Benefits
-
                   <ArrowRight
                     size={16}
                     className="transition-transform duration-200 group-hover:translate-x-1"
@@ -181,7 +168,6 @@ export default function FinalCTASection() {
               </div>
 
               {/* TRUST NOTE */}
-
               <div className="mt-6 flex items-start gap-2 text-xs leading-5 text-slate-500">
                 <BadgeCheck
                   size={15}
@@ -196,19 +182,13 @@ export default function FinalCTASection() {
             </div>
 
             {/* RIGHT VISUAL */}
-
             <div className="relative mx-auto w-full max-w-md">
               {/* ORBIT RINGS */}
-
               <div className="relative mx-auto flex aspect-square w-full max-w-[340px] items-center justify-center">
                 <motion.div
                   aria-hidden="true"
                   className="absolute inset-[8%] rounded-full border border-cyan-300/10"
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { rotate: 360 }
-                  }
+                  animate={reduceMotion ? {} : { rotate: 360 }}
                   transition={{
                     duration: 45,
                     repeat: Infinity,
@@ -219,11 +199,7 @@ export default function FinalCTASection() {
                 <motion.div
                   aria-hidden="true"
                   className="absolute inset-[19%] rounded-full border border-dashed border-violet-300/20"
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { rotate: -360 }
-                  }
+                  animate={reduceMotion ? {} : { rotate: -360 }}
                   transition={{
                     duration: 55,
                     repeat: Infinity,
@@ -233,14 +209,9 @@ export default function FinalCTASection() {
 
                 <div className="absolute h-[70%] w-[70%] rounded-full bg-gradient-to-br from-cyan-300/[0.08] to-violet-400/[0.08] blur-2xl" />
 
-                {/* CENTRAL BRAND MARK */}
-
+                {/* CENTRAL GROWZEAL BRAND MARK */}
                 <motion.div
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { y: [0, -7, 0] }
-                  }
+                  animate={reduceMotion ? {} : { y: [0, -7, 0] }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,
@@ -251,11 +222,11 @@ export default function FinalCTASection() {
                   <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-cyan-300/[0.08] to-transparent" />
 
                   <span className="relative text-4xl font-black tracking-[-0.12em] text-white sm:text-5xl">
-                    T<span className="text-cyan-300">Q</span>
+                    G<span className="text-cyan-300">Z</span>
                   </span>
 
-                  <span className="relative mt-1 text-[9px] font-extrabold uppercase tracking-[0.25em] text-slate-400">
-                    TriQolo
+                  <span className="relative mt-1 text-[9px] font-extrabold uppercase tracking-[0.18em] text-slate-400">
+                    GrowZeal
                   </span>
 
                   <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full border border-[#091426] bg-cyan-300 text-[#050B18]">
@@ -264,7 +235,6 @@ export default function FinalCTASection() {
                 </motion.div>
 
                 {/* ORBITING DECORATIVE DOTS */}
-
                 <motion.span
                   aria-hidden="true"
                   className="absolute left-[15%] top-[25%] h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,227,214,0.65)]"
@@ -294,13 +264,8 @@ export default function FinalCTASection() {
                 />
 
                 {/* FLOATING FEATURE: PROJECTS */}
-
                 <motion.div
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { y: [0, -5, 0] }
-                  }
+                  animate={reduceMotion ? {} : { y: [0, -5, 0] }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,
@@ -317,7 +282,6 @@ export default function FinalCTASection() {
                       <p className="text-[10px] font-bold text-white sm:text-xs">
                         Real-World Projects
                       </p>
-
                       <p className="mt-1 text-[9px] text-slate-400">
                         Learn by building
                       </p>
@@ -326,13 +290,8 @@ export default function FinalCTASection() {
                 </motion.div>
 
                 {/* FLOATING FEATURE: MENTORSHIP */}
-
                 <motion.div
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { y: [0, 6, 0] }
-                  }
+                  animate={reduceMotion ? {} : { y: [0, 6, 0] }}
                   transition={{
                     duration: 4.5,
                     repeat: Infinity,
@@ -349,7 +308,6 @@ export default function FinalCTASection() {
                       <p className="text-[10px] font-bold text-white sm:text-xs">
                         Guided Mentorship
                       </p>
-
                       <p className="mt-1 text-[9px] text-slate-400">
                         Learn with direction
                       </p>
@@ -358,13 +316,8 @@ export default function FinalCTASection() {
                 </motion.div>
 
                 {/* FLOATING FEATURE: CAREER */}
-
                 <motion.div
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : { y: [0, -5, 0] }
-                  }
+                  animate={reduceMotion ? {} : { y: [0, -5, 0] }}
                   transition={{
                     duration: 4.2,
                     repeat: Infinity,
@@ -381,7 +334,6 @@ export default function FinalCTASection() {
                       <p className="text-[10px] font-bold text-white sm:text-xs">
                         Career Development
                       </p>
-
                       <p className="mt-1 text-[9px] text-slate-400">
                         Build your next step
                       </p>
@@ -391,7 +343,6 @@ export default function FinalCTASection() {
               </div>
 
               {/* VISUAL CAPTION */}
-
               <p className="mx-auto -mt-1 max-w-xs text-center text-[10px] leading-5 text-slate-500 sm:text-xs">
                 Learn with purpose. Build with confidence.
               </p>
@@ -399,7 +350,6 @@ export default function FinalCTASection() {
           </div>
 
           {/* FEATURE STRIP */}
-
           <div className="relative border-t border-white/[0.08] bg-black/[0.12] px-5 py-5 sm:px-10 sm:py-6 lg:px-14">
             <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {highlights.map((item, index) => {
@@ -408,11 +358,7 @@ export default function FinalCTASection() {
                 return (
                   <motion.div
                     key={item.label}
-                    initial={
-                      reduceMotion
-                        ? false
-                        : { opacity: 0, y: 10 }
-                    }
+                    initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{
@@ -436,7 +382,6 @@ export default function FinalCTASection() {
         </div>
 
         {/* FINAL DISCLAIMER */}
-
         <p className="mx-auto mt-5 max-w-4xl text-center text-[10px] leading-5 text-slate-500 sm:text-xs">
           Certificate issuance is subject to applicable program completion
           requirements. PPO consideration, where offered, depends on

@@ -294,7 +294,7 @@ export default function WebDevelopmentPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan-200">
               <Sparkles size={14} />
-              TriQolo · Web Development
+              GrowZeal · Web Development
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
@@ -551,7 +551,7 @@ export default function WebDevelopmentPage() {
               <p className="mt-2 text-sm leading-6 text-slate-400">
                 Learn modern web technologies, strengthen your
                 practical skills, and take the next step in your
-                development journey with TriQolo.
+                development journey with GrowZeal.
               </p>
             </div>
 

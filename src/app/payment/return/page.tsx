@@ -105,7 +105,7 @@ export default async function PaymentReturnPage({ searchParams }: Props) {
         </div>
 
         <p className="mt-6 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-          TriQolo
+          GrowZeal
         </p>
 
         <h1 className="mt-3 text-3xl font-bold">

@@ -276,11 +276,11 @@ export default function ContactPage() {
 
         if (error.code === "42501") {
           setSubmitError(
-            "We couldn't save your details because the database rejected the submission. Please try again later or contact triqolo.our@gmail.com."
+            "We couldn't save your details because the database rejected the submission. Please try again later or contact GrowZeal.our@gmail.com."
           );
         } else {
           setSubmitError(
-            "We couldn't save your details right now. Please try again later or contact triqolo.our@gmail.com."
+            "We couldn't save your details right now. Please try again later or contact GrowZeal.our@gmail.com."
           );
         }
 
@@ -288,7 +288,7 @@ export default function ContactPage() {
       }
 
       setSubmitMessage(
-        "Thank you for contacting TriQolo! Your details have been submitted successfully."
+        "Thank you for contacting GrowZeal! Your details have been submitted successfully."
       );
 
       form.reset();
@@ -332,7 +332,7 @@ export default function ContactPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
           <Link
             href="/#home"
-            aria-label="TriQolo home"
+            aria-label="GrowZeal home"
             className="group flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
           >
             <span className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-300/20 bg-gradient-to-br from-cyan-300/[0.12] to-violet-400/[0.12]">
@@ -344,7 +344,7 @@ export default function ContactPage() {
 
             <span>
               <span className="block text-xl font-black tracking-[-0.05em]">
-                Tri<span className="text-cyan-300">Q</span>olo
+                Grow<span className="text-cyan-300">Zeal</span>
               </span>
               <span className="mt-1 block text-[8px] font-bold uppercase tracking-[0.2em] text-slate-500">
                 Learn · Build · Grow
@@ -406,7 +406,7 @@ export default function ContactPage() {
               {/* SUPPORT CARDS */}
               <div className="mt-9 space-y-3">
                 <a
-                  href="mailto:triqolo.our@gmail.com"
+                  href="mailto:GrowZeal.our@gmail.com"
                   className="group flex items-start gap-4 rounded-2xl border border-white/[0.08] bg-[#0A1425]/80 p-4 transition duration-300 hover:border-cyan-300/20 hover:bg-[#0D192B]/90 sm:p-5"
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-300/[0.07] text-cyan-300">
@@ -418,7 +418,7 @@ export default function ContactPage() {
                       Questions about registration or programs?
                     </p>
                     <p className="mt-2 break-all text-xs font-semibold text-cyan-200 sm:text-sm">
-                      triqolo.our@gmail.com
+                      GrowZeal.our@gmail.com
                     </p>
                   </div>
                   <ArrowUpRight
@@ -738,11 +738,11 @@ export default function ContactPage() {
       <footer className="relative z-10 border-t border-white/[0.07] bg-[#050B18]/90">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-10">
           <Link href="/#home" className="text-lg font-black tracking-tight">
-            Tri<span className="text-cyan-300">Q</span>olo
+            Grow<span className="text-cyan-300">Zeal</span>
           </Link>
 
           <p className="text-center text-[10px] text-slate-500 sm:text-xs">
-            © {new Date().getFullYear()} TriQolo. All rights reserved.
+            © {new Date().getFullYear()} GrowZeal. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">

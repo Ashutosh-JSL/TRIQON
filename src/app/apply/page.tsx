@@ -40,13 +40,13 @@ export default function ApplyPage() {
           href="/"
           className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white"
         >
-          <ArrowLeft size={16} /> Back to TriQolo
+          <ArrowLeft size={16} /> Back to GrowZeal
         </Link>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_0.8fr]">
           <section>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
-              TriQolo · Registration
+              GrowZeal · Registration
             </p>
             <h1 className="mt-3 text-3xl font-extrabold sm:text-4xl">
               Start your learning journey.

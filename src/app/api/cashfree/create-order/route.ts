@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
             customer_phone: phone,
           },
 
-          order_note: `TriQolo Web Development application - ${college}`,
+          order_note: `GrowZeal Web Development application - ${college}`,
 
           order_meta: {
             return_url: `${siteUrl.replace(/\/+$/, "")}/payment/return?order_id=${orderId}`,

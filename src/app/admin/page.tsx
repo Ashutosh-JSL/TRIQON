@@ -110,7 +110,7 @@ export default function AdminPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
           <div>
             <h1 className="text-2xl font-black tracking-tight text-[#171321]">
-              TriQolo<span className="text-[#6D4AFF]">.</span>
+              GrowZeal<span className="text-[#6D4AFF]">.</span>
             </h1>
 
             <p className="mt-1 text-sm text-gray-500">
@@ -134,7 +134,7 @@ export default function AdminPage() {
           </h2>
 
           <p className="mt-2 text-sm text-gray-500">
-            Manage applications submitted through the TriQolo website.
+            Manage applications submitted through the GrowZeal website.
           </p>
         </div>
 

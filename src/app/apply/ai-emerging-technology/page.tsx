@@ -109,7 +109,7 @@ export default function AIEmergingTechnologyPage() {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-400/[0.08] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-violet-200">
               <Sparkles size={14} />
-              TriQolo · AI & Emerging Technology
+              GrowZeal · AI & Emerging Technology
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
@@ -430,7 +430,7 @@ export default function AIEmergingTechnologyPage() {
 
               <p className="mt-2 text-sm leading-6 text-slate-400">
                 Explore AI technologies, strengthen your practical
-                skills, and turn ideas into useful solutions with TriQolo.
+                skills, and turn ideas into useful solutions with GrowZeal.
               </p>
             </div>
 

@@ -16,9 +16,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "TriQolo | Practical Learning. Real Projects. Career Growth.",
+  title: "GrowZeal | Practical Learning. Real Projects. Career Growth.",
   description:
-    "TriQolo helps students develop practical skills through structured learning, hands-on projects, and career-focused programs.",
+    "GrowZeal helps students develop practical skills through structured learning, hands-on projects, and career-focused programs.",
 };
 
 export default function RootLayout({

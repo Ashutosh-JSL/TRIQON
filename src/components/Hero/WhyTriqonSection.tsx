@@ -77,7 +77,7 @@ const reveal = {
   },
 };
 
-export default function WhyTriqoloSection() {
+export default function WhyGrowZealSection() {
   const reduceMotion = useReducedMotion();
 
   const sectionReveal = {
@@ -176,7 +176,7 @@ export default function WhyTriqoloSection() {
           viewport={{ once: true, amount: 0.2 }}
           variants={sectionReveal}
         >
-          <SectionLabel>Why TriQolo</SectionLabel>
+          <SectionLabel>Why GrowZeal</SectionLabel>
 
           <h2 className="mt-6 text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
             Learn.

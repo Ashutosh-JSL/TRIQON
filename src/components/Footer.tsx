@@ -16,7 +16,7 @@ export default function Footer() {
             className="inline-block"
           >
             <div className="text-2xl font-black tracking-tight">
-              TriQolo<span className="text-[#14B8A6]">.</span>
+              GrowZeal<span className="text-[#14B8A6]">.</span>
             </div>
 
             <p className="mt-1 text-xs text-[#94A3B8]">
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs leading-5 text-[#64748B]">
-            © {new Date().getFullYear()} TriQolo . All rights reserved.
+            © {new Date().getFullYear()} GrowZeal . All rights reserved.
           </p>
         </div>
       </div>

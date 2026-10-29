@@ -185,7 +185,7 @@ export default function HeroBanner() {
           >
             Turn what you learn into what you can build. Develop practical
             skills, work on meaningful projects, and take the next step
-            toward your career with TriQolo.
+            toward your career with GrowZeal.
           </motion.p>
 
           {/* Primary actions */}
@@ -297,7 +297,7 @@ export default function HeroBanner() {
             </div>
 
             <p className="text-2xl font-black tracking-tight sm:text-3xl">
-              Tri<span className="text-cyan-300">Q</span>olo
+              Grow<span className="text-cyan-300">Zeal</span>
             </p>
 
             <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">

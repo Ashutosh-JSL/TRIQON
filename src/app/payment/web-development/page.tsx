@@ -227,7 +227,7 @@ export default function WebDevelopmentPaymentPage() {
           {/* Header */}
           <div className="mb-8">
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">
-              TriQolo
+              GrowZeal
             </p>
 
             <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
@@ -545,7 +545,7 @@ export default function WebDevelopmentPaymentPage() {
 
                 <p className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-slate-500">
                   All three confirmations are mandatory to proceed. Please
-                  contact TriQolo if you need clarification before making
+                  contact GrowZeal if you need clarification before making
                   payment.
                 </p>
 
@@ -634,7 +634,7 @@ export default function WebDevelopmentPaymentPage() {
           </div>
 
           <p className="mt-8 text-center text-xs text-slate-600">
-            © {new Date().getFullYear()} TriQolo. All rights reserved.
+            © {new Date().getFullYear()} GrowZeal. All rights reserved.
           </p>
         </div>
       </main>

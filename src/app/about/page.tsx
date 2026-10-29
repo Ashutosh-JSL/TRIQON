@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "About Us | TRIQOLO",
+  title: "About Us | GrowZeal",
   description:
-    "Learn about TRIQOLO, our mission, vision, founder, learning approach, and core values.",
+    "Learn about GrowZeal, our mission, vision, founder, learning approach, and core values.",
 };
 
 export default function AboutPage() {
@@ -25,9 +25,9 @@ export default function AboutPage() {
           </header>
 
           <section className="mb-10">
-            <h2 className="mb-4 text-2xl font-semibold">About TRIQOLO</h2>
+            <h2 className="mb-4 text-2xl font-semibold">About GrowZeal</h2>
             <p className="leading-8 text-slate-300">
-              TRIQOLO bridges the gap between education and industry through
+              GrowZeal bridges the gap between education and industry through
               practical, project-based learning experiences that help students
               gain real-world exposure, industry-relevant skills, and
               professional confidence.
@@ -37,7 +37,7 @@ export default function AboutPage() {
           <section className="mb-10">
             <h2 className="mb-4 text-2xl font-semibold">Who We Are</h2>
             <p className="mb-4 leading-8 text-slate-300">
-              At TRIQOLO, we believe practical experience plays a crucial role
+              At GrowZeal, we believe practical experience plays a crucial role
               in professional development. Academic learning builds knowledge,
               but applying that knowledge through real-world projects
               strengthens understanding, confidence, and career readiness.
@@ -55,9 +55,9 @@ export default function AboutPage() {
             <h3 className="mb-2 text-lg font-medium text-[#00BEE6]">
               Ganesh Dahiphale
             </h3>
-            <p className="mb-4 text-slate-400">Founder, TRIQOLO</p>
+            <p className="mb-4 text-slate-400">Founder, GrowZeal</p>
             <p className="leading-8 text-slate-300">
-              The vision behind TRIQOLO is to bridge the gap between academic
+              The vision behind GrowZeal is to bridge the gap between academic
               learning and practical industry experience. The goal is to create
               an environment where students can move beyond theory and build
               professional skills through meaningful practical work.
